@@ -7,6 +7,9 @@
 *{
 	padding:0;
 	margin:0;
+	font-family: Muli, sans-serif;
+	font-size:24pt;
+	text-transform: uppercase;
 }
 
 form{
@@ -46,4 +49,13 @@ form div{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+form div *{
+	max-width: 60%;
+}
+
+form div input{
+	font-size:18pt;
+	text-transform: none;
 }
