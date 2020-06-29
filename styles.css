@@ -12,6 +12,13 @@
 	text-transform: uppercase;
 }
 
+body{
+	background-color:darkblue;
+	background-position: center;
+	background-repeat: no-repeat;
+	height:100vh;
+}
+
 form{
 	width: 90vw;
 	/*9/16*90=50.625
@@ -30,7 +37,7 @@ form{
 	left: 0;
 	right: 0;
 
-	background: gold;
+	background: #AAAAFF80;
 
 	display:flex;
 	flex-direction: column;
@@ -39,7 +46,7 @@ form{
 
 form > *{
 	width:80%;
-	margin: 5% 10%;
+	margin: 2% 10%;
 }
 
 form > *:first-child{
@@ -65,4 +72,13 @@ form div input{
 input[type=checkbox]{
 	width:5.5vmin;
 	height:5.5vmin;
+}
+
+form div:last-child{
+	position: absolute;
+	bottom:5%;
+}
+
+form div:last-child > *{
+	width:40%;
 }
