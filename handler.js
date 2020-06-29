@@ -24,6 +24,6 @@ $(document).ready(function(){
 	let bod = $("body");
 
 	bod.css("background-image","url('art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
-	bod.css("background-position",(Math.random() < 0.5 ? "-15" : "65")+"vw "+Math.floor(Math.random()*50)+"vw")
+	bod.css("background-position",(Math.random() < 0.5 ? "-30" : "130")+"% "+Math.floor(Math.random()*30-15)+"vw")
 
 });
