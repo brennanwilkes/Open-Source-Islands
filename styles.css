@@ -8,17 +8,19 @@
 	padding:0;
 	margin:0;
 	font-family: Muli, sans-serif;
-	font-size:24pt;
+	font-size:4.5vmin;
 	text-transform: uppercase;
 }
 
 form{
 	width: 90vw;
-	/*9/16*90=50.625*/
-	max-width: 50.625vh;
+	/*9/16*90=50.625
+	  3/4*90=67.5*/
+	max-width: 67.5vh;
 
-	/*16/9*90=160*/
-	height: 160vw;
+	/*16/9*90=160
+	  4/3*90=120*/
+	height: 120vw;
 	max-height: 90vh;
 
 	margin: auto;
@@ -49,6 +51,7 @@ form div{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 }
 
 form div *{
@@ -56,6 +59,10 @@ form div *{
 }
 
 form div input{
-	font-size:18pt;
 	text-transform: none;
+}
+
+input[type=checkbox]{
+	width:5.5vmin;
+	height:5.5vmin;
 }

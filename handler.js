@@ -9,4 +9,7 @@ function setValidMessage(id,message){
 $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
+
+
+
 });
