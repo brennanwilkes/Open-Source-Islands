@@ -20,9 +20,13 @@ html, body {
 
 body{
 	background-color:#0C1A5F;
-	background-position: center;
+}
+
+main{
+	background-position: 55vw 40vh;
 	background-repeat: no-repeat;
 	height:100vh;
+	z-index: 1;
 }
 
 
@@ -135,4 +139,5 @@ input, .page, input:focus{
 	height:5px;
 	background-color: #2d5ba4;
 	animation: fadeout 2s infinite;
+	z-index: -1;
 }
