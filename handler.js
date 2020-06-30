@@ -15,12 +15,26 @@ function spawnParticle(event){
 	}, 2000);
 }
 
+function changePage(dir){
+	if($("form")[0].reportValidity()){
+		$("#page"+currentPage).hide();
+		currentPage = Math.max(0,Math.min(currentPage+dir,2));
+		$("#page"+currentPage).show();
+	}
+}
+
+var currentPage = 0;
 
 $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
 
-	setInterval(spawnParticle, 75);
+	$("#page0").show();
+	$("#page1").hide();
+	$("#page2").hide();
+
+
+	setInterval(spawnParticle, 55);
 
 	$("#atoll").change(function() {
 		if(this.checked){
@@ -38,5 +52,15 @@ $(document).ready(function(){
 			$("#motu").prop("checked", true);
 		}
 	});
+
+	$("input[value=next]").click(function(event){
+		changePage(1);
+	});
+
+	$("input[value=back]").click(function(event){
+		changePage(-1);
+	});
+
+
 
 });
