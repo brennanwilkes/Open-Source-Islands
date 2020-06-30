@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<main>
-			<form>
+			<form id=page1>
 				<h1>Properties</h1>
 				<div>
 					<label for="name">Name</label>
@@ -34,6 +34,11 @@
 				</div>
 
 				<div>
+					<label for="reef">Reef</label>
+					<input type="checkbox" id="reef" name="reef" value="true">
+				</div>
+
+				<div>
 					<label for="motu">Motu</label>
 					<input type="checkbox" id="motu" name="motu" value="true">
 				</div>
@@ -41,11 +46,6 @@
 				<div>
 					<label for="atoll">Atoll</label>
 					<input type="checkbox" id="atoll" name="atoll" value="true">
-				</div>
-
-				<div>
-					<label for="reef">Reef</label>
-					<input type="checkbox" id="reef" name="reef" value="true">
 				</div>
 
 				<div>
@@ -58,7 +58,11 @@
 					<input type="checkbox" id="village" name="village" value="true">
 				</div>
 
-				<input type="button" value="next">
+				<div>
+					<input type="button" value="exit">
+					<input type="button" value="next">
+
+				</div>
 			</form>
 		</main>
 	</body>

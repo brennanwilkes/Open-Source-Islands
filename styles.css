@@ -73,7 +73,7 @@ form div *{
 	max-width: 60%;
 }
 
-form div input{
+form div input[type=text]{
 	text-transform: none;
 }
 
