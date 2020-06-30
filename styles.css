@@ -4,6 +4,10 @@
 	CPSC 2030 W01
 */
 
+html, body {
+  overflow: hidden;
+}
+
 *{
 	padding:0;
 	margin:0;
