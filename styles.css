@@ -116,6 +116,16 @@ input{
 	border: 0.1vmin solid #444;
 }
 
+input[type=button]:active, input[type=submit]:active{
+	background-color: #CCC;
+}
+
+input[type=color]{
+	width:40%;
+	height:90%;
+	border: 0;
+}
+
 
 /*////////////////////////////////////////*/
 

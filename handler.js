@@ -43,13 +43,6 @@ $(document).ready(function(){
 	$("main").css("background-image","url('concept-art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
 
 
-	$("#page0").show();
-	$("#page1").hide();
-	$("#page2").hide();
-	$("#treeheight").parent().hide();
-	$("#villageheight").parent().hide();
-
-
 	setInterval(spawnParticle, 55);
 
 	$("#atoll").change(function() {
@@ -69,25 +62,21 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#village").change(function() {
-		if(this.checked){
-			$("#villageheight").parent().show();
-		}
-		else{
-			$("#villageheight").parent().hide();
-		}
-	});
-	$("#trees").change(function() {
-		if(this.checked){
-			$("#treeheight").parent().show();
-		}
-		else{
-			$("#treeheight").parent().hide();
-		}
-	});
+	$("#treesheight").parent().hide();
+	$("#villageheight").parent().hide();
+	$("#lava").parent().hide();
+
+	let slidertoggle = [["village","villageheight"],["trees","treesheight"],["volcano","lava"],["background","ocean"]];
+	for(let i=0;i<slidertoggle.length;i++){
+		$("#"+slidertoggle[i][0]).change(function() {
+			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
+		});
+	}
 
 
-
+	$("#page0").show();
+	$("#page1").hide();
+	$("#page2").hide();
 	$("input[value=next]").click(function(event){
 		changePage(1);
 	});
@@ -97,6 +86,5 @@ $(document).ready(function(){
 	});
 
 	document.ontouchmove = function(event){event.preventDefault();};
-
 
 });
