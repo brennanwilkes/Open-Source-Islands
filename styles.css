@@ -110,11 +110,11 @@ input, .page, input:focus{
 }
 
 label, h1, input[type=button], input[type=submit]{
-	color: #336;
+	color: #444;
 }
 
 input{
-	border: 0.1vmin solid #336;
+	border: 0.1vmin solid #444;
 }
 
 
