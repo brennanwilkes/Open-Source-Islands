@@ -18,7 +18,6 @@ html, body {
 	font-size:4.5vmin;
 	text-transform: uppercase;
 	color: black;
-	overflow: hidden;
 }
 
 body{
@@ -126,6 +125,16 @@ input{
 	to { opacity: 0; }
 }
 
+.Particle{
+	position: absolute;
+	width:0.7vmin;
+	height:0.7vmin;
+	background-color: #2d5ba4;
+	animation: fadeout 2s infinite;
+	z-index: -1;
+}
+
+
 @keyframes animateAlbatrossSprite{
 	from{background-position-x:0px;}
 	to{background-position-x:-960px;}
@@ -146,13 +155,4 @@ input{
 
 .greyVarient{
 	background-image : url("sprites/albatross-grey-sprite-sheet.png");
-}
-
-.Particle{
-	position: absolute;
-	width:0.7vmin;
-	height:0.7vmin;
-	background-color: #2d5ba4;
-	animation: fadeout 2s infinite;
-	z-index: -1;
 }

@@ -46,6 +46,8 @@ $(document).ready(function(){
 	$("#page0").show();
 	$("#page1").hide();
 	$("#page2").hide();
+	$("#treeheight").parent().hide();
+	$("#villageheight").parent().hide();
 
 
 	setInterval(spawnParticle, 55);
@@ -66,6 +68,25 @@ $(document).ready(function(){
 			$("#motu").prop("checked", true);
 		}
 	});
+
+	$("#village").change(function() {
+		if(this.checked){
+			$("#villageheight").parent().show();
+		}
+		else{
+			$("#villageheight").parent().hide();
+		}
+	});
+	$("#trees").change(function() {
+		if(this.checked){
+			$("#treeheight").parent().show();
+		}
+		else{
+			$("#treeheight").parent().hide();
+		}
+	});
+
+
 
 	$("input[value=next]").click(function(event){
 		changePage(1);
