@@ -11,7 +11,10 @@ html, body {
 *{
 	padding:0;
 	margin:0;
-	font-family: Muli, sans-serif;
+	font-family: "Lato", sans-serif;
+	font-style: normal;
+	font-weight: 400;
+
 	font-size:4.5vmin;
 	text-transform: uppercase;
 	color: black;
@@ -56,7 +59,7 @@ main{
 
 	display:flex;
 	flex-direction: column;
-	flex-wrap: wrap;
+	justify-content: space-between;
 	text-align: center;
 }
 
@@ -68,7 +71,7 @@ main{
 .page > *:first-child{
 	margin-top: 5%;
 	font-size:8vmin;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 
@@ -100,13 +103,24 @@ input, .page, input:focus{
 }
 
 .page > *:last-child{
-	position: absolute;
-	bottom:5%;
+	margin-bottom: 8%;
 }
 
 .page div:last-child > *{
 	width:40%;
 }
+
+label, h1, input[type=button], input[type=submit]{
+	color: #336;
+}
+
+input{
+	border: 0.1vmin solid #336;
+}
+
+
+/*////////////////////////////////////////*/
+
 
 @keyframes fadeout{
 	from { opacity: 1; }
