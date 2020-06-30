@@ -21,7 +21,7 @@ body{
 	height:100vh;
 }
 
-form{
+.page{
 	width: 90vw;
 	/*9/16*90=50.625
 	  3/4*90=67.5*/
@@ -51,30 +51,30 @@ form{
 	box-shadow: 2px 2px #0A0A4F;
 }
 
-form > *{
+.page > *{
 	width:80%;
 	margin: 2% 10%;\
 }
 
-form > *:first-child{
+.page > *:first-child{
 	margin-top: 5%;
 	font-size:8vmin;
 	font-weight: normal;
 }
 
 
-form div{
+.page div{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 }
 
-form div *{
+.page div *{
 	max-width: 60%;
 }
 
-form div input[type=text]{
+.page div input[type=text]{
 	text-transform: none;
 }
 
@@ -83,12 +83,12 @@ input[type=checkbox]{
 	height:5.5vmin;
 }
 
-form > *:last-child{
+.page > *:last-child{
 	position: absolute;
 	bottom:5%;
 }
 
-form div:last-child > *{
+.page div:last-child > *{
 	width:40%;
 }
 
@@ -103,8 +103,8 @@ form div:last-child > *{
 }
 
 @keyframes spriteMovement {
-	0% 		{transform: rotate(135deg) translate(0, 10vw);}
-	100% 	{transform: rotate(135deg) translate(0, -110vw);}
+	0% 		{transform: rotate(135deg) translate(0, 10vmax);}
+	100% 	{transform: rotate(135deg) translate(0, -110vmax);}
 }
 
 .Albatross{
