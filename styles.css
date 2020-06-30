@@ -64,7 +64,7 @@ main{
 
 .page > *{
 	width:80%;
-	margin: 2% 10%;\
+	margin: 0 10%;
 }
 
 .page > *:first-child{
@@ -124,6 +124,14 @@ input[type=color]{
 	width:40%;
 	height:90%;
 	border: 0;
+}
+
+.dual label{
+	width:150%;
+}
+
+.tri label{
+	width:200%;
 }
 
 
