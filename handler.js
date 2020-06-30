@@ -61,6 +61,7 @@ $(document).ready(function(){
 		changePage(-1);
 	});
 
+	document.ontouchmove = function(event){event.preventDefault();};
 
 
 });
