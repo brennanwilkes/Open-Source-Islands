@@ -29,6 +29,11 @@ $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
 
+	//let bod = $("body");
+	//bod.css("background-image","url('art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
+	//bod.css("background-position",(Math.random() < 0.5 ? "-30" : "130")+"% "+Math.floor(Math.random()*30-15)+"vw")
+
+
 	$("#page0").show();
 	$("#page1").hide();
 	$("#page2").hide();
