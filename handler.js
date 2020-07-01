@@ -64,11 +64,11 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#treesheight").parent().hide();
+	$("#tree_amt").parent().hide();
 	$("#villageheight").parent().hide();
 	$("#lava1").parent().hide();
 
-	let slidertoggle = [["village","villageheight"],["trees","treesheight"],["volcano","lava1"],["background","ocean"]];
+	let slidertoggle = [["village","villageheight"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
 			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
@@ -109,7 +109,8 @@ $(document).ready(function(){
 		set.ISL_PERSIST = parseInt($("#persistence").val())/10;
 		set.ISL_LAC = parseInt($("#lacunarity").val())/100;
 		set.ISL_SCALE = parseInt($("#scale").val());
-
+		set.HAS_TREES = $("#trees").prop("checked");
+		set.tree_amt = parseInt($("#tree_amt").val())*20;
 
 		set.DEEP_OCEAN = $("#ocean").val();
 		set.SHALLOW_OCEAN = $("#shallows").val();
@@ -121,13 +122,16 @@ $(document).ready(function(){
 		set.ROCK_TWO = $("#rock2").val();
 		set.LAVA_ONE = $("#lava1").val();
 		set.LAVA_TWO = $("#lava2").val();
+		set.colour_background = $("#background").prop("checked");
+		set.time = parseInt($("#time").val());
+
 
 
 
 		island = new Island(set);
 
 		let img = $("<img class=island-image>");
-		img.prop("src",island.compileStaticImage(false,false));
+		img.prop("src",island.compileStaticImage(true,true));
 
 		$("body").append(img);
 

@@ -115,10 +115,10 @@ function hash(num){
 }
 
 
-function get_lighting(peak,coord){
+function get_lighting(peak,coord,time=LIGHTING_DISTANCE){
 	let val0 = (is_town(peak[2]) ? remove_town(peak[2]) : peak[2]);
 	let val1 = (is_town(coord[2]) ? remove_town(coord[2]) : coord[2]);
-	return (val0-val1+0.2)*(1-(Math.pow(pixel_distance(peak,coord),1.25)/LIGHTING_DISTANCE));
+	return (val0-val1+0.2)*(1-(Math.pow(pixel_distance(peak,coord),1.25)/time));
 }
 function pixel_distance(peak,coord){
 	return Math.sqrt(Math.pow(coord[0]-peak[0],2)+Math.pow(coord[1]-peak[1],2));
@@ -189,12 +189,12 @@ const ISL_OCT = 8;
 //const ISL_LAC = 0.7;
 
 const ISLAND_PIXEL_SCALE = 4;
-var LIGHTING_DISTANCE = 15;
 
 
 const TOWN_HEIGHT = 36;
 const SPRITE_SIZE = 8;
 
+var LIGHTING_DISTANCE = 15;
 
 
 
@@ -203,6 +203,12 @@ const SPRITE_SIZE = 8;
 class IslandSettings{
 	constructor(seed=Math.random()*1000000){
 		this.seed=seed;
+		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
+		this.size_x = 2048;
+		this.size_y = 2048;
+
+
+		this.colour_background = true;
 		this.DEEP_OCEAN = "#000770";
 		this.SHALLOW_OCEAN = "#0C49AC";
 		this.LAND_ONE = "#587E31";
@@ -214,18 +220,22 @@ class IslandSettings{
 		this.LAVA_ONE = "darkred";
 		this.LAVA_TWO = "orange";
 		this.VILLAGE = "#654321";
+		this.time = 10;
 
 		this.HAS_MOTU = this.seed%2 === 0;
 		this.HAS_REEF = this.seed%4 === 0;
 		this.IS_ATOLL = this.seed%2 === 0 && hash(this.seed-100)%4 === 0;
 		this.IS_VOLCANO =this.seed%2 === 1 && hash(this.seed-66)%4 === 0;
 		this.HAS_TOWN = 0;
+		this.HAS_TREES = true;
+		this.tree_amt = 500;
 
 		this.ISL_PERSIST = 2;
-		this.ISL_LAC = 0.7;
+		this.ISL_LAC = 0.75;
 		this.ISL_SCALE = 25;
 
-		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
+
+
 	}
 }
 
@@ -246,12 +256,16 @@ class Island{
 		this.LAVA_ONE = settings.LAVA_ONE;
 		this.LAVA_TWO = settings.LAVA_TWO;
 		this.VILLAGE = settings.VILLAGE;
+		this.colour_background = settings.colour_background;
+		this.photo_time = settings.time;
 
 		this.HAS_MOTU = settings.HAS_MOTU;
 		this.HAS_REEF = settings.HAS_REEF;
 		this.IS_ATOLL = settings.IS_ATOLL;
 		this.IS_VOLCANO = settings.IS_VOLCANO;
 		this.HAS_TOWN = settings.HAS_TOWN;
+		this.HAS_TREES = settings.HAS_TREES;
+		this.tree_amt = settings.tree_amt;
 
 		this.ISL_PERSIST = settings.ISL_PERSIST;
 		this.ISL_LAC = settings.ISL_LAC;
@@ -274,7 +288,7 @@ class Island{
 		this.name = settings.name;
 
 
-		this.size = [2048,2048,0.6];
+		this.size = [settings.size_x,settings.size_y];
 
 		this.LAC_SCALE_DOWN = LAC_SCALE_DOWN;
 
@@ -438,7 +452,7 @@ class Island{
 		}
 
 		//generate base map
-		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.ISL_SCALE,ISL_OCT,this.ISL_PERSIST,(this.ISL_LAC + 0.15*(1-this.size[2]))*this.LAC_SCALE_DOWN,hash(this.seed), false);
+		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.ISL_SCALE,ISL_OCT,this.ISL_PERSIST,this.ISL_LAC*this.LAC_SCALE_DOWN,hash(this.seed), false);
 
 
 
@@ -556,7 +570,7 @@ class Island{
 
 				if(this.IS_VOLCANO){
 					if(this.raw_data[x][y]>0.6){
-						this.raw_data[x][y] *= 1.25;
+						this.raw_data[x][y] *= (this.HAS_MOTU||this.HAS_REEF) ? 1.35 : 1.25;
 					}
 				}
 
@@ -587,11 +601,14 @@ class Island{
 			}
 		}
 
-		let numTrees = (this.seed-12)%500 + 500;
-		this.gen_obj(Island.shiftTreeGraphics,Island.numTreeGraphics,numTrees,-1,-1,0.35,0.4,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
+		if(this.HAS_TREES){
+			let numTrees = this.tree_amt;
+			this.gen_obj(Island.shiftTreeGraphics,Island.numTreeGraphics,numTrees,-1,-1,0.35,0.4,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
 
-		let numPlants = (this.seed-12)%100+250;
-		this.gen_obj(Island.shiftPlantGraphics,Island.numPlantGraphics,numPlants,-1,-1,0.375,0.425,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
+			let numPlants = Math.floor(this.tree_amt/4);
+			this.gen_obj(Island.shiftPlantGraphics,Island.numPlantGraphics,numPlants,-1,-1,0.375,0.425,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
+		}
+
 
 
 
@@ -667,7 +684,7 @@ class Island{
 			}
 
 			if( peak!=undefined && (colour_round(peak[2]) > 2 && colour_round(peak[2]) > colour_round(h) || ( colour_round(peak[2])===4 && colour_round(h)===4)  )){
-				ctx_img.fillStyle = "rgba(0, 0, 0, "+get_lighting(peak,[xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h])+")";
+				ctx_img.fillStyle = "rgba(0, 0, 0, "+get_lighting(peak,[xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h],this.photo_time)+")";
 				ctx_img.fillRect(xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE);
 			}
 			peak = nextpeak;
@@ -675,7 +692,7 @@ class Island{
 	}
 
 
-	bake_lighting(rebake = false){
+	bake_lighting(){
 		let ctx_img;
 		this.lighting_img = document.createElement('canvas');
 		this.lighting_img.width = this.size[0];
@@ -715,11 +732,32 @@ class Island{
 		saved_img.height = this.size[1];
 		let img_ctx = saved_img.getContext("2d");
 
+
+		if(this.colour_background){
+			img_ctx.fillStyle = this.DEEP_OCEAN;
+			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
+		}
+
 		img_ctx.drawImage(this.canvas_img,0,0);
 
 
-		if(lighting) img_ctx.drawImage(this.lighting_img,0,0);
-		if(objects) img_ctx.drawImage(this.objects_img,0,0);
+		if(lighting){
+			img_ctx.drawImage(this.lighting_img,0,0);
+		}
+		if(objects){
+			img_ctx.drawImage(this.objects_img,0,0);
+		}
+		if(lighting){
+			let grad = img_ctx.createLinearGradient(0,0,this.size[0],this.size[1]);
+			grad.addColorStop(1, "#FF000040");
+			grad.addColorStop(0.5, "#FF000080");
+			grad.addColorStop(0, "#FFC922FF");
+
+			img_ctx.globalAlpha = Math.max(this.photo_time-35,0)/120;
+			img_ctx.fillStyle = grad;
+			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
+
+		}
 
 		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
 	}
