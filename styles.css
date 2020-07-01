@@ -147,6 +147,17 @@ input[type=text]:hover{
 }
 
 
+/*////////////////////////*/
+
+.island-image{
+	position: absolute;
+	left:0;
+	top:0;
+	width:50vmin;
+	height:50vmin;
+	z-index: 2;
+}
+
 
 /*////////////////////////////////////////*/
 

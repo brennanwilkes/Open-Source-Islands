@@ -9,6 +9,8 @@ let concept_art = [
 	"Tangaroa-Timoteo-Savali.png",
 ];
 
+var island;
+
 function setValidMessage(id,message){
 	let element = $("#"+id);
 	element.attr("oninvalid","this.setCustomValidity('"+message+"')");
@@ -64,9 +66,9 @@ $(document).ready(function(){
 
 	$("#treesheight").parent().hide();
 	$("#villageheight").parent().hide();
-	$("#lava").parent().hide();
+	$("#lava1").parent().hide();
 
-	let slidertoggle = [["village","villageheight"],["trees","treesheight"],["volcano","lava"],["background","ocean"]];
+	let slidertoggle = [["village","villageheight"],["trees","treesheight"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
 			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
@@ -83,6 +85,53 @@ $(document).ready(function(){
 
 	$("input[value=back]").click(function(event){
 		changePage(-1);
+	});
+
+	$("#compile").click(function(event){
+		let set;
+		if($("#seed").val().length > 0){
+			set = new IslandSettings($("#seed").val());
+		}
+		else{
+			set = new IslandSettings();
+		}
+
+		if($("#name").val().length > 0){
+			set.name = $("#name").val();
+		}
+
+		set.HAS_MOTU = $("#motu").prop("checked");
+		set.HAS_REEF = $("#reef").prop("checked");
+		set.IS_ATOLL = $("#atoll").prop("checked");
+		set.IS_VOLCANO = $("#volcano").prop("checked");
+		set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
+
+		set.ISL_PERSIST = parseInt($("#persistence").val())/10;
+		set.ISL_LAC = parseInt($("#lacunarity").val())/100;
+		set.ISL_SCALE = parseInt($("#scale").val());
+
+
+		set.DEEP_OCEAN = $("#ocean").val();
+		set.SHALLOW_OCEAN = $("#shallows").val();
+		set.LAND_ONE = $("#ground1").val();
+		set.LAND_TWO = $("#ground2").val();
+		set.LAND_THREE = $("#ground3").val();
+		set.BEACH = $("#beach").val();
+		set.ROCK_ONE = $("#rock1").val();
+		set.ROCK_TWO = $("#rock2").val();
+		set.LAVA_ONE = $("#lava1").val();
+		set.LAVA_TWO = $("#lava2").val();
+
+
+
+		island = new Island(set);
+
+		let img = $("<img class=island-image>");
+		img.prop("src",island.compileStaticImage(false,false));
+
+		$("body").append(img);
+
+
 	});
 
 	//$("input[type=color]").prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder","#FFFFFF").prop("value","");

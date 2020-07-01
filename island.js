@@ -183,10 +183,10 @@ const REEF_OCT = 1;
 const REEF_PERSIST = 2;
 const REEF_LAC = 0.95;
 
-const ISL_SCALE = 25;
+//const ISL_SCALE = 25;
 const ISL_OCT = 8;
-const ISL_PERSIST = 2;
-const ISL_LAC = 0.7;
+//const ISL_PERSIST = 2;
+//const ISL_LAC = 0.7;
 
 const ISLAND_PIXEL_SCALE = 4;
 var LIGHTING_DISTANCE = 15;
@@ -201,27 +201,32 @@ const SPRITE_SIZE = 8;
 
 
 class IslandSettings{
-	seed=Math.random()*1000000;
-	DEEP_OCEAN = "#000770";
-	SHALLOW_OCEAN = "#0C49AC";
-	LAND_ONE = "#587E31";
-	LAND_TWO = "#274C00";
-	LAND_THREE = "#173600";
-	BEACH = "#D0AB76";
-	ROCK_ONE = "#959688";
-	ROCK_TWO = "#626354";
-	LAVA_ONE = "darkred";
-	LAVA_TWO = "orange";
-	VILLAGE = "#654321";
+	constructor(seed=Math.random()*1000000){
+		this.seed=seed;
+		this.DEEP_OCEAN = "#000770";
+		this.SHALLOW_OCEAN = "#0C49AC";
+		this.LAND_ONE = "#587E31";
+		this.LAND_TWO = "#274C00";
+		this.LAND_THREE = "#173600";
+		this.BEACH = "#D0AB76";
+		this.ROCK_ONE = "#959688";
+		this.ROCK_TWO = "#626354";
+		this.LAVA_ONE = "darkred";
+		this.LAVA_TWO = "orange";
+		this.VILLAGE = "#654321";
 
-	HAS_MOTU = this.seed%2 === 0;
-	HAS_REEF = this.seed%4 === 0;
-	IS_ATOLL = this.seed%2 === 0 && hash(this.seed-100)%4 === 0;
-	IS_VOLCANO =this.seed%2 === 1 && hash(this.seed-66)%4 === 0;
-	HAS_TOWN = 0;
+		this.HAS_MOTU = this.seed%2 === 0;
+		this.HAS_REEF = this.seed%4 === 0;
+		this.IS_ATOLL = this.seed%2 === 0 && hash(this.seed-100)%4 === 0;
+		this.IS_VOLCANO =this.seed%2 === 1 && hash(this.seed-66)%4 === 0;
+		this.HAS_TOWN = 0;
 
-	name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
+		this.ISL_PERSIST = 2;
+		this.ISL_LAC = 0.7;
+		this.ISL_SCALE = 25;
 
+		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
+	}
 }
 
 
@@ -247,6 +252,10 @@ class Island{
 		this.IS_ATOLL = settings.IS_ATOLL;
 		this.IS_VOLCANO = settings.IS_VOLCANO;
 		this.HAS_TOWN = settings.HAS_TOWN;
+
+		this.ISL_PERSIST = settings.ISL_PERSIST;
+		this.ISL_LAC = settings.ISL_LAC;
+		this.ISL_SCALE = settings.ISL_SCALE;
 
 		this.raw_data;
 		this.display_data;
@@ -421,12 +430,15 @@ class Island{
 	//25,8,8,0.75
 	gen_island_data(){
 
-		if(this.IS_VOLCANO || this.IS_ATOLL){
+		if(this.IS_ATOLL){
 			this.LAC_SCALE_DOWN = 0.8;
+		}
+		else if(this.IS_VOLCANO){
+			this.LAC_SCALE_DOWN = 0.925;
 		}
 
 		//generate base map
-		this.raw_data = gen_noise_map(this.size[0], this.size[1], ISL_SCALE,ISL_OCT,ISL_PERSIST,(ISL_LAC + 0.15*(1-this.size[2]))*this.LAC_SCALE_DOWN,hash(this.seed), false);
+		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.ISL_SCALE,ISL_OCT,this.ISL_PERSIST,(this.ISL_LAC + 0.15*(1-this.size[2]))*this.LAC_SCALE_DOWN,hash(this.seed), false);
 
 
 
@@ -487,6 +499,22 @@ class Island{
 					mapMASK[x][y] = 0;
 				}
 
+
+				if(this.HAS_REEF && !this.HAS_MOTU){
+					//shrink visible land size
+					if(this.raw_data[x][y]>ISL_SHRK){
+						this.raw_data[x][y]-=0.1;
+					}
+					//cut away lagoon
+					if(this.raw_data[x][y] > MOTU_GRAD[2] && this.raw_data[x][y] < MOTU_GRAD[3]){
+						this.raw_data[x][y] -= 0.15;
+					}
+
+					//cut away water outside motus
+					if(mapMASK[x][y] === 0.5 && this.raw_data[x][y]<0.275){
+						this.raw_data[x][y]=0.05;
+					}
+				}
 
 				//apply motu styling
 				if(this.HAS_MOTU){
@@ -681,8 +709,7 @@ class Island{
 		}
 	}
 
-	saveImage(objects=true,lighting=false){
-
+	compileStaticImage(objects=true,lighting=false){
 		let saved_img=document.createElement("canvas");
 		saved_img.width = this.size[0];
 		saved_img.height = this.size[1];
@@ -694,10 +721,16 @@ class Island{
 		if(lighting) img_ctx.drawImage(this.lighting_img,0,0);
 		if(objects) img_ctx.drawImage(this.objects_img,0,0);
 
+		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
+	}
+
+	saveImage(objects=true,lighting=false){
+
+		let saved_img = this.compileStaticImage(objects,lighting);
 
 		var link = document.createElement('a');
 		link.setAttribute("download",this.name.replace(' ','-').replace('\'','')+".png");
-		link.setAttribute('href', saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+		link.setAttribute('href', saved_img);
 		link.click();
 	}
 }
