@@ -31,7 +31,12 @@ function spawnParticle(event){
 function changePage(dir){
 	if($("form")[0].reportValidity()){
 		$("#page"+currentPage).hide();
-		currentPage = Math.max(0,Math.min(currentPage+dir,2));
+		if(dir===undefined){
+			currentPage = 0;
+		}
+		else{
+			currentPage = Math.max(0,Math.min(currentPage+dir,3));
+		}
 		$("#page"+currentPage).show();
 	}
 }
@@ -79,12 +84,18 @@ $(document).ready(function(){
 	$("#page0").show();
 	$("#page1").hide();
 	$("#page2").hide();
+	$("#page3").hide();
+
 	$("input[value=next]").click(function(event){
 		changePage(1);
 	});
 
 	$("input[value=back]").click(function(event){
 		changePage(-1);
+	});
+
+	$("#edit").click(function(event){
+		changePage();
 	});
 
 	$("#compile").click(function(event){
@@ -132,11 +143,9 @@ $(document).ready(function(){
 
 		island = new Island(set);
 
-		let img = $("<img class=island-image>");
-		img.prop("src",island.compileStaticImage(true,true));
+		$("#preview_display").prop("src",island.compileStaticImage(true,true));
 
-		$("body").append(img);
-
+		changePage(1);
 
 	});
 
