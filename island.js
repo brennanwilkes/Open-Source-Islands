@@ -226,7 +226,9 @@ class IslandSettings{
 		this.HAS_REEF = this.seed%4 === 0;
 		this.IS_ATOLL = this.seed%2 === 0 && hash(this.seed-100)%4 === 0;
 		this.IS_VOLCANO =this.seed%2 === 1 && hash(this.seed-66)%4 === 0;
+
 		this.HAS_TOWN = 0;
+		this.village_size = 6;
 		this.HAS_TREES = true;
 		this.tree_amt = 500;
 
@@ -263,7 +265,9 @@ class Island{
 		this.HAS_REEF = settings.HAS_REEF;
 		this.IS_ATOLL = settings.IS_ATOLL;
 		this.IS_VOLCANO = settings.IS_VOLCANO;
+
 		this.HAS_TOWN = settings.HAS_TOWN;
+		this.village_size = settings.village_size;
 		this.HAS_TREES = settings.HAS_TREES;
 		this.tree_amt = settings.tree_amt;
 
@@ -593,7 +597,7 @@ class Island{
 		}
 		this.objects = new Array();
 		if(this.HAS_TOWN === -1){
-			let town_buildings = (this.seed-12)%4 + 4;
+			let town_buildings = this.village_size;
 			this.gen_obj(0,Island.numVillageGraphics,town_buildings,6,6,0.3,0.45,500,this.town[0],this.town[1]);
 
 			if(this.objects.length <= 3 && this.objects.length > 0){

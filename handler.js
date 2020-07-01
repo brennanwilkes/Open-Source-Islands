@@ -65,10 +65,10 @@ $(document).ready(function(){
 	});
 
 	$("#tree_amt").parent().hide();
-	$("#villageheight").parent().hide();
+	$("#villagesize").parent().hide();
 	$("#lava1").parent().hide();
 
-	let slidertoggle = [["village","villageheight"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
+	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
 			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
@@ -104,11 +104,13 @@ $(document).ready(function(){
 		set.HAS_REEF = $("#reef").prop("checked");
 		set.IS_ATOLL = $("#atoll").prop("checked");
 		set.IS_VOLCANO = $("#volcano").prop("checked");
-		set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
 
 		set.ISL_PERSIST = parseInt($("#persistence").val())/10;
 		set.ISL_LAC = parseInt($("#lacunarity").val())/100;
 		set.ISL_SCALE = parseInt($("#scale").val());
+
+		set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
+		set.village_size = parseInt($("#village_size").val());
 		set.HAS_TREES = $("#trees").prop("checked");
 		set.tree_amt = parseInt($("#tree_amt").val())*20;
 
