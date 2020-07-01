@@ -74,7 +74,7 @@ main{
 }
 
 
-.page div{
+.page > div{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -82,7 +82,7 @@ main{
 	text-align: left;
 }
 
-.page div *{
+.page > div > *{
 	max-width: 60%;
 }
 
@@ -104,7 +104,7 @@ input, .page, input:focus{
 	margin-bottom: 8%;
 }
 
-.page div:last-child > *{
+.page > div:last-child > *{
 	width:40%;
 }
 
@@ -146,6 +146,15 @@ input[type=text]:hover{
 	cursor:text;
 }
 
+#loading-container{
+	margin: 0;
+	position: relative;
+	width:100%;
+	height:100%;
+	justify-content: center;
+	text-align: center;
+}
+
 
 /*////////////////////////*/
 
@@ -158,6 +167,22 @@ input[type=text]:hover{
 	z-index: 2;
 }
 
+#loading-anim{
+	position: absolute;
+	top:36px;
+	left:12px;
+}
+
+#loading-circle{
+	position: relative;
+	background-color: #2d5ba4;
+	width:120px;
+	height:120px;
+	border-radius: 50%;
+	max-width: none;
+	max-height: none;
+	justify-content: center;
+}
 
 /*////////////////////////////////////////*/
 
@@ -178,23 +203,29 @@ input[type=text]:hover{
 
 
 @keyframes animateAlbatrossSprite{
-	from{background-position-x:0px;}
-	to{background-position-x:-960px;}
+	to {
+		transform:translateX(-960px);
+	}
 }
 
-@keyframes spriteMovement {
-	0% 		{transform: rotate(135deg) translate(0, 10vmax);}
-	100% 	{transform: rotate(135deg) translate(0, -110vmax);}
-}
-
-.Albatross{
-	position: absolute;
-	width: 96px;
+.Albatross {
+	background-image: url("assets/albatross/albatross-sprite-sheet.png");
+	background-size:0;
 	height: 48px;
-	background-image : url("assets/albatross/albatross-sprite-sheet.png");
-	animation: animateAlbatrossSprite 1s steps(10) infinite, linear spriteMovement 10s infinite;
+	width: 96px;
+	position:relative;
+	overflow:hidden;
+	}
+.Albatross::before {
+	content:"";
+	position:absolute;
+	top:0;
+	left:0;
+	width:960px;
+	bottom:0;
+	background-image:inherit;
+	animation: animateAlbatrossSprite 1s steps(10) infinite;
 }
-
 .greyVarient{
 	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
 }

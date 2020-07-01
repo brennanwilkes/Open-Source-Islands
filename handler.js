@@ -9,7 +9,9 @@ let concept_art = [
 	"Tangaroa-Timoteo-Savali.png",
 ];
 
+var currentPage = 0;
 var island;
+const MAX_PAGE = 4;
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -35,13 +37,57 @@ function changePage(dir){
 			currentPage = 0;
 		}
 		else{
-			currentPage = Math.max(0,Math.min(currentPage+dir,3));
+			currentPage = Math.max(0,Math.min(currentPage+dir,MAX_PAGE));
 		}
 		$("#page"+currentPage).show();
 	}
 }
 
-var currentPage = 0;
+function compileIsland(){
+	let set;
+	if($("#seed").val().length > 0){
+		set = new IslandSettings($("#seed").val());
+	}
+	else{
+		set = new IslandSettings();
+	}
+
+	if($("#name").val().length > 0){
+		set.name = $("#name").val();
+	}
+
+	set.HAS_MOTU = $("#motu").prop("checked");
+	set.HAS_REEF = $("#reef").prop("checked");
+	set.IS_ATOLL = $("#atoll").prop("checked");
+	set.IS_VOLCANO = $("#volcano").prop("checked");
+
+	set.ISL_PERSIST = parseInt($("#persistence").val())/10;
+	set.ISL_LAC = parseInt($("#lacunarity").val())/100;
+	set.ISL_SCALE = parseInt($("#scale").val());
+
+	set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
+	set.village_size = parseInt($("#village_size").val());
+	set.HAS_TREES = $("#trees").prop("checked");
+	set.tree_amt = parseInt($("#tree_amt").val())*20;
+
+	set.DEEP_OCEAN = $("#ocean").val();
+	set.SHALLOW_OCEAN = $("#shallows").val();
+	set.LAND_ONE = $("#ground1").val();
+	set.LAND_TWO = $("#ground2").val();
+	set.LAND_THREE = $("#ground3").val();
+	set.BEACH = $("#beach").val();
+	set.ROCK_ONE = $("#rock1").val();
+	set.ROCK_TWO = $("#rock2").val();
+	set.LAVA_ONE = $("#lava1").val();
+	set.LAVA_TWO = $("#lava2").val();
+	set.colour_background = $("#background").prop("checked");
+	set.time = parseInt($("#time").val());
+
+
+	island = new Island(set);
+
+	$("#preview_display").prop("src",island.compileStaticImage(true,true));
+}
 
 $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
@@ -69,8 +115,6 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#tree_amt").parent().hide();
-	$("#villagesize").parent().hide();
 	$("#lava1").parent().hide();
 
 	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
@@ -82,9 +126,11 @@ $(document).ready(function(){
 
 
 	$("#page0").show();
-	$("#page1").hide();
-	$("#page2").hide();
-	$("#page3").hide();
+	for(let p=1;p<=MAX_PAGE;p++){
+		$("#page"+p).hide();
+	}
+
+
 
 	$("input[value=next]").click(function(event){
 		changePage(1);
@@ -99,53 +145,14 @@ $(document).ready(function(){
 	});
 
 	$("#compile").click(function(event){
-		let set;
-		if($("#seed").val().length > 0){
-			set = new IslandSettings($("#seed").val());
-		}
-		else{
-			set = new IslandSettings();
-		}
-
-		if($("#name").val().length > 0){
-			set.name = $("#name").val();
-		}
-
-		set.HAS_MOTU = $("#motu").prop("checked");
-		set.HAS_REEF = $("#reef").prop("checked");
-		set.IS_ATOLL = $("#atoll").prop("checked");
-		set.IS_VOLCANO = $("#volcano").prop("checked");
-
-		set.ISL_PERSIST = parseInt($("#persistence").val())/10;
-		set.ISL_LAC = parseInt($("#lacunarity").val())/100;
-		set.ISL_SCALE = parseInt($("#scale").val());
-
-		set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
-		set.village_size = parseInt($("#village_size").val());
-		set.HAS_TREES = $("#trees").prop("checked");
-		set.tree_amt = parseInt($("#tree_amt").val())*20;
-
-		set.DEEP_OCEAN = $("#ocean").val();
-		set.SHALLOW_OCEAN = $("#shallows").val();
-		set.LAND_ONE = $("#ground1").val();
-		set.LAND_TWO = $("#ground2").val();
-		set.LAND_THREE = $("#ground3").val();
-		set.BEACH = $("#beach").val();
-		set.ROCK_ONE = $("#rock1").val();
-		set.ROCK_TWO = $("#rock2").val();
-		set.LAVA_ONE = $("#lava1").val();
-		set.LAVA_TWO = $("#lava2").val();
-		set.colour_background = $("#background").prop("checked");
-		set.time = parseInt($("#time").val());
-
-
-
-
-		island = new Island(set);
-
-		$("#preview_display").prop("src",island.compileStaticImage(true,true));
-
 		changePage(1);
+
+		setTimeout(function(){
+			compileIsland();
+			changePage(1);
+		},150);
+
+
 
 	});
 

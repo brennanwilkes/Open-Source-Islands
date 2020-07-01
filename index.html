@@ -7,6 +7,12 @@
 		<link href="https://fonts.googleapis.com/css?family=Inconsolata|Muli&amp;display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!--<link
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			rel="stylesheet"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+			crossorigin="anonymous"
+		/>-->
 
 		<script type="text/javascript" src="name_list.js"></script>
 		<script type="text/javascript" src="Stefan-Gustavson-Perlin.js"></script>
@@ -15,7 +21,6 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<!--<div class=Albatross></div>-->
 		<main>
 			<form>
 				<div class=page id=page0>
@@ -61,12 +66,12 @@
 
 					<div>
 						<label for="village">Village</label>
-						<input type="checkbox" id="village" name="village" value="true">
+						<input type="checkbox" id="village" name="village" value="true" checked>
 					</div>
 
 					<div>
 						<label for="trees">Trees</label>
-						<input type="checkbox" id="trees" name="trees" value="true">
+						<input type="checkbox" id="trees" name="trees" value="true" checked>
 					</div>
 
 					<div>
@@ -158,6 +163,14 @@
 					</div>
 				</div>
 				<div class=page id=page3>
+					<h1>Compiling</h1>
+					<div id=loading-container>
+						<div id=loading-circle>
+							<div class=Albatross id=loading-anim></div>
+						</div>
+					</div>
+				</div>
+				<div class=page id=page4>
 					<h1>Preview</h1>
 					<img id=preview_display>
 					<div>
