@@ -116,8 +116,13 @@ input{
 	border: 0.1vmin solid #444;
 }
 
-input[type=button]:active, input[type=submit]:active{
+input[type=button], input[type=submit]{
 	background-color: #CCC;
+	padding-top: 0.5vmin;
+}
+
+input[type=button]:active, input[type=submit]:active{
+	background-color: #999;
 }
 
 input[type=color]{
@@ -133,6 +138,14 @@ input[type=color]{
 .tri label{
 	width:200%;
 }
+
+input:hover{
+	cursor:pointer;
+}
+input[type=text]:hover{
+	cursor:text;
+}
+
 
 
 /*////////////////////////////////////////*/
@@ -167,10 +180,10 @@ input[type=color]{
 	position: absolute;
 	width: 96px;
 	height: 48px;
-	background-image : url("sprites/albatross-sprite-sheet.png");
+	background-image : url("assets/albatross/albatross-sprite-sheet.png");
 	animation: animateAlbatrossSprite 1s steps(10) infinite, linear spriteMovement 10s infinite;
 }
 
 .greyVarient{
-	background-image : url("sprites/albatross-grey-sprite-sheet.png");
+	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
 }

@@ -85,6 +85,8 @@ $(document).ready(function(){
 		changePage(-1);
 	});
 
+	//$("input[type=color]").prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder","#FFFFFF").prop("value","");
+
 	document.ontouchmove = function(event){event.preventDefault();};
 
 });
