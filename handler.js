@@ -151,10 +151,12 @@ $(document).ready(function(){
 			compileIsland();
 			changePage(1);
 		},150);
-
-
-
 	});
+
+
+	if(window.matchMedia("only screen and (max-width: 760px)").matches){
+		
+	}
 
 	//$("input[type=color]").prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder","#FFFFFF").prop("value","");
 

@@ -598,7 +598,7 @@ class Island{
 		this.objects = new Array();
 		if(this.HAS_TOWN === -1){
 			let town_buildings = this.village_size;
-			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.village_size/4)),Math.max(6,Math.floor(this.village_size/4)),0.3,0.45,500,this.town[0],this.town[1]);
+			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.village_size/2)),Math.max(6,Math.floor(this.village_size/2)),0.3,0.45,500,this.town[0],this.town[1]);
 
 			if(this.objects.length <= 3 && this.objects.length > 0){
 				this.objects[0][2] = 0;

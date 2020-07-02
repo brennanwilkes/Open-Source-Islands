@@ -129,6 +129,7 @@ input[type=color]{
 	width:40%;
 	height:90%;
 	border: 0;
+	background-color: black;
 }
 
 .dual label{
@@ -146,15 +147,6 @@ input[type=text]:hover{
 	cursor:text;
 }
 
-#loading-container{
-	margin: 0;
-	position: absolute;
-	width:100%;
-	height:100%;
-	justify-content: center;
-	text-align: center;
-}
-
 
 /*////////////////////////*/
 
@@ -165,6 +157,15 @@ input[type=text]:hover{
 	width:50vmin;
 	height:50vmin;
 	z-index: 2;
+}
+
+#loading-container{
+	margin: 0;
+	position: absolute;
+	width:100%;
+	height:100%;
+	justify-content: center;
+	text-align: center;
 }
 
 #loading-anim{
