@@ -174,9 +174,11 @@ $(document).ready(function(){
 		},150);
 	});
 
-	$("input[type=color]").change(function() {
-		$(this).css("background-color",$(this).val());
-	});
+
+
+	if(!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)){
+		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
+	}
 
 /*
 	let colours = $("input[type=color]");
