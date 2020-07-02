@@ -178,6 +178,7 @@ $(document).ready(function(){
 		$(this).css("background-color",$(this).val());
 	});
 
+/*
 	let colours = $("input[type=color]");
 	for(let c=0;c<colours.length;c++){
 		$(colours[c]).css("background-color",$(colours[c]).val());
@@ -188,7 +189,7 @@ $(document).ready(function(){
 		for(let c=0;c<colours.length;c++){
 			$(colours[c]).prop("type","text").attr("class","mobile-colour").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder",$(colours[c]).prop("value")).prop("value","");
 		}
-	}
+	}*/
 
 
 	document.ontouchmove = function(event){event.preventDefault();};
