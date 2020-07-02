@@ -125,7 +125,7 @@ input[type=button]:active, input[type=submit]:active{
 	background-color: #999;
 }
 
-input[type=color]{
+input[type=color], .mobile-colour{
 	width:40%;
 	height:90%;
 	border: 0;
@@ -133,6 +133,14 @@ input[type=color]{
 
 .dual label{
 	width:150%;
+}
+
+.dual .mobile-colour{
+	font-size: 50%;
+}
+
+.tri .mobile-colour{
+	font-size: 33%;
 }
 
 .tri label{

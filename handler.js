@@ -70,16 +70,37 @@ function compileIsland(){
 	set.HAS_TREES = $("#trees").prop("checked");
 	set.tree_amt = parseInt($("#tree_amt").val())*20;
 
-	set.DEEP_OCEAN = $("#ocean").val();
-	set.SHALLOW_OCEAN = $("#shallows").val();
-	set.LAND_ONE = $("#ground1").val();
-	set.LAND_TWO = $("#ground2").val();
-	set.LAND_THREE = $("#ground3").val();
-	set.BEACH = $("#beach").val();
-	set.ROCK_ONE = $("#rock1").val();
-	set.ROCK_TWO = $("#rock2").val();
-	set.LAVA_ONE = $("#lava1").val();
-	set.LAVA_TWO = $("#lava2").val();
+	if($("#ocean").val().length > 0){
+		set.DEEP_OCEAN = $("#ocean").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.SHALLOW_OCEAN = $("#shallows").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.LAND_ONE = $("#ground1").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.LAND_TWO = $("#ground2").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.LAND_THREE = $("#ground3").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.BEACH = $("#beach").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.ROCK_ONE = $("#rock1").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.ROCK_TWO = $("#rock2").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.LAVA_ONE = $("#lava1").val();
+	}
+	if($("#ocean").val().length > 0){
+		set.LAVA_TWO = $("#lava2").val();
+	}
+
 	set.colour_background = $("#background").prop("checked");
 	set.time = parseInt($("#time").val());
 
@@ -158,7 +179,7 @@ $(document).ready(function(){
 		let colours = $("input[type=color]");
 
 		for(let c=0;c<colours.length;c++){
-			colours[c].prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder",colours[c].prop("value")).prop("value","");
+			$(colours[c]).prop("type","text").attr("class","mobile-colour").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder",$(colours[c]).prop("value")).prop("value","");
 		}
 
 
