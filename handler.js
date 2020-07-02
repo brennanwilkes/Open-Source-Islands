@@ -73,31 +73,31 @@ function compileIsland(){
 	if($("#ocean").val().length > 0){
 		set.DEEP_OCEAN = $("#ocean").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#shallows").val().length > 0){
 		set.SHALLOW_OCEAN = $("#shallows").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#ground1").val().length > 0){
 		set.LAND_ONE = $("#ground1").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#ground2").val().length > 0){
 		set.LAND_TWO = $("#ground2").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#ground3").val().length > 0){
 		set.LAND_THREE = $("#ground3").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#beach").val().length > 0){
 		set.BEACH = $("#beach").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#rock1").val().length > 0){
 		set.ROCK_ONE = $("#rock1").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#rock2").val().length > 0){
 		set.ROCK_TWO = $("#rock2").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#lava1").val().length > 0){
 		set.LAVA_ONE = $("#lava1").val();
 	}
-	if($("#ocean").val().length > 0){
+	if($("#lava2").val().length > 0){
 		set.LAVA_TWO = $("#lava2").val();
 	}
 
