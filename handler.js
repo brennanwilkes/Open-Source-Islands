@@ -175,36 +175,15 @@ $(document).ready(function(){
 	});
 
 
+	/*
+		https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
 
+		Got this regex safari detector from stack overflow. Hope its ok, as its a little bit
+		outside the scope of the course. Apparently safari decides that if you apply any styling
+		to an HTML5 input type=color element, it just hides it completely!! What are those "geniuses"
+		at apple thinking??? So much time wasted on this bug.
+	*/
 	if(!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
 	}
-
-/*
-	let colours = $("input[type=color]");
-	for(let c=0;c<colours.length;c++){
-		$(colours[c]).css("background-color",$(colours[c]).val());
-	}
-
-	if(!isColourSupported()){
-		let colours = $("input[type=color]");
-		for(let c=0;c<colours.length;c++){
-			$(colours[c]).prop("type","text").attr("class","mobile-colour").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder",$(colours[c]).prop("value")).prop("value","");
-		}
-	}*/
-
-
-	document.ontouchmove = function(event){event.preventDefault();};
-
 });
-
-function isColourSupported() {
-	/*let input = document.createElement('input');
-	let value = 'a';
-	input.setAttribute('type', 'color');
-	input.setAttribute('value', value);
-	return (input.value !== value);*/
-	var colorInput;
-	colorInput = $('<input type="color" value="!" />')[0];
-	return colorInput.type === 'color' && colorInput.value !== '!';
-};
