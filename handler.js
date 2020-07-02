@@ -154,12 +154,25 @@ $(document).ready(function(){
 	});
 
 
-	if(window.matchMedia("only screen and (max-width: 760px)").matches){
-		
+	if(!isColourSupported()){
+		let colours = $("input[type=color]");
+
+		for(let c=0;c<colours.length;c++){
+			colours[c].prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder",colours[c].prop("value")).prop("value","");
+		}
+
+
 	}
 
-	//$("input[type=color]").prop("type","text").prop("pattern","^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$").prop("placeholder","#FFFFFF").prop("value","");
 
 	document.ontouchmove = function(event){event.preventDefault();};
 
 });
+
+function isColourSupported() {
+	let input = document.createElement('input');
+	let value = 'a';
+	input.setAttribute('type', 'color');
+	input.setAttribute('value', value);
+	return (input.value !== value);
+};
