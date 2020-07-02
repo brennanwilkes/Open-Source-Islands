@@ -175,7 +175,7 @@ $(document).ready(function(){
 	});
 
 
-	if(true){//!isColourSupported()){
+	if(!isColourSupported()){
 		let colours = $("input[type=color]");
 
 		for(let c=0;c<colours.length;c++){
