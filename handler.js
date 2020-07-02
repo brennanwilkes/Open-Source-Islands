@@ -175,7 +175,7 @@ $(document).ready(function(){
 	});
 
 
-	if(!isColourSupported()){
+	if(true){//!isColourSupported()){
 		let colours = $("input[type=color]");
 
 		for(let c=0;c<colours.length;c++){
@@ -191,9 +191,12 @@ $(document).ready(function(){
 });
 
 function isColourSupported() {
-	let input = document.createElement('input');
+	/*let input = document.createElement('input');
 	let value = 'a';
 	input.setAttribute('type', 'color');
 	input.setAttribute('value', value);
-	return (input.value !== value);
+	return (input.value !== value);*/
+	var colorInput;
+	colorInput = $('<input type="color" value="!" />')[0];
+	return colorInput.type === 'color' && colorInput.value !== '!';
 };
