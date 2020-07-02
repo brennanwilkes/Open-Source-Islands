@@ -107,7 +107,13 @@ function compileIsland(){
 
 	island = new Island(set);
 
-	$("#preview_display").prop("src",island.compileStaticImage(true,true));
+	try{
+		$("#preview_display").prop("src",island.compileStaticImage(true,true));
+	}
+	catch(e) {
+		alert("Island images cannot be generated with trees and villages when the page is being loaded from a local file. This is due to browser security messures. Either generate without trees and villages, or checkout the deployment")
+		changePage();
+	}
 }
 
 $(document).ready(function(){
