@@ -140,6 +140,37 @@ input[type=text]:hover{
 	cursor:text;
 }
 
+/*/////////////////////////////////////////*/
+
+
+/*
+	This copy paste code for webkit and moz angers me
+*/
+
+input[type=range]{
+	-webkit-appearance: none;
+	height: 25px;
+	background: #FFF;
+	outline: none;
+	border-radius: 0.5vmin;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	background: #0C1A5F;
+	border-radius: 0.5vmin;
+}
+
+input[type=range]::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	background: #0C1A5F;
+	border-radius: 0.5vmin;
+}
+
 
 input.text, input[type=text], input[type=button], input[type=submit]{
 	-webkit-appearance: none;
