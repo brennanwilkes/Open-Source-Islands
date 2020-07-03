@@ -221,21 +221,45 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	from { opacity: 1; }
 	to { opacity: 0; }
 }
+@-webkit-keyframes fadeout {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+@-moz-keyframes fadeout {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+@-o-keyframes fadeout {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
 
 .Particle{
 	position: absolute;
 	width:0.7vmin;
 	height:0.7vmin;
 	background-color: #2d5ba4;
-	animation: fadeout 2s infinite;
 	z-index: -1;
+
+	/*This kind of stuff annoys me*/
+	animation: 			fadeout 2s infinite;
+	-webkit-animation:	fadeout 2s infinite;
+	-moz-animation:		fadeout 2s infinite;
+	-o-animation:		fadeout 2s infinite;
 }
 
 
 @keyframes animateAlbatrossSprite{
-	to {
-		transform:translateX(-960px);
-	}
+	to { transform:translateX(-960px); }
+}
+@-webkit-keyframes animateAlbatrossSprite {
+	to { transform:translateX(-960px); }
+}
+@-moz-keyframes animateAlbatrossSprite {
+	to { transform:translateX(-960px); }
+}
+@-o-keyframes animateAlbatrossSprite {
+	to { transform:translateX(-960px); }
 }
 
 .Albatross {
@@ -254,7 +278,11 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	width:960px;
 	bottom:0;
 	background-image:inherit;
-	animation: animateAlbatrossSprite 1s steps(10) infinite;
+	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
+	-webkit-animation:	animateAlbatrossSprite 1s steps(10) infinite;
+	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
+	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
+
 }
 .greyVarient{
 	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
