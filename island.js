@@ -782,7 +782,7 @@ class Island{
 		for(let t=20;t<=120;t+=20){
 			this.photo_time=t;
 			this.bake_lighting();
-			img_ctx.drawImage(this.lighting_img,this.size[0]*(t/20),0);
+			img_ctx.drawImage(this.lighting_img,this.size[0]*(t/20-1),0);
 		}
 		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
 	}
