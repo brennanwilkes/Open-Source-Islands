@@ -204,8 +204,8 @@ class IslandSettings{
 	constructor(seed=Math.random()*1000000){
 		this.seed=seed;
 		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
-		this.size_x = 2048;
-		this.size_y = 2048;
+		this.size_x = 1024;
+		this.size_y = 1024;
 
 
 		this.colour_background = true;
@@ -767,16 +767,33 @@ class Island{
 	}
 
 	saveImage(objects=true,lighting=false){
+		downloadStaticPNG(this.compileStaticImage(objects,lighting),this.name.replace(' ','-').replace('\'','')+".png");
+	}
+	saveBakedLighting(){
+		downloadStaticPNG(this.compileStaticBakedShadows(),this.name.replace(' ','-').replace('\'','')+"-lighting.png");
+	}
 
-		let saved_img = this.compileStaticImage(objects,lighting);
+	compileStaticBakedShadows(){
+		let saved_img=document.createElement("canvas");
+		saved_img.width = this.size[0]*5;
+		saved_img.height = this.size[1];
+		let img_ctx = saved_img.getContext("2d");
 
-		var link = document.createElement('a');
-		link.setAttribute("download",this.name.replace(' ','-').replace('\'','')+".png");
-		link.setAttribute('href', saved_img);
-		link.click();
+		for(let t=20;t<=120;t+=20){
+			this.photo_time=t;
+			this.bake_lighting();
+			img_ctx.drawImage(this.lighting_img,this.size[0]*(t/20),0);
+		}
+		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
 	}
 }
 
+function downloadStaticPNG(png,name){
+	var link = document.createElement('a');
+	link.setAttribute("download",name);
+	link.setAttribute('href', png);
+	link.click();
+}
 
 
 Island.graphics = new Array();

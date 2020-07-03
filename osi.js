@@ -121,7 +121,8 @@ $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
 
-	$("main").css("background-image","url('concept-art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
+	//$("main").css("background-image","url('concept-art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
+	//$("main").css("background-image","test-isl.png")
 
 
 	setInterval(spawnParticle, 55);
@@ -193,6 +194,9 @@ $(document).ready(function(){
 		outside the scope of the course. Apparently safari decides that if you apply any styling
 		to an HTML5 input type=color element, it just hides it completely!! What are those "geniuses"
 		at apple thinking??? So much time wasted on this bug.
+
+		I'm pretty well versed in regex, but only in the scope of using SED/GREP in unix world, and
+		I don't have a clue what this is doing, so I've given up trying to write my own.
 	*/
 	if(!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
