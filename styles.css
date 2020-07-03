@@ -114,6 +114,8 @@ label, h1, input[type=button], input[type=submit]{
 
 input{
 	border: 0.1vmin solid #444;
+	min-width: 0;
+	flex-shrink: 1;
 }
 
 input[type=button], input[type=submit]{
@@ -149,7 +151,7 @@ input[type=text]:hover{
 
 input[type=range]{
 	-webkit-appearance: none;
-	height: 25px;
+	width:40%;
 	background: #FFF;
 	outline: none;
 	border-radius: 0.5vmin;

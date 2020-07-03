@@ -111,9 +111,10 @@ function compileIsland(){
 		$("#preview_display").prop("src",island.compileStaticImage(true,true));
 	}
 	catch(e) {
-		alert("Island images cannot be generated with trees and villages when the page is being loaded from a local file. This is due to browser security messures. Either generate without trees and villages, or checkout the deployment")
-		changePage();
+		alert("Island images cannot be generated with trees and villages when the page is being loaded from a local file. This is due to browser security messures. Either generate without trees and villages, or checkout the deployment at https://brennanwilkes.github.io/Open-Source-Islands/")
+		return false;
 	}
+	return true;
 }
 
 $(document).ready(function(){
@@ -175,8 +176,12 @@ $(document).ready(function(){
 		changePage(1);
 
 		setTimeout(function(){
-			compileIsland();
-			changePage(1);
+			if(compileIsland()){
+				changePage(1);
+			}
+			else{
+				changePage();
+			}
 		},150);
 	});
 
