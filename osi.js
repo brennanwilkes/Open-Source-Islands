@@ -12,7 +12,7 @@ let concept_art = [
 
 var currentPage = 0;
 var island;
-const MAX_PAGE = 5;
+const MAX_PAGE = 6;
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -179,7 +179,7 @@ $(document).ready(function(){
 		changePage(1);
 	});
 
-	$("input[value=exit]").click(function(e){
+	$(".home").click(function(e){
 		changePage(0);
 	});
 
@@ -187,17 +187,8 @@ $(document).ready(function(){
 		changePage(1);
 	});
 
-	$("#github").click(function(e){
-		let link = document.createElement('a');
-		link.setAttribute('href', "https://github.com/brennanwilkes/Open-Source-Islands");
-		link.setAttribute('target', "_blank");
-		link.click();
-	});
 	$("#about").click(function(e){
-		let link = document.createElement('a');
-		link.setAttribute('href', "https://bw.codexwilkes.com/portfolio/");
-		link.setAttribute('target', "_blank");
-		link.click();
+		changePage(6);
 	});
 
 	$("#compile, #recompile").click(function(e){

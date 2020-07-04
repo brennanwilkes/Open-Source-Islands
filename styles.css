@@ -117,8 +117,18 @@ main::after{
 	margin-top: 10%;
 }
 
+#bw{
+	font-size: 6vmin;
+	margin-top: 10%;
+}
 
-.page > div{
+a img{
+	max-width: 10vmin;
+	max-height: 10vmin;
+}
+
+
+.page > div, .page > a{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -126,7 +136,11 @@ main::after{
 	text-align: left;
 }
 
-.page > div > *{
+.page a{
+	text-decoration: none;
+}
+
+.page > div > *, .page > a > *{
 	max-width: 60%;
 }
 
@@ -159,7 +173,7 @@ label, h1, h2, input[type=button], input[type=submit]{
 
 
 input, button{
-	border: 0.1vmin solid #444;
+	border: 1px solid #444;
 	min-width: 0;
 	flex-shrink: 1;
 	background-color: #F8E7C9;
@@ -187,7 +201,7 @@ input[type=button]{
 	width:200%;
 }
 
-input:hover, button:hover{
+input:hover, button:hover, a:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }
