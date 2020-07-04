@@ -1,13 +1,11 @@
 let concept_art = [
-	"Ballure",
-	"Cobern",
-	"Hamahona-Karaka",
-	"Itiiti",
-	"Leasu-Faamoana",
-	"Lelei-Faamoe",
-	"Makatala-Tilo",
-	"Miliani-Kalei",
-	"Teriitua"
+	"Atalia-Nanai",
+	"Hokulele-Kekoa",
+	"Kainano-Taualai",
+	"Kuilei-Inoke",
+	"Murihau",
+	"Rangi-Karauna",
+	"Tamah-Talatonu"
 ];
 
 var currentPage = 0;

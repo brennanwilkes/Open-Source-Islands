@@ -1,4 +1,4 @@
-1024/*
+/*
 	Brennan Wilkes
 	100322326
 	CPSC 2030 W01
@@ -37,7 +37,7 @@ body{
 	left: 50vw;
 	top: 40vh;
 	background-size:0;
-	height: 1024;
+	height: 1024px;
 	width: 1024px;
 	position:relative;
 	overflow:hidden;
