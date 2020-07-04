@@ -21,12 +21,12 @@ function setValidMessage(id,message){
 	element.attr("oninput","setCustomValidity(' ')");
 }
 
-function spawnParticle(event){
+function spawnParticle(e){
 	let particle = $("<div class=Particle></div>");
 	particle.css("left",Math.random()*99+"vw");
 	particle.css("top",Math.random()*99+"vh");
 	$("body").prepend(particle)
-	setTimeout(function(event){
+	setTimeout(function(e){
 		particle.remove();
 	}, 2000);
 }
@@ -161,42 +161,46 @@ $(document).ready(function(){
 	}
 
 
+	$("input[type=button], input[type=submit], button").click(function(e){
+		$(this).blur();
+	});
 
-	$("input[value=next]").click(function(event){
+
+	$("input[value=next]").click(function(e){
 		turnPage(1);
 	});
 
-	$("input[value=back]").click(function(event){
+	$("input[value=back]").click(function(e){
 		turnPage(-1);
 	});
 
-	$("#edit").click(function(event){
+	$("#edit").click(function(e){
 		$("#seed").val(island.replicable_seed);
 		changePage(1);
 	});
 
-	$("input[value=exit]").click(function(event){
+	$("input[value=exit]").click(function(e){
 		changePage(0);
 	});
 
-	$("#generator").click(function(event){
+	$("#generator").click(function(e){
 		changePage(1);
 	});
 
-	$("#github").click(function(event){
+	$("#github").click(function(e){
 		let link = document.createElement('a');
 		link.setAttribute('href', "https://github.com/brennanwilkes/Open-Source-Islands");
 		link.setAttribute('target', "_blank");
 		link.click();
 	});
-	$("#about").click(function(event){
+	$("#about").click(function(e){
 		let link = document.createElement('a');
 		link.setAttribute('href', "https://bw.codexwilkes.com/portfolio/");
 		link.setAttribute('target', "_blank");
 		link.click();
 	});
 
-	$("#compile, #recompile").click(function(event){
+	$("#compile, #recompile").click(function(e){
 		turnPage(this.id==="compile" ? 1 : -1);
 		if(this.id==="recompile"){
 			$("#seed").val("");
@@ -211,7 +215,7 @@ $(document).ready(function(){
 		},150);
 	});
 
-	$("#save").click(function(event){
+	$("#save").click(function(e){
 		island.saveImage($("#village").prop("checked"),true);
 	});
 

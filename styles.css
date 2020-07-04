@@ -173,9 +173,7 @@ input[type=button], input[type=submit], button{
 	padding-top: 0.5vmin;
 }
 
-input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus{
-	background-color: #DFBB7C;
-}
+
 
 input[type=button]{
 	width: 50%;
@@ -191,9 +189,13 @@ input[type=button]{
 
 input:hover, button:hover{
 	cursor:pointer;
+	background-color: #E7CC9C;
 }
 input[type=text]:hover{
 	cursor:text;
+}
+input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus{
+	background-color: #DFBB7C;
 }
 
 /*/////////////////////////////////////////*/
