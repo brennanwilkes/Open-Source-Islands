@@ -146,7 +146,7 @@ function colour_round(colour){
 	else if(colour  < 0.75){
 		return 6;
 	}
-	else if(colour < 0.9 && colour > 0.89){
+	else if(colour < 0.9 && colour > 0.88){
 		return 9;
 	}
 	else if(colour < 0.925){

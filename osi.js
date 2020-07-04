@@ -174,9 +174,8 @@ $(document).ready(function(){
 		changePage();
 	});
 
-	$("#compile").click(function(event){
-		changePage(1);
-
+	$("#compile, #recompile").click(function(event){
+		changePage(this.id==="compile" ? 1 : -1);
 		setTimeout(function(){
 			if(compileIsland()){
 				changePage(1);
@@ -185,6 +184,10 @@ $(document).ready(function(){
 				changePage();
 			}
 		},150);
+	});
+
+	$("#save").click(function(event){
+		island.saveImage($("#village").prop("checked"),true);
 	});
 
 

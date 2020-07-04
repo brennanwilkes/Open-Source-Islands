@@ -135,7 +135,7 @@ input[type=checkbox]{
 }
 
 input, .page, input:focus{
-	border-radius: 1vmin;
+	border-radius: 0.25vmin;
 	outline-width: 0;
 }
 
@@ -169,6 +169,10 @@ input[type=button], input[type=submit]{
 
 input[type=button]:active, input[type=submit]:active{
 	background-color: #999;
+}
+
+input[type=submit], input[type=button]{
+	width: 40%;
 }
 
 .dual label{
