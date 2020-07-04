@@ -204,8 +204,8 @@ class IslandSettings{
 	constructor(seed=Math.random()*1000000){
 		this.seed=seed;
 		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
-		this.size_x = 2048;
-		this.size_y = 2048;
+		this.size_x = 1024;
+		this.size_y = 1024;
 
 
 		this.colour_background = true;

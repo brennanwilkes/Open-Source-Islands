@@ -1,12 +1,13 @@
 let concept_art = [
-	"Tangaroa-Ainalani-Wikolia.png",
-	"Tangaroa-Atalia-Nanai.png",
-	"Tangaroa-Hualani-Among.png",
-	"Tangaroa-Kawene.png",
-	"Tangaroa-Laumidi.png",
-	"Tangaroa-Poivai.png",
-	"Tangaroa-Tau.png",
-	"Tangaroa-Timoteo-Savali.png",
+	"Ballure",
+	"Cobern",
+	"Hamahona-Karaka",
+	"Itiiti",
+	"Leasu-Faamoana",
+	"Lelei-Faamoe",
+	"Makatala-Tilo",
+	"Miliani-Kalei",
+	"Teriitua"
 ];
 
 var currentPage = 0;
@@ -121,8 +122,9 @@ $(document).ready(function(){
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
 
-	//$("main").css("background-image","url('concept-art/"+concept_art[Math.floor(Math.random()*concept_art.length)]+"')")
-	//$("main").css("background-image","test-isl.png")
+	let bgkimg = concept_art[Math.floor(Math.random()*concept_art.length)];
+	$("#backgroundDisplay").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
+	$("#isl").css("background-image","url('concept-art/"+bgkimg+".png')")
 
 
 	setInterval(spawnParticle, 55);
