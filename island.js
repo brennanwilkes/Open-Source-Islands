@@ -204,8 +204,8 @@ class IslandSettings{
 	constructor(seed=Math.random()*1000000){
 		this.seed=seed;
 		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
-		this.size_x = 1024;
-		this.size_y = 1024;
+		this.size_x = 2048;
+		this.size_y = 2048;
 
 
 		this.colour_background = true;
@@ -389,7 +389,7 @@ class Island{
 				else if(adjusted_height < 0.75){
 					this.display_data[this.LAND_THREE].push([x,y]);
 				}
-				else if(adjusted_height < 0.9 && adjusted_height > 0.89){
+				else if(adjusted_height < 0.9 && adjusted_height > 0.88){
 					this.display_data[this.ROCK_ONE].push([x,y]);
 				}
 				else if(adjusted_height < 0.925){
@@ -574,7 +574,7 @@ class Island{
 
 				if(this.IS_VOLCANO){
 					if(this.raw_data[x][y]>0.6){
-						this.raw_data[x][y] *= (this.HAS_MOTU||this.HAS_REEF) ? 1.35 : 1.25;
+						this.raw_data[x][y] *= (this.HAS_MOTU||this.HAS_REEF) ? 1.355 : 1.255;
 					}
 				}
 
