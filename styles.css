@@ -284,20 +284,20 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 /*///////////*/
 
 @keyframes fadeInAndOut{
-	0% { opacity: 0.25; }
-	100% { opacity: 0.75; }
+	0% { opacity: 0; }
+	100% { opacity: 0.65; }
 }
 @-webkit-keyframes fadeInAndOut {
-	0% { opacity: 0.25; }
-	100% { opacity: 0.75; }
+	0% { opacity: 0; }
+	100% { opacity: 0.65; }
 }
 @-moz-keyframes fadeInAndOut {
-	0% { opacity: 0.25; }
-	100% { opacity: 0.75; }
+	0% { opacity: 0; }
+	100% { opacity: 0.65; }
 }
 @-o-keyframes fadeInAndOut {
-	0% { opacity: 0.25; }
-	100% { opacity: 0.75; }
+	0% { opacity: 0; }
+	100% { opacity: 0.65; }
 }
 
 

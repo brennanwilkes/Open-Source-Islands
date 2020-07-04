@@ -775,14 +775,14 @@ class Island{
 
 	compileStaticBakedShadows(){
 		let saved_img=document.createElement("canvas");
-		saved_img.width = this.size[0]*5;
+		saved_img.width = this.size[0]*10;
 		saved_img.height = this.size[1];
 		let img_ctx = saved_img.getContext("2d");
 
-		for(let t=20;t<=120;t+=20){
+		for(let t=20;t<120;t+=10){
 			this.photo_time=t;
 			this.bake_lighting();
-			img_ctx.drawImage(this.lighting_img,this.size[0]*(t/20-1),0);
+			img_ctx.drawImage(this.lighting_img,this.size[0]*(t/10-1),0);
 		}
 		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
 	}
