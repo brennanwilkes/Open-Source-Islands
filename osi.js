@@ -12,7 +12,7 @@ let concept_art = [
 
 var currentPage = 0;
 var island;
-const MAX_PAGE = 4;
+const MAX_PAGE = 5;
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -31,16 +31,15 @@ function spawnParticle(event){
 	}, 2000);
 }
 
-function changePage(dir){
+function changePage(page){
+	$("#page"+currentPage).hide();
+	currentPage = Math.max(0,Math.min(page,MAX_PAGE));
+	$("#page"+currentPage).show();
+}
+
+function turnPage(dir){
 	if($("form")[0].reportValidity()){
-		$("#page"+currentPage).hide();
-		if(dir===undefined){
-			currentPage = 0;
-		}
-		else{
-			currentPage = Math.max(0,Math.min(currentPage+dir,MAX_PAGE));
-		}
-		$("#page"+currentPage).show();
+		changePage(currentPage+dir);
 	}
 }
 
@@ -164,29 +163,37 @@ $(document).ready(function(){
 
 
 	$("input[value=next]").click(function(event){
-		changePage(1);
+		turnPage(1);
 	});
 
 	$("input[value=back]").click(function(event){
-		changePage(-1);
+		turnPage(-1);
 	});
 
 	$("#edit").click(function(event){
 		$("#seed").val(island.replicable_seed);
-		changePage();
+		changePage(1);
+	});
+
+	$("input[value=exit]").click(function(event){
+		changePage(0);
+	});
+
+	$("#generator").click(function(event){
+		changePage(1);
 	});
 
 	$("#compile, #recompile").click(function(event){
-		changePage(this.id==="compile" ? 1 : -1);
+		turnPage(this.id==="compile" ? 1 : -1);
 		if(this.id==="recompile"){
 			$("#seed").val("");
 		}
 		setTimeout(function(){
 			if(compileIsland()){
-				changePage(1);
+				turnPage(1);
 			}
 			else{
-				changePage();
+				changePage(1);
 			}
 		},150);
 	});

@@ -112,6 +112,11 @@ main::after{
 	font-weight: bold;
 }
 
+#osi{
+	font-size: 7vmin;
+	margin-top: 10%;
+}
+
 
 .page > div{
 	display: flex;
@@ -134,7 +139,7 @@ input[type=checkbox]{
 	height:5.5vmin;
 }
 
-input, .page, input:focus{
+input, .page, input:focus, button{
 	border-radius: 0.25vmin;
 	outline-width: 0;
 }
@@ -147,11 +152,13 @@ input, .page, input:focus{
 	width:40%;
 }
 
-label, h1, input[type=button], input[type=submit]{
+label, h1, h2, input[type=button], input[type=submit]{
 	color: #444;
 }
 
-input{
+
+
+input, button{
 	border: 0.1vmin solid #444;
 	min-width: 0;
 	flex-shrink: 1;
@@ -162,17 +169,16 @@ input[type=color]{
 	background-color: #F3D6A5;
 }
 
-input[type=button], input[type=submit]{
-	background-color: #CCC;
+input[type=button], input[type=submit], button{
 	padding-top: 0.5vmin;
 }
 
-input[type=button]:active, input[type=submit]:active{
-	background-color: #999;
+input[type=button]:active, input[type=submit]:active, button:active{
+	background-color: #DFBB7C;
 }
 
-input[type=submit], input[type=button]{
-	width: 40%;
+input[type=button]{
+	width: 50%;
 }
 
 .dual label{
@@ -183,7 +189,7 @@ input[type=submit], input[type=button]{
 	width:200%;
 }
 
-input:hover{
+input:hover, button:hover{
 	cursor:pointer;
 }
 input[type=text]:hover{
