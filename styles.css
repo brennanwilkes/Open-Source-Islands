@@ -173,7 +173,7 @@ input[type=button], input[type=submit], button{
 	padding-top: 0.5vmin;
 }
 
-input[type=button]:active, input[type=submit]:active, button:active{
+input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus{
 	background-color: #DFBB7C;
 }
 
