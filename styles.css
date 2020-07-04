@@ -136,8 +136,13 @@ a img{
 	text-align: left;
 }
 
-.page a{
+.page a, .page a *{
 	text-decoration: none;
+	border-radius: 1vmin 5vmin 5vmin 1vmin;
+}
+
+.page a:nth-child(4) img{
+	border-radius: 1vmin;
 }
 
 .page > div > *, .page > a > *{
@@ -201,7 +206,7 @@ input[type=button]{
 	width:200%;
 }
 
-input:hover, button:hover, a:hover{
+input:hover, button:hover, a:hover, a *:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }

@@ -10,9 +10,9 @@ let concept_art = [
 	"Aru"
 ];
 
-var currentPage = 0;
+var currentPage = 1;
 var island;
-const MAX_PAGE = 6;
+const MAX_PAGE = 7;
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -32,9 +32,9 @@ function spawnParticle(e){
 }
 
 function changePage(page){
-	$("#page"+currentPage).hide();
-	currentPage = Math.max(0,Math.min(page,MAX_PAGE));
-	$("#page"+currentPage).show();
+	$(".page:nth-child("+currentPage+")").hide();
+	currentPage = page;
+	$(".page:nth-child("+currentPage+")").show();
 }
 
 function turnPage(dir){
@@ -155,10 +155,11 @@ $(document).ready(function(){
 	}
 
 
-	$("#page0").show();
+
 	for(let p=1;p<=MAX_PAGE;p++){
-		$("#page"+p).hide();
+		$(".page:nth-child("+p+")").hide();
 	}
+	$(".page:nth-child(1)").show();
 
 
 	$("input[type=button], input[type=submit], button").click(function(e){
@@ -176,19 +177,19 @@ $(document).ready(function(){
 
 	$("#edit").click(function(e){
 		$("#seed").val(island.replicable_seed);
-		changePage(1);
+		changePage(2);
 	});
 
 	$(".home").click(function(e){
-		changePage(0);
-	});
-
-	$("#generator").click(function(e){
 		changePage(1);
 	});
 
+	$("#generator").click(function(e){
+		changePage(2);
+	});
+
 	$("#about").click(function(e){
-		changePage(6);
+		changePage(7);
 	});
 
 	$("#compile, #recompile").click(function(e){
@@ -201,7 +202,7 @@ $(document).ready(function(){
 				turnPage(1);
 			}
 			else{
-				changePage(1);
+				changePage(2);
 			}
 		},150);
 	});
