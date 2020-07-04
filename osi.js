@@ -6,7 +6,8 @@ let concept_art = [
 	"Murihau",
 	"Rangi-Karauna",
 	"Tamah-Talatonu",
-	"Tama-Ropata"
+	"Tama-Ropata",
+	"Aru"
 ];
 
 var currentPage = 0;
@@ -171,11 +172,15 @@ $(document).ready(function(){
 	});
 
 	$("#edit").click(function(event){
+		$("#seed").val(island.replicable_seed);
 		changePage();
 	});
 
 	$("#compile, #recompile").click(function(event){
 		changePage(this.id==="compile" ? 1 : -1);
+		if(this.id==="recompile"){
+			$("#seed").val("");
+		}
 		setTimeout(function(){
 			if(compileIsland()){
 				changePage(1);
