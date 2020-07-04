@@ -789,7 +789,7 @@ class Island{
 }
 
 function downloadStaticPNG(png,name){
-	var link = document.createElement('a');
+	let link = document.createElement('a');
 	link.setAttribute("download",name);
 	link.setAttribute('href', png);
 	link.click();

@@ -183,6 +183,19 @@ $(document).ready(function(){
 		changePage(1);
 	});
 
+	$("#github").click(function(event){
+		let link = document.createElement('a');
+		link.setAttribute('href', "https://github.com/brennanwilkes/Open-Source-Islands");
+		link.setAttribute('target', "_blank");
+		link.click();
+	});
+	$("#about").click(function(event){
+		let link = document.createElement('a');
+		link.setAttribute('href', "https://bw.codexwilkes.com/portfolio/");
+		link.setAttribute('target', "_blank");
+		link.click();
+	});
+
 	$("#compile, #recompile").click(function(event){
 		turnPage(this.id==="compile" ? 1 : -1);
 		if(this.id==="recompile"){
