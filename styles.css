@@ -45,7 +45,7 @@ body{
 	overflow:hidden;
 }
 #backgroundDisplay::after{
-	width: 5120px;
+	width: 10240px;
 	background-image:inherit;
 	animation: 			renderLighting 4s steps(5) infinite alternate;
 	-webkit-animation:	renderLighting 4s steps(5) infinite alternate;
@@ -302,7 +302,7 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 
 
 @keyframes renderLighting {
-	100% { transform:translateX(-5120px); }
+	100% { transform:translateX(-10240px); }
 }
 
 .Particle{
