@@ -5,7 +5,8 @@ let concept_art = [
 	"Kuilei-Inoke",
 	"Murihau",
 	"Rangi-Karauna",
-	"Tamah-Talatonu"
+	"Tamah-Talatonu",
+	"Tama-Ropata"
 ];
 
 var currentPage = 0;

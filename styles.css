@@ -45,10 +45,10 @@ body{
 #backgroundDisplay::after{
 	width: 10240px;
 	background-image:inherit;
-	animation: 			renderLighting 4s steps(5) infinite alternate;
-	-webkit-animation:	renderLighting 4s steps(5) infinite alternate;
-	-moz-animation:		renderLighting 4s steps(5) infinite alternate;
-	-o-animation:		renderLighting 4s steps(5) infinite alternate;
+	animation: 			renderLighting 12s steps(5) infinite alternate;
+	-webkit-animation:	renderLighting 12s steps(5) infinite alternate;
+	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
+	-o-animation:		renderLighting 12s steps(5) infinite alternate;
 }
 
 #isl, #backgroundDisplay::after, main::after{
@@ -65,10 +65,10 @@ main::after{
 	width: 100vw;
 	height: 100vh;
 	z-index: 0;
-	animation: 			fadeInAndOut 4s linear infinite alternate;
-	-webkit-animation:	fadeInAndOut 4s linear infinite alternate;
-	-moz-animation:		fadeInAndOut 4s linear infinite alternate;
-	-o-animation:		fadeInAndOut 4s linear infinite alternate;
+	animation: 			fadeInAndOut 12s linear infinite alternate;
+	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
+	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
+	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 }
 
 .page{
@@ -300,6 +300,15 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 
 
 @keyframes renderLighting {
+	100% { transform:translateX(-10240px); }
+}
+@-webkit-keyframes renderLighting {
+	100% { transform:translateX(-10240px); }
+}
+@-moz-keyframes renderLighting {
+	100% { transform:translateX(-10240px); }
+}
+@-o-keyframes renderLighting {
 	100% { transform:translateX(-10240px); }
 }
 
