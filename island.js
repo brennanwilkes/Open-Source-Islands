@@ -1,32 +1,45 @@
-
+/**
+	@namespace project.js
+	CPSC-2030-W01
+	@since 05/06/2020
+	@version 1.0
+	@author Brennan Wilkes
+	@author 100322326
+*/
 
 //------------------------------------HELPER FUNCTIONS--------------------------------------
 
 
-
-function dist(x,y,w,h){
+/**
+	Calculates the distance from a point to the center of a region
+	@param {number} x x coordinate
+	@param {number} y y coordinate
+	@param {number} w width of region
+	@param {number} h height of region
+	@returns {number} distance from x,y to the center of w,h
+*/
+function region_dist(x,y,w,h){
 	return Math.max(normalize(0.5-Math.sqrt(Math.pow(Math.abs(0.5-(x/w)),2)+Math.pow(Math.abs(0.5-(y/h)),2)),0,0.5),0);
 }
 
-
 /**
-	Generates a random integer between min_b and max_b inclusively
-	@param {number} min_b Minimum bound
-	@param {number} max_b Maximum bound
-	@returns {number} Random integer min_b <= num <= max_b
+	normalize a value to between 0 and 1 based on min and max
+	@param {number} val Initial value to normalize
+	@param {number} min Minimum bound to normalize by
+	@param {number} max Maximum bound to normalize by
+	@returns {number} val normalized by min and max
 */
-function ran_b(min_b,max_b){
-	return Math.floor( min_b + Math.random()*((max_b-min_b)+1) );
-}
-
-
-
-//nomralize a value to between 0 and 1 based on min and max
 function normalize(val, min, max){
 	return (val-min)/(max-min);
 }
 
-//nomralize a 2d array to between 0 and 1 based on min and max
+/**
+	nomralize a 2d array to between 0 and 1 based on min and max
+	@param {number} arr Array of values to normalize
+	@param {number} minHeight Minimum bound to normalize by
+	@param {number} maxHeight Maximum bound to normalize by
+	@returns {number} Array of updated normalized values
+*/
 function normalize_2d_array(arr,minHeight,maxHeight){
 	for(let x=0;x<arr.length;x++){
 		for(let y=0;y<arr[x].length;y++){
@@ -36,15 +49,26 @@ function normalize_2d_array(arr,minHeight,maxHeight){
 	return arr;
 }
 
-
-
-
+/**
+	Generates a perlin noise map based on parameters
+	@param {number} width Width of the noise map
+	@param {number} height Height of the noise map
+	@param {number} scale Scale to view the base noise map layers. Higher scale values produced more "random" noise, while lower values produce more coherent results.
+	@param {number} oct Number of octaves to generate. Each octave will contribute less to the overall noise map. More octaves means more expensive calculations, but more detailed noise maps.
+	@param {number} persist The persistence of each octave to effect the overall noise map. Adjusts each octaves amplitude.
+	@param {number} lac The lacunarity to apply to each octave. Adjusts each octaves frequency, which determines level of detail. Higher lacunarity creates more "detailed" "random" noise, while lower values creates more abstract shapes.
+	@param {number} seed Seed value
+	@param {boolean} normalize If the noise map should be normalized by it's min and max values to create a smoother more real gradient. Defaults to true. If left false, will record the min and max values as attributes of the return arrary for future normalization.
+	@returns {number[]} A 2d array of perlin noise. If normalize was set to false, the min and max values are recorded in attributes minHeight and maxHeight.
+*/
 function gen_noise_map(width, height, scale, oct, persist, lac, seed, normalize=true){
+
+	//Seed the perlin noise module.
 	noise.seed(seed);
 
+	//Setup
 	let xx,yy;
 	let map = new Array(width);
-
 	let maxHeight = Number.NEGATIVE_INFINITY;
 	let minHeight = Number.POSITIVE_INFINITY;
 
@@ -52,7 +76,7 @@ function gen_noise_map(width, height, scale, oct, persist, lac, seed, normalize=
 		map[x] = new Array(height);
 		for(let y=0;y<height;y++){
 
-			//initialize
+			//initialize at coordinate
 			map[x][y] = 0;
 			let amp = 1;
 			let freq = 1;
@@ -77,204 +101,467 @@ function gen_noise_map(width, height, scale, oct, persist, lac, seed, normalize=
 			minHeight = Math.min(minHeight, map[x][y]);
 		}
 	}
+
+	//Record min and max values
 	if(!normalize){
 		map.minHeight = minHeight;
 		map.maxHeight = maxHeight;
 	}
 
-	//normalize
+	//normalize and return
 	return normalize ? normalize_2d_array(map,minHeight,maxHeight) : map;
 }
 
-
+/**
+	Generates an HTML canvas rgb formatted string from three channel values
+	@param {number} r Red channel
+	@param {number} g Green channel
+	@param {number} b Blue channel
+	@returns {string} HTML canvas rgb formatted string
+*/
 function rgb(r,g,b){
 	return "rgb("+r+", "+g+", "+b+")";
 }
 
-function hash_arr(arr){
-	let hash = 0x12345678;
-
-	while (arr.length > 0) {
-		hash ^= (hash << 16) | (hash << 19);
-		hash += arr.pop();
-		hash ^= (hash << 26) | (hash << 13);
-	}
-	return Math.abs(hash);
-}
-
+/**
+	A basic insecure 64bit hash. Hashes a number by repeatedly applying bitwise operations, and salting by each digit of the original number. I've chosen some magic numbers to left shift by, 16, 19, 26, 13, purely through trial and error to get good results. This hash is by no means secure, and should not be used for encryption purposes, but for my purpose of "randomizing" seed values, and generating "random" results (that of course are not actually random, and will unfold the same way every time for the same seed), this works excellently.
+	@param {number} num Initial number to salt hash with.
+	@returns {number} 64bit hash salted by the initial passed number
+*/
 function hash(num){
+
+	//Start with "seemingly" random bits
 	let hash = 0x12345678;
 
+	//Iterate over every digit
 	while (num > 0) {
+
+		//XOR the hash by the OR product of the hash shifted by 16 and 19 bits
 		hash ^= (hash << 16) | (hash << 19);
+
+		//Salt with the current digit
 		hash += num % 10;
+
+		//XOR the hash by the OR product of the hash shifted by 26 and 13 bits
 		hash ^= (hash << 26) | (hash << 13);
+
+		//Crop off the end digit
 		num = num / 10;
 	}
 	return Math.abs(hash);
 }
 
+/**
+	Generates a lighting value for a coordinate based on a passed predetermined scaler, and the coordinates distance and height differential to a peak coordinate. This value will range between 0 and 1, and directly maps to the required opacity value of the rendered shadow
+	@param {number[]} peak a three element array repersenting the x coordinate, y coordinate, and height value of the peak casting shadows
+	@param {number[]} coord a three element array repersenting the x coordinate, y coordinate, and height value of the pixel which a shadow is being rendered over
+	@param {number} time Scaler value to determine max shadow length
+	@returns a float between 0 and 1 directly mapping to an opacity value to render the pixel's shadow at
+*/
+function get_lighting(peak,coord,time){
 
-function get_lighting(peak,coord,time=LIGHTING_DISTANCE){
-	let val0 = (is_town(peak[2]) ? remove_town(peak[2]) : peak[2]);
-	let val1 = (is_town(coord[2]) ? remove_town(coord[2]) : coord[2]);
-	return (val0-val1+0.2)*(1-(Math.pow(pixel_distance(peak,coord),1.25)/time));
-}
-function pixel_distance(peak,coord){
-	return Math.sqrt(Math.pow(coord[0]-peak[0],2)+Math.pow(coord[1]-peak[1],2));
+	//Remove structure metadata
+	let val0 = (has_structure(peak[2]) ? strip_metadata(peak[2]) : peak[2]);
+	let val1 = (has_structure(coord[2]) ? strip_metadata(coord[2]) : coord[2]);
+
+	//Calculate value and return
+	return (val0-val1+0.2)*(1-(Math.pow(distance(peak,coord),1.25)/time));
 }
 
-function colour_round(colour){
-	if(is_town(colour)){
+/**
+	Calculates the distance from a to b
+	@param {number} a
+	@param {number} b
+	@returns distance from a to b
+*/
+function distance(a,b){
+	return Math.sqrt(Math.pow(b[0]-a[0],2)+Math.pow(b[1]-a[1],2));
+}
+
+/**
+	Essentially a lookup table to determine the index of the colour to render a pixel height value at. If the pixel contains structure metadata,
+	a value of 4 is returned for special behaviour. This is used for shadow casting. Otherwise, the return value maps to the island::colours[v][0] hexidecimal colour code. The order of the indexes determines the base rules for shadow casting.
+	@param {number} height Height value to lookup
+	@returns Index of colour value, or 4 for structure meta data.
+*/
+function colour_round(height){
+	if(has_structure(height)){
 		return 4;
 	}
-	else if(colour <0.1){
+	else if(height <0.1){
 		return 0;
 	}
-	else if(colour <0.3){
+	else if(height <0.3){
 		return 1;
 	}
-	else if(colour  < 0.35){
+	else if(height  < 0.35){
 		return 2;
 	}
-	else if(colour  < 0.45){
+	else if(height  < 0.45){
 		return 3;
 	}
-	else if(colour  < 0.6){
+	else if(height  < 0.6){
 		return 5;
 	}
-	else if(colour  < 0.75){
+	else if(height  < 0.75){
 		return 6;
 	}
-	else if(colour < 0.9 && colour > 0.88){
+	else if(height < 0.9 && height > 0.88){
 		return 9;
 	}
-	else if(colour < 0.925){
+	else if(height < 0.925){
 		return 8;
 	}
 	return 7;
 }
 
-function is_town(val){
-	return (Math.floor(val)%TOWN_HEIGHT === 0 && Math.floor(val) > 0);
+/**
+	Determines if a height value contains structure meta data. Height values are numbers between 0 and 1. (Actually a lie, as they can exceed 1, but for abstract purposes you can consider them a float between 0 and 1). This leaves the integer portion of the number unused, so I use it to contain meta data about the pixel, by salting it with a magic integer when a structure is at that coordinate.
+	@param {number} val height value to check
+	@returns boolean if val contains strucutre metadata
+*/
+function has_structure(val){
+	return (Math.floor(val)%STRUCTURE_META === 0 && Math.floor(val) > 0);
 }
 
-function remove_town(val){
-	while(val > TOWN_HEIGHT){
-		val -= TOWN_HEIGHT;
+/**
+	Strips a height value of it's structure metadata in order to be better used by the shadow renderer. See {@link has_structure} for more information
+	@param {number} val value to be stripped
+	@returns val stripped of metadata
+*/
+function strip_metadata(val){
+
+	//While this mimics modulo, for some reason simply returning val % STRUCTURE_META yielded incorrect results
+	while(val > STRUCTURE_META){
+		val -= STRUCTURE_META;
 	}
 	return val;
+}
+
+/**
+	Downloads static PNG data as a file using dynamic html.
+	@param {string} png raw static PNG data
+	@param {string} name Name to save file as
+*/
+function downloadStaticPNG(png,name){
+
+	//Create a link
+	let link = document.createElement('a');
+
+	//Set the download attribute to the file name
+	link.setAttribute("download",name);
+
+	//Set the href attribute to the raw png data
+	link.setAttribute('href', png);
+
+	//Download
+	link.click();
+}
+
+//-------------------------------------CONSTANTS------------------------------------------
+
+
+
+const ISLAND_PIXEL_SCALE = 4;
+const STRUCTURE_META = 36;
+const SPRITE_SIZE = 8;
+
+
+//-------------------------------------ISLAND SETTINGS CLASS------------------------------------------
+
+
+
+/**
+	@class Island settings class to store default values for all settings, as well as give the ability to generate custom islands with modified settings. This achieves the same thing as passing many values into the island constructor, and giving them defaults, but is more readable (Otherwise I'd be putting 250 lines worth of parameters into one constructor!! Madness!), and allows for better customization flexibility. Many of these values are constants that shouldn't be changed, and obviously none of these will be changed after island compile time, as they're simply parameters.
+*/
+class IslandSettings{
+
+	/**
+	 	@constructor
+		@param {number} seed Seed for the island. Custom seeds must be set through the constructor, as many of the other default values are determined based on a {@link hash} of the seed modulus some constant. Defaults to a random number
+	*/
+	constructor(seed=Math.round(Math.random()*1000000)){
+
+		/**
+			Master seed
+			@type {number}
+		*/
+		this.seed=seed;
+
+		/**
+			Island name. Defaults to a random selection from the {@link NAMES_LIST}
+			@type {string}
+		*/
+		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
+
+		/**
+			Width of the island
+			@type {number}
+		*/
+		this.size_x = 1024;
+
+		/**
+			Height of the island
+			@type {number}
+		*/
+		this.size_y = 1024;
+
+		/**
+			For export purposes, determines if a background should be drawn
+			@type {boolean}
+		*/
+		this.colour_background = true;
+
+		//--------------------------------------COLOURS--------------------------------------
+
+		/**
+			Deep ocean / background colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.DEEP_OCEAN = "#000770";
+
+		/**
+			Shallow ocean colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.SHALLOW_OCEAN = "#0C49AC";
+
+		/**
+			Low ground colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.LAND_ONE = "#587E31";
+
+		/**
+			Middle ground colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.LAND_TWO = "#274C00";
+
+		/**
+			High ground colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.LAND_THREE = "#173600";
+
+		/**
+			Beach colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.BEACH = "#D0AB76";
+
+		/**
+			Low rock colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.ROCK_ONE = "#959688";
+
+		/**
+			High ground colour repersented in hexidecimal
+			@type {string}
+		*/
+		this.ROCK_TWO = "#626354";
+
+		/**
+			Low lava colour repersented by an HTML5 colour value
+			@type {string}
+		*/
+		this.LAVA_ONE = "darkred";
+
+		/**
+			High lava colour repersented by an HTML5 colour value
+			@type {string}
+		*/
+		this.LAVA_TWO = "orange";
+
+		/**
+			Village colour repersented in hexidecimal
+			@type {string}
+			@deprecated
+		*/
+		this.VILLAGE = "#654321";
+
+		/**
+			Time value to scale shadows by when exporting an image of the island.
+			@type {number}
+		*/
+		this.time = 10;
+
+		//--------------------------------------PERLIN NOISE SETTINGS--------------------------------------
+
+		/**
+			Boolean to repersent if an island should be generated with a motu. Default 50% chance.
+			@type {boolean}
+		*/
+		this.HAS_MOTU = this.seed%2 === 0;
+
+		/**
+			Boolean to repersent if an island should be generated with a reef. Default 50% chance, and must also have a motu.
+			@type {boolean}
+		*/
+		this.HAS_REEF = this.HAS_MOTU && hash(this.seed-50)%2 === 0;
+
+		/**
+			Boolean to repersent if an island should be generated as an atoll. Default 25% chance, and must also have a motu.
+			@type {boolean}
+		*/
+		this.IS_ATOLL = this.HAS_MOTU && hash(this.seed-100)%4 === 0;
+
+		/**
+			Boolean to repersent if an island should be generated with a volcano. Default 25% chance, and must also not have a motu.
+			@type {boolean}
+		*/
+		this.IS_VOLCANO = !this.HAS_MOTU && hash(this.seed-66)%4 === 0;
+
+		/**
+			Number to repersent state of village generation. Defaults to 0.
+				0  | Village should be, but hasn't yet been generated.
+				1  | No village should be generated.
+				-1 | Village has already been generated.
+			@type {number}
+		*/
+		this.HAS_TOWN = 0;
+
+		/**
+			Size of village. Affects both number of structures, and spread of structures. Defaults to 6.
+			@type {number}
+		*/
+		this.village_size = 6;
+
+		/**
+			Boolean to repersent if an island should have trees generated. Defaults to true.
+			@type {boolean}
+		*/
+		this.HAS_TREES = true;
+
+		/**
+			Amount of trees to generate, if tree generation is true. Defaults to 500.
+			@type {number}
+		*/
+		this.tree_amt = 500;
+
+		/**
+			Island persistence scaler. See {@link gen_noise_map} for more information. Defaults to 2.
+			@type {number}
+		*/
+		this.ISL_PERSIST = 2;
+
+		/**
+			Island lacunarity scaler. See {@link gen_noise_map} for more information. Defaults to 0.75.
+			@type {number}
+		*/
+		this.ISL_LAC = 0.75;
+
+		/**
+			Island scale scaler. See {@link gen_noise_map} for more information. Defaults to 25.
+			@type {number}
+		*/
+		this.ISL_SCALE = 25;
+
+		/**
+			Number of octaves of perlin noise to layer. See {@link gen_noise_map} for more information. Defaults to 8.
+			@type {number}
+		*/
+		this.ISL_OCT = 8;
+
+		/**
+			Motu persistence scaler. See {@link gen_noise_map} for more information. Defaults to 2.
+			@type {number}
+		*/
+		this.MOTU_PERSIST = 2;
+
+		/**
+			Motu lacunarity scaler. See {@link gen_noise_map} for more information. Defaults to 0.95.
+			@type {number}
+		*/
+		this.MOTU_LAC = 0.95;
+
+		/**
+			Motu scale scaler. See {@link gen_noise_map} for more information. Defaults to 500.
+			@type {number}
+		*/
+		this.MOTU_SCALE = 500;
+
+		/**
+			Number of octaves of perlin noise to layer for motus. See {@link gen_noise_map} for more information. Defaults to 1.
+			@type {number}
+		*/
+		this.MOTU_OCT = 1;
+
+		/**
+			Reef persistence scaler. See {@link gen_noise_map} for more information. Defaults to 2.
+			@type {number}
+		*/
+		this.REEF_PERSIST = 2;
+
+		/**
+			Reef lacunarity scaler. See {@link gen_noise_map} for more information. Defaults to 0.95.
+			@type {number}
+		*/
+		this.REEF_LAC = 0.95;
+
+		/**
+			Reef scale scaler. See {@link gen_noise_map} for more information. Defaults to 50.
+			@type {number}
+		*/
+		this.REEF_SCALE = 50;
+
+		/**
+			Number of octaves of perlin noise to layer for reefs. See {@link gen_noise_map} for more information. Defaults to 1.
+			@type {number}
+		*/
+		this.REEF_OCT = 1;
+
+		/**
+			Gradient of height minimax for motu generation. Initial height values between grad[0] and grad[1] will be raised to form the motu sandbars, while values between grad[2] and grad[3] will be lowered to form the motu lagoon.
+			@type {number[]}
+		*/
+		this.MOTU_GRAD = [0.075,0.15,0.15,0.25];
+
+		/**
+			Constant value to shrink motu and atoll based islands by. This is offset by motu generation.
+			@type {number}
+		*/
+		this.ISL_SHRK = 0.25;
+
+		/**
+			Mask range to allow specific regions of the island to be exempt from specifc generation by masking them.
+			@type {number}
+		*/
+		this.ISL_MASK = [0.15,0.2];
+	}
 }
 
 
 //-------------------------------------ISLAND CLASS------------------------------------------
 
-const MOTU_GRAD = [0.075,0.15,0.15,0.25];
-const ISL_SHRK = 0.25;
-const ISL_MASK = [0.15,0.2];
 
-const MOTU_SCALE = 500;
-const MOTU_OCT = 1;
-const MOTU_PERSIST = 2;
-const MOTU_LAC = 0.95;
-
-const REEF_SCALE = 50;
-const REEF_OCT = 1;
-const REEF_PERSIST = 2;
-const REEF_LAC = 0.95;
-
-//const ISL_SCALE = 25;
-const ISL_OCT = 8;
-//const ISL_PERSIST = 2;
-//const ISL_LAC = 0.7;
-
-const ISLAND_PIXEL_SCALE = 4;
-
-
-const TOWN_HEIGHT = 36;
-const SPRITE_SIZE = 8;
-
-var LIGHTING_DISTANCE = 15;
-
-
-
-
-
-class IslandSettings{
-	constructor(seed=Math.random()*1000000){
-		this.seed=seed;
-		this.name = NAMES_LIST[hash(this.seed*this.seed)%NAMES_LIST.length];
-		this.size_x = 1024;
-		this.size_y = 1024;
-
-
-		this.colour_background = true;
-		this.DEEP_OCEAN = "#000770";
-		this.SHALLOW_OCEAN = "#0C49AC";
-		this.LAND_ONE = "#587E31";
-		this.LAND_TWO = "#274C00";
-		this.LAND_THREE = "#173600";
-		this.BEACH = "#D0AB76";
-		this.ROCK_ONE = "#959688";
-		this.ROCK_TWO = "#626354";
-		this.LAVA_ONE = "darkred";
-		this.LAVA_TWO = "orange";
-		this.VILLAGE = "#654321";
-		this.time = 10;
-
-		this.HAS_MOTU = this.seed%2 === 0;
-		this.HAS_REEF = this.seed%4 === 0;
-		this.IS_ATOLL = this.seed%2 === 0 && hash(this.seed-100)%4 === 0;
-		this.IS_VOLCANO =this.seed%2 === 1 && hash(this.seed-66)%4 === 0;
-
-		this.HAS_TOWN = 0;
-		this.village_size = 6;
-		this.HAS_TREES = true;
-		this.tree_amt = 500;
-
-		this.ISL_PERSIST = 2;
-		this.ISL_LAC = 0.75;
-		this.ISL_SCALE = 25;
-
-
-
-	}
-}
-
-
+/**
+	@class Island class. Repersents an island as well as generates it. Where all the magic happens.
+*/
 class Island{
+
+	/**
+		Initializes all the needed data members, and runs the main generation methods
+		@constructor
+	*/
 	constructor(settings, LAC_SCALE_DOWN=1) {
 
+		/**
+			Array of colours repersented in hexidecimal, which map one-to-one to the {@link display_data} data.
+			@type {string[]}
+		*/
 		this.colours = [settings.DEEP_OCEAN, settings.SHALLOW_OCEAN, settings.LAND_ONE, settings.LAND_TWO, settings.LAND_THREE, settings.BEACH, settings.VILLAGE, settings.ROCK_ONE, settings.ROCK_TWO, settings.LAVA_ONE, settings.LAVA_TWO];
 
-		this.DEEP_OCEAN = settings.DEEP_OCEAN
-		this.SHALLOW_OCEAN = settings.SHALLOW_OCEAN;
-		this.LAND_ONE = settings.LAND_ONE;
-		this.LAND_TWO = settings.LAND_TWO;
-		this.LAND_THREE = settings.LAND_THREE;
-		this.BEACH = settings.BEACH;
-		this.ROCK_ONE = settings.ROCK_ONE;
-		this.ROCK_TWO = settings.ROCK_TWO;
-		this.LAVA_ONE = settings.LAVA_ONE;
-		this.LAVA_TWO = settings.LAVA_TWO;
-		this.VILLAGE = settings.VILLAGE;
-		this.colour_background = settings.colour_background;
-		this.photo_time = settings.time;
+		/**
+			Settings ({@link IslandSettings}) for generation. Technically isn't const, but is never changed
+			@type {object}
+		*/
+		this.settings = settings;
 
-		this.HAS_MOTU = settings.HAS_MOTU;
-		this.HAS_REEF = settings.HAS_REEF;
-		this.IS_ATOLL = settings.IS_ATOLL;
-		this.IS_VOLCANO = settings.IS_VOLCANO;
-
-		this.HAS_TOWN = settings.HAS_TOWN;
-		this.village_size = settings.village_size;
-		this.HAS_TREES = settings.HAS_TREES;
-		this.tree_amt = settings.tree_amt;
-
-		this.ISL_PERSIST = settings.ISL_PERSIST;
-		this.ISL_LAC = settings.ISL_LAC;
-		this.ISL_SCALE = settings.ISL_SCALE;
-
+		/**
+			2D array of the raw height map data from generation.
+		*/
 		this.raw_data;
 		this.display_data;
 
@@ -340,66 +627,66 @@ class Island{
 		this.display_data = new Array();
 
 		//lightblue
-		this.display_data[this.SHALLOW_OCEAN] = new Array();
+		this.display_data[this.settings.SHALLOW_OCEAN] = new Array();
 
 		//green
-		this.display_data[this.LAND_ONE] = new Array();
+		this.display_data[this.settings.LAND_ONE] = new Array();
 
 		//green
-		this.display_data[this.LAND_TWO] = new Array();
+		this.display_data[this.settings.LAND_TWO] = new Array();
 
 		//green
-		this.display_data[this.LAND_THREE] = new Array();
+		this.display_data[this.settings.LAND_THREE] = new Array();
 
 		//beach
-		this.display_data[this.BEACH] = new Array();
+		this.display_data[this.settings.BEACH] = new Array();
 
 		//town
-		this.display_data[this.VILLAGE] = new Array();
+		this.display_data[this.settings.VILLAGE] = new Array();
 
 		//mountain
-		this.display_data[this.ROCK_ONE] = new Array();
-		this.display_data[this.ROCK_TWO] = new Array();
+		this.display_data[this.settings.ROCK_ONE] = new Array();
+		this.display_data[this.settings.ROCK_TWO] = new Array();
 
 		//volcano
-		this.display_data[this.LAVA_ONE] = new Array();
-		this.display_data[this.LAVA_TWO] = new Array();
+		this.display_data[this.settings.LAVA_ONE] = new Array();
+		this.display_data[this.settings.LAVA_TWO] = new Array();
 
 		let adjusted_height;
 		for(let x=0;x<raw_data.length;x++){
 			for(let y=0;y<raw_data[0].length;y++){
 
-				adjusted_height = (is_town(raw_data[x][y]) ? remove_town(raw_data[x][y]) : raw_data[x][y] );
+				adjusted_height = (has_structure(raw_data[x][y]) ? strip_metadata(raw_data[x][y]) : raw_data[x][y] );
 
 				if(adjusted_height<0.1){
 					continue;
 				}
 				else if(adjusted_height<0.3){
-					this.display_data[this.SHALLOW_OCEAN].push([x,y]);
+					this.display_data[this.settings.SHALLOW_OCEAN].push([x,y]);
 				}
 				else if(adjusted_height < 0.35){
-					this.display_data[this.BEACH].push([x,y]);
+					this.display_data[this.settings.BEACH].push([x,y]);
 				}
 				else if(adjusted_height < 0.45){
-					this.display_data[this.LAND_ONE].push([x,y]);
+					this.display_data[this.settings.LAND_ONE].push([x,y]);
 				}
 				else if(adjusted_height < 0.6){
-					this.display_data[this.LAND_TWO].push([x,y]);
+					this.display_data[this.settings.LAND_TWO].push([x,y]);
 				}
 				else if(adjusted_height < 0.75){
-					this.display_data[this.LAND_THREE].push([x,y]);
+					this.display_data[this.settings.LAND_THREE].push([x,y]);
 				}
 				else if(adjusted_height < 0.9 && adjusted_height > 0.88){
-					this.display_data[this.ROCK_ONE].push([x,y]);
+					this.display_data[this.settings.ROCK_ONE].push([x,y]);
 				}
 				else if(adjusted_height < 0.925){
-					this.display_data[this.ROCK_TWO].push([x,y]);
+					this.display_data[this.settings.ROCK_TWO].push([x,y]);
 				}
 				else if(adjusted_height < 1.1){
-					this.display_data[this.LAVA_ONE].push([x,y]);
+					this.display_data[this.settings.LAVA_ONE].push([x,y]);
 				}
 				else{
-					this.display_data[this.LAVA_TWO].push([x,y]);
+					this.display_data[this.settings.LAVA_TWO].push([x,y]);
 				}
 			}
 		}
@@ -448,21 +735,21 @@ class Island{
 	//25,8,8,0.75
 	gen_island_data(){
 
-		if(this.IS_ATOLL){
+		if(this.settings.IS_ATOLL){
 			this.LAC_SCALE_DOWN = 0.8;
 		}
-		else if(this.IS_VOLCANO){
+		else if(this.settings.IS_VOLCANO){
 			this.LAC_SCALE_DOWN = 0.925;
 		}
 
 		//generate base map
-		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.ISL_SCALE,ISL_OCT,this.ISL_PERSIST,this.ISL_LAC*this.LAC_SCALE_DOWN,hash(this.seed), false);
+		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.settings.ISL_SCALE,this.settings.ISL_OCT,this.settings.ISL_PERSIST,this.settings.ISL_LAC*this.LAC_SCALE_DOWN,hash(this.seed), false);
 
 
 
 
 		let TOWN_SPAWN_X, TOWN_SPAWN_Y;
-		if(this.HAS_TOWN === 0){
+		if(this.settings.HAS_TOWN === 0){
 			TOWN_SPAWN_X = hash(this.seed-23)%2 === 0;
 			TOWN_SPAWN_Y = hash(this.seed-24)%2 === 0;
 		}
@@ -472,12 +759,12 @@ class Island{
 		//Motu and styling
 		let motu_noise, reef_noise;
 
-		if(this.HAS_MOTU){
-			motu_noise =  gen_noise_map(this.size[0], this.size[1], MOTU_SCALE,MOTU_OCT,MOTU_PERSIST,MOTU_LAC,hash(this.seed+1));
+		if(this.settings.HAS_MOTU){
+			motu_noise =  gen_noise_map(this.size[0], this.size[1], this.settings.MOTU_SCALE,this.settings.MOTU_OCT,this.settings.MOTU_PERSIST,this.settings.MOTU_LAC,hash(this.seed+1));
 			motu_noise = normalize_2d_array(motu_noise,-2,1);
 		}
-		if(this.HAS_REEF){
-			reef_noise =  gen_noise_map(this.size[0], this.size[1], REEF_SCALE,REEF_OCT,REEF_PERSIST,REEF_LAC,hash(this.seed+2));
+		if(this.settings.HAS_REEF){
+			reef_noise =  gen_noise_map(this.size[0], this.size[1], this.settings.REEF_SCALE,this.settings.REEF_OCT,this.settings.REEF_PERSIST,this.settings.REEF_LAC,hash(this.seed+2));
 		}
 
 		let seed_scale = normalize(hash(this.seed+3)%250+750,0,1000);
@@ -488,7 +775,7 @@ class Island{
 
 				this.raw_data[x][y] = normalize(this.raw_data[x][y], this.raw_data.minHeight, this.raw_data.maxHeight);
 
-				if(this.IS_ATOLL){
+				if(this.settings.IS_ATOLL){
 					//Lower the height
 					this.raw_data[x][y] = normalize(this.raw_data[x][y], 0, 1.75);
 				}
@@ -501,13 +788,13 @@ class Island{
 
 
 				//lower edges
-				this.raw_data[x][y] *= dist(x,y,this.size[0],this.size[1]);
+				this.raw_data[x][y] *= region_dist(x,y,this.size[0],this.size[1]);
 
 				//update mask
-				if(this.raw_data[x][y] > ISL_MASK[0] && this.raw_data[x][y] < ISL_MASK[1]){
+				if(this.raw_data[x][y] > this.settings.ISL_MASK[0] && this.raw_data[x][y] < this.settings.ISL_MASK[1]){
 					mapMASK[x][y] = 1;
 				}
-				else if(this.raw_data[x][y] < ISL_MASK[0]){
+				else if(this.raw_data[x][y] < this.settings.ISL_MASK[0]){
 					mapMASK[x][y] = 0.5;
 				}
 				else if(this.raw_data[x][y] < 0.35){
@@ -518,13 +805,13 @@ class Island{
 				}
 
 
-				if(this.HAS_REEF && !this.HAS_MOTU){
+				if(this.settings.HAS_REEF && !this.settings.HAS_MOTU){
 					//shrink visible land size
-					if(this.raw_data[x][y]>ISL_SHRK){
+					if(this.raw_data[x][y]>this.settings.ISL_SHRK){
 						this.raw_data[x][y]-=0.1;
 					}
 					//cut away lagoon
-					if(this.raw_data[x][y] > MOTU_GRAD[2] && this.raw_data[x][y] < MOTU_GRAD[3]){
+					if(this.raw_data[x][y] > this.settings.MOTU_GRAD[2] && this.raw_data[x][y] < this.settings.MOTU_GRAD[3]){
 						this.raw_data[x][y] -= 0.15;
 					}
 
@@ -535,20 +822,20 @@ class Island{
 				}
 
 				//apply motu styling
-				if(this.HAS_MOTU){
+				if(this.settings.HAS_MOTU){
 
 					//shrink visible land size
-					if(this.raw_data[x][y]>ISL_SHRK){
+					if(this.raw_data[x][y]>this.settings.ISL_SHRK){
 						this.raw_data[x][y]-=0.1;
 					}
 
 					//cut away lagoon
-					if(this.raw_data[x][y] > MOTU_GRAD[2] && this.raw_data[x][y] < MOTU_GRAD[3]){
+					if(this.raw_data[x][y] > this.settings.MOTU_GRAD[2] && this.raw_data[x][y] < this.settings.MOTU_GRAD[3]){
 						this.raw_data[x][y] -= 0.15;
 					}
 
 					//raise motus
-					else if(this.raw_data[x][y] > MOTU_GRAD[0] && this.raw_data[x][y] < MOTU_GRAD[1]){
+					else if(this.raw_data[x][y] > this.settings.MOTU_GRAD[0] && this.raw_data[x][y] < this.settings.MOTU_GRAD[1]){
 						this.raw_data[x][y] += motu_noise[x][y]*0.2;
 					}
 
@@ -566,15 +853,15 @@ class Island{
 				}
 
 				//apply reef
-				if(this.HAS_REEF){
+				if(this.settings.HAS_REEF){
 					if(mapMASK[x][y] === 0.25){
 						this.raw_data[x][y] += reef_noise[x][y] > 0.55 ? 0.15 : 0;
 					}
 				}
 
-				if(this.IS_VOLCANO){
+				if(this.settings.IS_VOLCANO){
 					if(this.raw_data[x][y]>0.6){
-						this.raw_data[x][y] *= (this.HAS_MOTU||this.HAS_REEF) ? 1.355 : 1.255;
+						this.raw_data[x][y] *= (this.settings.HAS_MOTU||this.settings.HAS_REEF) ? 1.355 : 1.255;
 					}
 				}
 
@@ -587,29 +874,29 @@ class Island{
 					this.has_volcano = true;
 				}
 
-				if(this.HAS_TOWN === 0){
-					if(Math.abs(this.raw_data[x][y]-(TOWN_HEIGHT/100))<0.01 && ( TOWN_SPAWN_X ? (x > this.size[0]/2) : (x < this.size[0]/2) ) && ( TOWN_SPAWN_Y ? (y > this.size[1]/2) : (y < this.size[1]/2) ) ){
-						this.HAS_TOWN = -1;
+				if(this.settings.HAS_TOWN === 0){
+					if(Math.abs(this.raw_data[x][y]-(STRUCTURE_META/100))<0.01 && ( TOWN_SPAWN_X ? (x > this.size[0]/2) : (x < this.size[0]/2) ) && ( TOWN_SPAWN_Y ? (y > this.size[1]/2) : (y < this.size[1]/2) ) ){
+						this.settings.HAS_TOWN = -1;
 						this.town = [x,y];
 					}
 				}
 			}
 		}
 		this.objects = new Array();
-		if(this.HAS_TOWN === -1){
-			let town_buildings = this.village_size;
-			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.village_size/2)),Math.max(6,Math.floor(this.village_size/2)),0.3,0.45,500,this.town[0],this.town[1]);
+		if(this.settings.HAS_TOWN === -1){
+			let town_buildings = this.settings.village_size;
+			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.settings.village_size/2)),Math.max(6,Math.floor(this.settings.village_size/2)),0.3,0.45,500,this.town[0],this.town[1]);
 
 			if(this.objects.length <= 3 && this.objects.length > 0){
 				this.objects[0][2] = 0;
 			}
 		}
 
-		if(this.HAS_TREES){
-			let numTrees = this.tree_amt;
+		if(this.settings.HAS_TREES){
+			let numTrees = this.settings.tree_amt;
 			this.gen_obj(Island.shiftTreeGraphics,Island.numTreeGraphics,numTrees,-1,-1,0.35,0.4,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
 
-			let numPlants = Math.floor(this.tree_amt/4);
+			let numPlants = Math.floor(this.settings.tree_amt/4);
 			this.gen_obj(Island.shiftPlantGraphics,Island.numPlantGraphics,numPlants,-1,-1,0.375,0.425,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
 		}
 
@@ -659,7 +946,7 @@ class Island{
 		for(let x=Math.floor(Island.graphics[shadow[2]].width/(-1*scl));x<Math.floor(Island.graphics[shadow[2]].width/scl);x++){
 			for(let y=Math.floor(Island.graphics[shadow[2]].height/(-1*scl));y<Math.floor(Island.graphics[shadow[2]].height/scl);y++){
 				if(Math.abs(x+y) <= 2 ){
-					this.raw_data[shadow[0]+x][shadow[1]+y] += TOWN_HEIGHT;
+					this.raw_data[shadow[0]+x][shadow[1]+y] += STRUCTURE_META;
 				}
 			}
 		}
@@ -688,7 +975,7 @@ class Island{
 			}
 
 			if( peak!=undefined && (colour_round(peak[2]) > 2 && colour_round(peak[2]) > colour_round(h) || ( colour_round(peak[2])===4 && colour_round(h)===4)  )){
-				ctx_img.fillStyle = "rgba(0, 0, 0, "+get_lighting(peak,[xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h],this.photo_time)+")";
+				ctx_img.fillStyle = "rgba(0, 0, 0, "+get_lighting(peak,[xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h],this.settings.time)+")";
 				ctx_img.fillRect(xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE);
 			}
 			peak = nextpeak;
@@ -737,8 +1024,8 @@ class Island{
 		let img_ctx = saved_img.getContext("2d");
 
 
-		if(this.colour_background){
-			img_ctx.fillStyle = this.DEEP_OCEAN;
+		if(this.settings.colour_background){
+			img_ctx.fillStyle = this.settings.DEEP_OCEAN;
 			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
 		}
 
@@ -757,7 +1044,7 @@ class Island{
 			grad.addColorStop(0.5, "#FF000080");
 			grad.addColorStop(0, "#FFC922FF");
 
-			img_ctx.globalAlpha = Math.max(this.photo_time-35,0)/120;
+			img_ctx.globalAlpha = Math.max(this.settings.time-35,0)/120;
 			img_ctx.fillStyle = grad;
 			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
 
@@ -780,7 +1067,7 @@ class Island{
 		let img_ctx = saved_img.getContext("2d");
 
 		for(let t=0;t<10;t++){
-			this.photo_time=20+t*10;
+			this.settings.time=20+t*10;
 			this.bake_lighting();
 			img_ctx.drawImage(this.lighting_img,this.size[0]*t,0);
 		}
@@ -788,12 +1075,7 @@ class Island{
 	}
 }
 
-function downloadStaticPNG(png,name){
-	let link = document.createElement('a');
-	link.setAttribute("download",name);
-	link.setAttribute('href', png);
-	link.click();
-}
+
 
 
 Island.graphics = new Array();
