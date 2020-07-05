@@ -560,48 +560,107 @@ class Island{
 		this.settings = settings;
 
 		/**
-			2D array of the raw height map data from generation.
+			2D array of the raw height map data from generation. This isn't used for rendering, rather for interactivity. If you want to test an exact coordinate to see the height of the terrain for instance.
+			@type {number[]}
 		*/
 		this.raw_data;
+
+		/**
+			An array of rectangle verticies to be rendered. The most optimized way to re-render the island is to draw all of these rectangles, however soon this will be deprecated once I impliment static PNG rendering.
+			@type {array[]}
+		*/
 		this.display_data;
 
-
+		/**
+			Storage for the HTML5 canvas element which contains the rendered rectangles making up the base layer of the island.
+			@type {object}
+		*/
 		this.canvas_img;
 
+		/**
+			Storage for the HTML5 canvas element which contains the rendered rectangles making up the shadows layer of the island.
+			@type {object}
+		*/
 		this.lighting_img;
 
+		/**
+			Exact copy of the passed seed
+			@type {number}
+		*/
 		this.replicable_seed = settings.seed;
+
+		/**
+			{@link hash} copy of the passed seed
+			@type {number}
+		*/
 		this.seed = hash(settings.seed);
 
+		/**
+			Coordinate x,y pair of the epicentre of the Island's village
+			@type {number[]}
+		*/
 		this.town = [-1,-1];
 
+		/**
+			Boolean to repersent if lava exists on the island
+			@type {boolean}
+		*/
 		this.has_volcano = false;
+
+		/**
+			Island name
+			@type {string}
+		*/
 		this.name = settings.name;
 
-
+		/**
+			Coordinate w,h pair to repersent the island's size
+			@type {number[]}
+		*/
 		this.size = [settings.size_x,settings.size_y];
 
+		/**
+			Lacunarity multiplier used under the hood for atoll/volcano generation types.
+			@type {number}
+		*/
 		this.LAC_SCALE_DOWN = LAC_SCALE_DOWN;
 
-
-
+		//Generate base noise map into raw_data
 		this.gen_island_data();
+
+		//Compress it by a pixel scale ratio
 		this.raw_data = this.compress(ISLAND_PIXEL_SCALE);
+
+		//Generate display data verticies
 		this.gen_display_data(this.raw_data);
+
+		//Generate re-drawable canvas element for base layer
 		this.gen_ctx_img();
+
+		//Generate re-drawable canvas element for objects (trees, village, etc)
 		this.gen_objects_img();
+
+		//Calculate and render shadows. Generate a re-drawable canvas element for them.
 		this.bake_lighting();
 	}
+
+	/**
+		Smart compress by scale factor. Smart meaning that it tends to generate cleaner, more solid borders between colour boundries, and respects and preserves priority elements.
+		@param {number} factor Scale factor
+		@returns {number[]} A compressed noise map. See {@link raw_data} and {@link gen_noise_map}.
+	*/
 	compress(factor){
+
+		//Fast no-op
 		if(factor===1){
 			return this.raw_data;
 		}
 
-
-
+		//Get new size
 		const n_x = Math.floor(this.raw_data.length/factor);
 		const n_y = Math.floor(this.raw_data[0].length/factor);
 
+		//Initialize new array to 0s.
 		let comp = new Array(n_x);
 		for(let i=0;i<n_x;i++){
 			comp[i] = new Array(n_y);
@@ -610,10 +669,15 @@ class Island{
 			}
 		}
 
+		//Iterate over new array
 		for(let x=0;x<n_x;x++){
 			for(let y=0;y<n_y;y++){
+
+				//Iterate over nearby pixels
 				for(let xx=0;xx<factor;xx++){
 					for(let yy=0;yy<factor;yy++){
+
+						//copy highest priority pixel
 						comp[x][y] = Math.max(this.raw_data[x*factor+xx][y*factor+yy], comp[x][y]);
 					}
 				}
@@ -622,8 +686,13 @@ class Island{
 		return comp;
 	}
 
+	/**
+		An optimization algorithm to convert 2d noise maps into colour separated arrays of rectangle verticies.
+		@param {number[]} raw_data noise map to operate on. Allows the island to copy another islands noise map.
+	*/
 	gen_display_data(raw_data){
 
+		//Initializations
 		this.display_data = new Array();
 
 		//lightblue
@@ -656,8 +725,10 @@ class Island{
 		for(let x=0;x<raw_data.length;x++){
 			for(let y=0;y<raw_data[0].length;y++){
 
+				//Strip metadata
 				adjusted_height = (has_structure(raw_data[x][y]) ? strip_metadata(raw_data[x][y]) : raw_data[x][y] );
 
+				//Add cordinate pair to resepective colour array
 				if(adjusted_height<0.1){
 					continue;
 				}
@@ -691,12 +762,8 @@ class Island{
 			}
 		}
 
-		this.optimize_display_data();
-	}
-
-	optimize_display_data(){
+		//Merge neighbouring pixels of each colour into rectangles
 		let temp, strip, amt;
-
 		for(let c=1;c<this.colours.length;c++){
 			temp = new Array();
 			for(let p=0;p<this.display_data[this.colours[c]].length;p++){
@@ -719,6 +786,7 @@ class Island{
 		}
 	}
 
+	
 	gen_objects_img(){
 		this.objects_img = document.createElement('canvas');
 		this.objects_img.width = this.size[0];
