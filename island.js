@@ -786,7 +786,7 @@ class Island{
 		}
 	}
 
-	
+
 	gen_objects_img(){
 		this.objects_img = document.createElement('canvas');
 		this.objects_img.width = this.size[0];

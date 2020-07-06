@@ -12,7 +12,8 @@ let concept_art = [
 
 var currentPage = 1;
 var island;
-const MAX_PAGE = 7;
+const MAX_PAGE = 10;
+var expandedImage = false;
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -125,8 +126,37 @@ $(document).ready(function(){
 	$("#backgroundDisplay").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
 	$("#isl").css("background-image","url('concept-art/"+bgkimg+".png')")
 
-
 	setInterval(spawnParticle, 55);
+
+
+	let galimgs = $("#gal").siblings().children();
+	let ran;
+	let threes = 0;
+	let last = false;
+	for(let i=0;i<galimgs.length;i++){
+		ran = Math.random();
+		if(ran < 0.35 && (i-threes)%3 === 0 && !last && i > 3){
+			$(galimgs[i]).css("grid-column","auto / span 3");
+			$(galimgs[i]).css("grid-row","auto / span 3");
+			threes++;
+			last = true;
+		}
+		else if(ran < 0.65 &&(i-threes)%3 != 2){
+			$(galimgs[i]).css("grid-column","auto / span 2");
+			$(galimgs[i]).css("grid-row","auto / span 2");
+			i+=2;
+			last = false;
+		}
+		else{
+			last = false;
+		}
+	}
+	$("#gal").siblings().children().click(function(e){
+		changePage(10);
+		$("#gallery-preview img").attr("src",$(this).attr("src"))
+		$("#gallery-preview h1")[0].innerHTML = "TEST TEST"
+	});
+
 
 	$("#atoll").change(function() {
 		if(this.checked){
@@ -188,8 +218,16 @@ $(document).ready(function(){
 		changePage(2);
 	});
 
-	$("#about").click(function(e){
+	$("#gallery, #back").click(function(e){
 		changePage(7);
+	});
+
+	$("#documentation").click(function(e){
+		changePage(8);
+	});
+
+	$("#about").click(function(e){
+		changePage(9);
 	});
 
 	$("#compile, #recompile").click(function(e){
@@ -210,6 +248,12 @@ $(document).ready(function(){
 	$("#save").click(function(e){
 		island.saveImage($("#village").prop("checked"),true);
 	});
+
+	$("#save-copy").click(function(e){
+		downloadStaticPNG($("#gallery-preview img").attr("src"),$("#gallery-preview h1")[0].innerHTML);
+	});
+
+
 
 
 	/*
