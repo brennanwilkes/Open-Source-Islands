@@ -407,7 +407,12 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	100% { -o-transform:translateX(-10240px); }
 }
 @keyframes renderLighting {
+	0% { -webkit-transform:translateX(0px); }
+	0% { transform:translateX(0px); }
+
 	100% { transform:translateX(-10240px); }
+	100% { -webkit-transform:translateX(-10240px); }
+
 }
 @-webkit-keyframes renderLighting {
 	0% { -webkit-transform:translateX(0px); }
@@ -440,7 +445,10 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	to { -o-transform:translateX(-960px); }
 }
 @keyframes animateAlbatrossSprite{
-	to { transform:translateX(-960px); }
+	0% { -webkit-transform:translateX(0px); }
+	0% { transform:translateX(0px); }
+	100% { transform:translateX(-960px); }
+	100% { -webkit-transform:translateX(-960px); }
 }
 @-webkit-keyframes animateAlbatrossSprite {
 	0% { -webkit-transform:translateX(0px); }
