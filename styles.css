@@ -400,6 +400,7 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 
 
 @-webkit-keyframes renderLighting {
+	0% { -webkit-transform:translateX(0px); }
 	100% { -webkit-transform:translateX(-10240px); }
 }
 @-moz-keyframes renderLighting {
@@ -430,7 +431,8 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 
 
 @-webkit-keyframes animateAlbatrossSprite {
-	to { -webkit-transform:translateX(-960px); }
+	0% { -webkit-transform:translateX(0px); }
+	100% { -webkit-transform:translateX(-960px); }
 }
 @-moz-keyframes animateAlbatrossSprite {
 	to { -moz-transform:translateX(-960px); }
