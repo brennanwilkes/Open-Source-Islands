@@ -46,15 +46,15 @@ body{
 	width: 10240px;
 	background-image:inherit;
 
+	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
+	-o-animation:		renderLighting 12s steps(5) infinite alternate;
+	animation: 			renderLighting 12s steps(5) infinite alternate;
+
 	-webkit-animation-name: renderLighting;
 	-webkit-animation-duration: 12s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: alternate;
 	-webkit-animation-timing-function: steps(5, end);
-
-	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
-	-o-animation:		renderLighting 12s steps(5) infinite alternate;
-	animation: 			renderLighting 12s steps(5) infinite alternate;
 }
 
 #isl, #backgroundDisplay::after, main::after{
@@ -71,10 +71,10 @@ main::after{
 	width: 100%;
 	height: 100%;
 	z-index: 0;
-	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
 	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 	animation: 			fadeInAndOut 12s linear infinite alternate;
+	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
 
 }
 
@@ -360,10 +360,7 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 
 
 
-@-webkit-keyframes fadeout {
-	from { opacity: 1; }
-	to { opacity: 0; }
-}
+
 @-moz-keyframes fadeout {
 	from { opacity: 1; }
 	to { opacity: 0; }
@@ -376,7 +373,10 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	from { opacity: 1; }
 	to { opacity: 0; }
 }
-
+@-webkit-keyframes fadeout {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
 
 /*///////////*/
 
@@ -399,10 +399,7 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 }
 
 
-@-webkit-keyframes renderLighting {
-	0% { -webkit-transform:translateX(0px); }
-	100% { -webkit-transform:translateX(-10240px); }
-}
+
 @-moz-keyframes renderLighting {
 	100% { -moz-transform:translateX(-10240px); }
 }
@@ -412,6 +409,11 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 @keyframes renderLighting {
 	100% { transform:translateX(-10240px); }
 }
+@-webkit-keyframes renderLighting {
+	0% { -webkit-transform:translateX(0px); }
+	100% { -webkit-transform:translateX(-10240px); }
+}
+
 
 .Particle{
 	position: absolute;
@@ -421,19 +423,16 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	z-index: -1;
 
 	/*This kind of stuff annoys me*/
-	-webkit-animation:	fadeout 2s infinite;
 	-moz-animation:		fadeout 2s infinite;
 	-o-animation:		fadeout 2s infinite;
 	animation: 			fadeout 2s infinite;
+	-webkit-animation:	fadeout 2s infinite;
 
 }
 
 
 
-@-webkit-keyframes animateAlbatrossSprite {
-	0% { -webkit-transform:translateX(0px); }
-	100% { -webkit-transform:translateX(-960px); }
-}
+
 @-moz-keyframes animateAlbatrossSprite {
 	to { -moz-transform:translateX(-960px); }
 }
@@ -443,7 +442,10 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 @keyframes animateAlbatrossSprite{
 	to { transform:translateX(-960px); }
 }
-
+@-webkit-keyframes animateAlbatrossSprite {
+	0% { -webkit-transform:translateX(0px); }
+	100% { -webkit-transform:translateX(-960px); }
+}
 
 .Albatross {
 	background-image: url("assets/albatross/albatross-sprite-sheet.png");
@@ -461,13 +463,13 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	width:960px;
 	bottom:0;
 	background-image:inherit;
+	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
+	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
+	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
 	-webkit-animation-name: animateAlbatrossSprite;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-timing-function: steps(10, end);
-	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
-	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
-	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
 
 
 
