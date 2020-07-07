@@ -123,7 +123,7 @@ main::after{
 	font-size: 7vmin;
 }
 
-#bw, #doc, #gal{
+#bw, #doc, #gal > h1, #gallery-preview > h1{
 	font-size: 6vmin;
 }
 
@@ -180,9 +180,7 @@ input, .page, input:focus, button{
 	width: 80%;
 }
 
-#gallery-preview > div > input{
-	width: 47.5%;
-}
+
 
 label, h1, h2, input[type=button], input[type=submit]{
 	color: #444;
@@ -230,29 +228,50 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 	background-color: #DFBB7C;
 }
 
-#gal + div{
+#gal > div, #gallery-preview > img{
 	margin-top:5vh;
 	margin-bottom: 5vh;
+	height:80%;
+	width:80%;
+}
+
+#gal > div{
 	overflow-y: scroll;
 	overflow-x: hidden;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	background-color: #0C1A5F;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
-#gal + div > img{
+#gal > div::-webkit-scrollbar {
+	display: none;
+}
+
+#gal > div > img{
 	max-width: 100%;
 	width: 100%;
 	object-fit: cover;
 	transition:0.5s;
 }
 
-#gal + div > img:hover{
+#gal > div > img:hover{
 	transform: scale(1.15);
 	box-shadow: 0.5vmin 0.5vmin 3vmin 0.25vmin black;
 	cursor: pointer;
 	overflow: visible;
 	z-index: 5
+}
+
+#gal, #gallery-preview{
+	display: grid;
+	grid-template-rows: 15% 70%;
+	align-content: center;
+	text-align: center;
+}
+
+#gal *, #gallery-preview *{
 }
 
 #backgroundPage{

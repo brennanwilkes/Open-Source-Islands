@@ -134,7 +134,7 @@ $(document).ready(function(){
 	setInterval(spawnParticle, 55);
 
 
-	let galimgs = $("#gal").siblings().children();
+	let galimgs = $("#gal div").children();
 	let ran;
 	let threes = 0;
 	let last = false;
@@ -156,7 +156,7 @@ $(document).ready(function(){
 			last = false;
 		}
 	}
-	$("#gal").siblings().children().click(function(e){
+	$("#gal div").children().click(function(e){
 		changePage(10);
 		$("#gallery-preview img").attr("src",$(this).attr("src"))
 		$("#gallery-preview h1")[0].innerHTML = "TEST TEST"
@@ -223,7 +223,14 @@ $(document).ready(function(){
 		changePage(2);
 	});
 
-	$("#gallery, #back").click(function(e){
+	$("#gallery").click(function(e){
+		changePage(7);
+		let div = $("#gal div");
+		div.scrollTop(div.height());
+		div[0].scrollTo({top: 0, behavior: "smooth"});
+
+	});
+	$("#back").click(function(e){
 		changePage(7);
 	});
 
