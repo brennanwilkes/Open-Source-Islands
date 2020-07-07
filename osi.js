@@ -214,6 +214,9 @@ $(document).ready(function(){
 		$("#seed").val(island.replicable_seed);
 		changePage(2);
 	});
+	$("#copy").click(function(e){
+		changePage(2);
+	});
 
 	$(".home").click(function(e){
 		changePage(1);
@@ -260,12 +263,6 @@ $(document).ready(function(){
 	$("#save").click(function(e){
 		island.saveImage($("#village").prop("checked"),true);
 	});
-
-	$("#save-copy").click(function(e){
-		downloadStaticPNG($("#gallery-preview img").attr("src"),$("#gallery-preview h1")[0].innerHTML);
-	});
-
-
 
 
 	/*
