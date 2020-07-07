@@ -1032,7 +1032,20 @@ class Island{
 		}
 	}
 
-	
+	/**
+		Generates a set number of "objects", sprites at locations. Instead of returning, updates {@link objects}
+		@param {number} graphicStart Index 0 of {@link graphics} to sample sprite from
+		@param {number} graphicShift Index n of {@link graphics} to sample sprite from
+		@param {number} numObj Number of objects to generate
+		@param {number} spreadX X axis spread value. How far from objects must be from other objects. If set to -1, an optimal value is calculated based on sprite and pixel size.
+		@param {number} spreadY Y axis spread value. How far from objects must be from other objects. If set to -1, an optimal value is calculated based on sprite and pixel size.
+		@param {number} rangeMin
+		@param {number} rangeMax
+		@param {number} hashShift
+		@param {number} originX
+		@param {number} originY
+
+	*/
 	gen_obj(graphicStart,graphicShift,numObj,spreadX,spreadY,rangeMin,rangeMax,hashShift,originX,originY){
 		spreadX = (spreadX===-1 ? Math.floor(this.size[0]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadX);
 		spreadY = (spreadY===-1 ? Math.floor(this.size[1]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadY);
