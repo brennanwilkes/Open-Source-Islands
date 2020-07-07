@@ -473,7 +473,10 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	background-image:inherit;
 	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
-	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
+	animation-name: animateAlbatrossSprite;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: steps(10);
 	-webkit-animation-name: animateAlbatrossSprite;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
