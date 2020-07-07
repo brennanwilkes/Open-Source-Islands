@@ -212,6 +212,7 @@ $(document).ready(function(){
 
 	$("#edit").click(function(e){
 		$("#seed").val(island.replicable_seed);
+		$("#name").val(island.name);
 		changePage(2);
 	});
 	$("#copy").click(function(e){
@@ -249,6 +250,7 @@ $(document).ready(function(){
 		turnPage(this.id==="compile" ? 1 : -1);
 		if(this.id==="recompile"){
 			$("#seed").val("");
+			$("#name").val("");
 		}
 		setTimeout(function(){
 			if(compileIsland()){

@@ -142,8 +142,11 @@ a img{
 	text-align: left;
 }
 
-.page a, .page a *{
+a{
 	text-decoration: none;
+}
+
+.page > a, .page a > *{
 	border-radius: 1vmin 5vmin 5vmin 1vmin;
 }
 
@@ -219,7 +222,7 @@ input[type=button]{
 	width:200%;
 }
 
-input:hover, button:hover, a:hover, a *:hover{
+input:hover, button:hover, .page > a:hover, .page > a *:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }

@@ -780,12 +780,22 @@ class Island{
 
 		//Merge neighbouring pixels of each colour into rectangles
 		let temp, strip, amt;
+
+		//iterate over every colour, c
 		for(let c=1;c<this.colours.length;c++){
 			temp = new Array();
+
+			//iterate over every pixel, p
 			for(let p=0;p<this.display_data[this.colours[c]].length;p++){
+
+				//create a 1x1 strip of that pixel
 				strip = [this.display_data[this.colours[c]][p][0],this.display_data[this.colours[c]][p][1]];
 				amt = 1;
+
+				//search nearby pixels
 				for(;p<this.display_data[this.colours[c]].length-1;p++){
+
+					//if neighbouring pixels are the same colour, add one to the strip and continue searching
 					if(this.display_data[this.colours[c]][p][0] === this.display_data[this.colours[c]][p+1][0] &&
 					this.display_data[this.colours[c]][p][1]+1 === this.display_data[this.colours[c]][p+1][1]){
 						amt++;
@@ -794,29 +804,46 @@ class Island{
 						break;
 					}
 				}
+
+				//Add the amount of pixels
 				strip.push(amt);
+
+				//Add 1. This is for future compatibility with boxes instead of strips
 				strip.push(1);
+
+				//commit the strip to memory
 				temp.push(strip);
 			}
+
+			//Insert strips into display data
 			this.display_data[this.colours[c]] = temp;
 		}
 	}
 
-
+	/**
+		Generates a redrawable canvas object as a render layer for all objects. Objects such as villages, trees, buildings, sprites, anything image based coming from a file. This canvas is meant to be rendered as a layer over top of the base layer, and likely under shadow/lighting layers.
+	*/
 	gen_objects_img(){
+
+		//Initialize canvas object
 		this.objects_img = document.createElement('canvas');
 		this.objects_img.width = this.size[0];
 		this.objects_img.height = this.size[1];
-
 		let ctx_img = this.objects_img.getContext("2d");
+
+		//Check that dependencies are initialized
 		if(this.town != undefined && this.town.length === 2 && this.objects!=undefined){
+
+			//Draw each object's image at the relavent coordinates on the canvas
 			for(let b=0; b < this.objects.length; b++){
 				ctx_img.drawImage(Island.graphics[this.objects[b][2]], this.objects[b][0] - Island.graphics[this.objects[b][2]].width/2, this.objects[b][1] - Island.graphics[this.objects[b][2]].height/2, Island.graphics[this.objects[b][2]].width, Island.graphics[this.objects[b][2]].height);
 			}
 		}
 	}
 
-	//25,8,8,0.75
+	/**
+		Wrapper algorithm to 
+	*/
 	gen_island_data(){
 
 		if(this.settings.IS_ATOLL){
