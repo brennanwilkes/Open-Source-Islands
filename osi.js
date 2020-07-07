@@ -48,8 +48,8 @@ function setValidMessage(id,message){
 
 function spawnParticle(e){
 	let particle = $("<div class=Particle></div>");
-	particle.css("left",Math.random()*99+"vw");
-	particle.css("top",Math.random()*99+"vh");
+	particle.css("left",Math.random()*window.innerWidth*0.95+"px");
+	particle.css("top",Math.random()*window.innerHeight*0.95+"px");
 	$("body").prepend(particle)
 	setTimeout(function(e){
 		particle.remove();
