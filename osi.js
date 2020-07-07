@@ -238,7 +238,7 @@ $(document).ready(function(){
 	});
 
 	$("#documentation").click(function(e){
-		changePage(8);
+		changePage(5);
 	});
 
 	$("#about").click(function(e){
