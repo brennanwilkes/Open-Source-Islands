@@ -11,9 +11,20 @@ let concept_art = [
 ];
 
 var currentPage = 1;
+var pageHistory = new Array();
+
 var island;
-const MAX_PAGE = 10;
-var expandedImage = false;
+
+const HOMEPAGE = 1;
+const GENERATOR = 2;
+const GALLERY = 7;
+const GALLERYPREVIEW = 8;
+const DOCS = 9;
+const DEVNOTES = 10;
+const SOURCES = 11;
+const ABOUT = 12;
+const MAX_PAGE = 12;
+
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -33,6 +44,16 @@ function spawnParticle(e){
 }
 
 function changePage(page){
+	if(page===undefined){
+		page = pageHistory.pop();
+	}
+	else{
+		pageHistory.push(currentPage);
+		if(pageHistory.length > 3){
+			pageHistory.shift();
+		}
+	}
+
 	$(".page:nth-child("+currentPage+")").fadeOut();
 	currentPage = page;
 	$(".page:nth-child("+currentPage+")").fadeIn();
@@ -157,7 +178,7 @@ $(document).ready(function(){
 		}
 	}
 	$("#gal div").children().click(function(e){
-		changePage(10);
+		changePage(GALLERYPREVIEW);
 		$("#gallery-preview img").attr("src",$(this).attr("src"))
 		$("#gallery-preview h1")[0].innerHTML = "TEST TEST"
 	});
@@ -207,43 +228,48 @@ $(document).ready(function(){
 	});
 
 	$("input[value=back]").click(function(e){
-		turnPage(-1);
+		changePage();
 	});
 
 	$("#edit").click(function(e){
 		$("#seed").val(island.replicable_seed);
 		$("#name").val(island.name);
-		changePage(2);
+		changePage(GENERATOR);
 	});
 	$("#copy").click(function(e){
-		changePage(2);
+		changePage(GENERATOR);
 	});
 
 	$(".home").click(function(e){
-		changePage(1);
+		changePage(HOMEPAGE);
 	});
 
 	$("#generator").click(function(e){
-		changePage(2);
+		changePage(GENERATOR);
 	});
 
 	$("#gallery").click(function(e){
-		changePage(7);
+		changePage(GALLERY);
 		let div = $("#gal div");
 		div.scrollTop(div.height());
 		div[0].scrollTo({top: 0, behavior: "smooth"});
 
 	});
-	$("#back").click(function(e){
-		changePage(7);
-	});
 
 	$("#documentation").click(function(e){
-		changePage(8);
+		changePage(DOCS);
 	});
 
 	$("#about").click(function(e){
-		changePage(9);
+		changePage(ABOUT);
+	});
+
+	$("#devnotes").click(function(e){
+		changePage(DEVNOTES);
+	});
+
+	$("#sources").click(function(e){
+		changePage(SOURCES);
 	});
 
 	$("#compile, #recompile").click(function(e){
@@ -257,7 +283,7 @@ $(document).ready(function(){
 				turnPage(1);
 			}
 			else{
-				changePage(2);
+				changePage(GENERATOR);
 			}
 		},600);
 	});
@@ -270,10 +296,10 @@ $(document).ready(function(){
 	/*
 		https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
 
-		Got this regex safari detector from stack overflow. Hope its ok, as its a little bit
-		outside the scope of the course. Apparently safari decides that if you apply any styling
-		to an HTML5 input type=color element, it just hides it completely!! What are those "geniuses"
-		at apple thinking??? So much time wasted on this bug.
+		Got this regex safari detector from stack overflow. Hope its ok.
+		Apparently safari decides that if you apply any styling to an HTML5
+		input type=color element, it just hides it completely!! What are those
+		"geniuses" at apple thinking??? So much time wasted on this bug.
 
 		I'm pretty well versed in regex, but only in the scope of using SED/GREP in unix world, and
 		I don't have a clue what this is doing, so I've given up trying to write my own.
