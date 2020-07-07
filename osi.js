@@ -151,6 +151,11 @@ $(document).ready(function(){
 	$("form").append("<div class=page id=backgroundPage></div>");
 
 
+	if(Math.abs($("body").height() - window.innerHeight) > 1){
+		$("body").height(window.innerHeight);
+	}
+
+
 
 	setInterval(spawnParticle, 55);
 
