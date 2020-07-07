@@ -397,13 +397,13 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	100% { transform:translateX(-10240px); }
 }
 @-webkit-keyframes renderLighting {
-	100% { transform:translateX(-10240px); }
+	100% { -webkit-transform:translateX(-10240px); }
 }
 @-moz-keyframes renderLighting {
-	100% { transform:translateX(-10240px); }
+	100% { -moz-transform:translateX(-10240px); }
 }
 @-o-keyframes renderLighting {
-	100% { transform:translateX(-10240px); }
+	100% { -o-transform:translateX(-10240px); }
 }
 
 .Particle{
