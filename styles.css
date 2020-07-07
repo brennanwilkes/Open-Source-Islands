@@ -430,14 +430,13 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	to { transform:translateX(-960px); }
 }
 @-webkit-keyframes animateAlbatrossSprite {
-	from { transform:translateX(0px); }
-	to { transform:translateX(-960px); }
+	to { -webkit-transform:translateX(-960px); }
 }
 @-moz-keyframes animateAlbatrossSprite {
-	to { transform:translateX(-960px); }
+	to { -moz-transform:translateX(-960px); }
 }
 @-o-keyframes animateAlbatrossSprite {
-	to { transform:translateX(-960px); }
+	to { -o-transform:translateX(-960px); }
 }
 
 
