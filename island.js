@@ -842,10 +842,13 @@ class Island{
 	}
 
 	/**
-		Wrapper algorithm to 
+		Wrapper algorithm to manipulate perlin noise maps into islands.
+		The real heart of the Island class.
+		Doesn't return, instead updates {@link raw_data}
 	*/
 	gen_island_data(){
 
+		//Reduces lacunarity when island doing atoll or volcano generation.
 		if(this.settings.IS_ATOLL){
 			this.LAC_SCALE_DOWN = 0.8;
 		}
@@ -853,52 +856,55 @@ class Island{
 			this.LAC_SCALE_DOWN = 0.925;
 		}
 
-		//generate base map
+		//generate base perlin noise map. Interfaces with the Stefan Gustavson Perlin Noise class.
 		this.raw_data = gen_noise_map(this.size[0], this.size[1], this.settings.ISL_SCALE,this.settings.ISL_OCT,this.settings.ISL_PERSIST,this.settings.ISL_LAC*this.LAC_SCALE_DOWN,hash(this.seed), false);
 
-
-
-
+		//Choose a random quadrant to place a village
 		let TOWN_SPAWN_X, TOWN_SPAWN_Y;
 		if(this.settings.HAS_TOWN === 0){
 			TOWN_SPAWN_X = hash(this.seed-23)%2 === 0;
 			TOWN_SPAWN_Y = hash(this.seed-24)%2 === 0;
 		}
 
+		//Initialize mask
 		let mapMASK = new Array(this.size[0]);
 
 		//Motu and styling
 		let motu_noise, reef_noise;
-
 		if(this.settings.HAS_MOTU){
+
+			//Generate a separate noise map to generate motus with
 			motu_noise =  gen_noise_map(this.size[0], this.size[1], this.settings.MOTU_SCALE,this.settings.MOTU_OCT,this.settings.MOTU_PERSIST,this.settings.MOTU_LAC,hash(this.seed+1));
 			motu_noise = normalize_2d_array(motu_noise,-2,1);
 		}
 		if(this.settings.HAS_REEF){
+
+			//Generate a separate noise map to generate reefs with
 			reef_noise =  gen_noise_map(this.size[0], this.size[1], this.settings.REEF_SCALE,this.settings.REEF_OCT,this.settings.REEF_PERSIST,this.settings.REEF_LAC,hash(this.seed+2));
 		}
 
-		let seed_scale = normalize(hash(this.seed+3)%250+750,0,1000);
-
+		/*
+			Main loop
+			Loop over every x,y coordinate and manipulate each individual pixel
+		*/
 		for(let x=0;x<this.size[0];x++){
 			mapMASK[x] = new Array(this.size[1]);
 			for(let y=0;y<this.size[1];y++){
 
+				//Normalize pixel
 				this.raw_data[x][y] = normalize(this.raw_data[x][y], this.raw_data.minHeight, this.raw_data.maxHeight);
 
+				//Lower height value for atolls
 				if(this.settings.IS_ATOLL){
-					//Lower the height
 					this.raw_data[x][y] = normalize(this.raw_data[x][y], 0, 1.75);
 				}
+
+				//Raise the height value for larger islands
 				else if(this.size[0] >= 512){
-					//Raise the height
 					this.raw_data[x][y] = normalize(this.raw_data[x][y], -0.5, 1);
 				}
 
-
-
-
-				//lower edges
+				//lower edges into the sea based on distance
 				this.raw_data[x][y] *= region_dist(x,y,this.size[0],this.size[1]);
 
 				//update mask
@@ -915,12 +921,14 @@ class Island{
 					mapMASK[x][y] = 0;
 				}
 
-
+				//Apply reef only styling
 				if(this.settings.HAS_REEF && !this.settings.HAS_MOTU){
+
 					//shrink visible land size
 					if(this.raw_data[x][y]>this.settings.ISL_SHRK){
 						this.raw_data[x][y]-=0.1;
 					}
+
 					//cut away lagoon
 					if(this.raw_data[x][y] > this.settings.MOTU_GRAD[2] && this.raw_data[x][y] < this.settings.MOTU_GRAD[3]){
 						this.raw_data[x][y] -= 0.15;
@@ -950,8 +958,6 @@ class Island{
 						this.raw_data[x][y] += motu_noise[x][y]*0.2;
 					}
 
-
-
 					//raise water inside motus
 					if(mapMASK[x][y] === 1){
 						this.raw_data[x][y]+=0.1;
@@ -963,38 +969,49 @@ class Island{
 					}
 				}
 
-				//apply reef
+				//apply main reef styling
 				if(this.settings.HAS_REEF){
 					if(mapMASK[x][y] === 0.25){
 						this.raw_data[x][y] += reef_noise[x][y] > 0.55 ? 0.15 : 0;
 					}
 				}
 
+				//Apply volcano styling by raising high points higher
 				if(this.settings.IS_VOLCANO){
 					if(this.raw_data[x][y]>0.6){
 						this.raw_data[x][y] *= (this.settings.HAS_MOTU||this.settings.HAS_REEF) ? 1.355 : 1.255;
 					}
 				}
 
-				//normalize deep water
+				//normalize deep water to a constant
 				if(this.raw_data[x][y]<0.1){
 					this.raw_data[x][y] = 0.05;
 				}
 
+				//Update volcano/lava tracker
 				if(this.raw_data[x][y]>0.925){
 					this.has_volcano = true;
 				}
 
+				//Check for potential village generation spot
 				if(this.settings.HAS_TOWN === 0){
+
+					//Check if height is correct
 					if(Math.abs(this.raw_data[x][y]-(STRUCTURE_META/100))<0.01 && ( TOWN_SPAWN_X ? (x > this.size[0]/2) : (x < this.size[0]/2) ) && ( TOWN_SPAWN_Y ? (y > this.size[1]/2) : (y < this.size[1]/2) ) ){
+
+						//Spawn village
 						this.settings.HAS_TOWN = -1;
 						this.town = [x,y];
 					}
 				}
 			}
 		}
+
+		//Generate objects
 		this.objects = new Array();
 		if(this.settings.HAS_TOWN === -1){
+
+			//Generate village structures
 			let town_buildings = this.settings.village_size;
 			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.settings.village_size/2)),Math.max(6,Math.floor(this.settings.village_size/2)),0.3,0.45,500,this.town[0],this.town[1]);
 
@@ -1004,18 +1021,18 @@ class Island{
 		}
 
 		if(this.settings.HAS_TREES){
+
+			//Generate trees
 			let numTrees = this.settings.tree_amt;
 			this.gen_obj(Island.shiftTreeGraphics,Island.numTreeGraphics,numTrees,-1,-1,0.35,0.4,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
 
+			//Generate small bushes
 			let numPlants = Math.floor(this.settings.tree_amt/4);
 			this.gen_obj(Island.shiftPlantGraphics,Island.numPlantGraphics,numPlants,-1,-1,0.375,0.425,700,Math.floor(this.size[0]/2),Math.floor(this.size[1]/2));
 		}
-
-
-
-
 	}
 
+	
 	gen_obj(graphicStart,graphicShift,numObj,spreadX,spreadY,rangeMin,rangeMax,hashShift,originX,originY){
 		spreadX = (spreadX===-1 ? Math.floor(this.size[0]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadX);
 		spreadY = (spreadY===-1 ? Math.floor(this.size[1]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadY);
