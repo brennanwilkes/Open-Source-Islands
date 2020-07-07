@@ -62,8 +62,8 @@ body{
 main::after{
 	background-image: linear-gradient(-45deg, #FF000040, #FF000080, #FFC922FF);
 
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	z-index: 0;
 	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
@@ -74,12 +74,8 @@ main::after{
 
 .page{
 	width: 90vw;
-	/*9/16*90=50.625
-	  3/4*90=67.5*/
 	max-width: 67.5vh;
 
-	/*16/9*90=160
-	  4/3*90=120*/
 	height: 120vw;
 	max-height: 90vh;
 
@@ -183,9 +179,6 @@ input, .page, input:focus, button{
 #gallery-preview > :last-child *{
 	width: 100%;
 }
-
-
-
 
 label, h1, h2, input[type=button], input[type=submit]{
 	color: #444;

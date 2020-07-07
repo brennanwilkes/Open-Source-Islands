@@ -25,6 +25,19 @@ const SOURCES = 11;
 const ABOUT = 12;
 const MAX_PAGE = 12;
 
+/*
+	https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
+
+	Got this regex safari detector from stack overflow. Hope its ok.
+	Apparently safari decides that if you apply any styling to an HTML5
+	input type=color element, it just hides it completely!! What are those
+	"geniuses" at apple thinking??? So much time wasted on this bug.
+
+	I'm pretty well versed in regex, but only in the scope of using SED/GREP in unix world, and
+	I don't have a clue what this is doing, so I've given up trying to write my own.
+*/
+const SAFARI = (/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+
 
 function setValidMessage(id,message){
 	let element = $("#"+id);
@@ -264,8 +277,22 @@ $(document).ready(function(){
 		changePage(GALLERY);
 		let div = $("#gal div");
 		div.scrollTop(div.height());
-		div[0].scrollTo({top: 0, behavior: "smooth"});
-
+		if(SAFARI){
+			let amt = div.height();
+			let scrollTimer = setInterval(function(){
+				amt -= div.height()/50;
+				if(amt<=0){
+					div[0].scrollTo({top: 0});
+					clearInterval(scrollTimer);
+				}
+				else{
+					div[0].scrollTo({top: amt})
+				}
+			},5);
+		}
+		else{
+			div[0].scrollTo({top: 0, behavior: "smooth"});
+		}
 	});
 
 	$("#documentation").click(function(e){
@@ -305,18 +332,7 @@ $(document).ready(function(){
 	});
 
 
-	/*
-		https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
-
-		Got this regex safari detector from stack overflow. Hope its ok.
-		Apparently safari decides that if you apply any styling to an HTML5
-		input type=color element, it just hides it completely!! What are those
-		"geniuses" at apple thinking??? So much time wasted on this bug.
-
-		I'm pretty well versed in regex, but only in the scope of using SED/GREP in unix world, and
-		I don't have a clue what this is doing, so I've given up trying to write my own.
-	*/
-	if(!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)){
+	if(!SAFARI){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
 	}
 });
