@@ -277,22 +277,18 @@ $(document).ready(function(){
 		changePage(GALLERY);
 		let div = $("#gal div");
 		div.scrollTop(div.height());
-		if(SAFARI){
-			let amt = div.height();
-			let scrollTimer = setInterval(function(){
-				amt -= div.height()/50;
-				if(amt<=0){
-					div[0].scrollTo({top: 0});
-					clearInterval(scrollTimer);
-				}
-				else{
-					div[0].scrollTo({top: amt})
-				}
-			},5);
-		}
-		else{
-			div[0].scrollTo({top: 0, behavior: "smooth"});
-		}
+		let amt = div.height();
+
+		let scrollTimer = setInterval(function(){
+			amt -= div.height()/50;
+			if(amt<=0){
+				div[0].scrollTo({top: 0});
+				clearInterval(scrollTimer);
+			}
+			else{
+				div[0].scrollTo({top: amt})
+			}
+		},5);
 	});
 
 	$("#documentation").click(function(e){
