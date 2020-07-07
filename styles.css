@@ -176,9 +176,10 @@ input, .page, input:focus, button{
 	width:40%;
 }
 
-#gallery-preview > :last-child{
-	width: 80%;
+#gallery-preview > :last-child *{
+	width: 100%;
 }
+
 
 
 
