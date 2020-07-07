@@ -445,15 +445,10 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	to { -o-transform:translateX(-960px); }
 }
 @keyframes animateAlbatrossSprite{
-	0% { -webkit-transform:translateX(0px); }
 	0% { transform:translateX(0px); }
 	100% { transform:translateX(-960px); }
-	100% { -webkit-transform:translateX(-960px); }
 }
-@-webkit-keyframes animateAlbatrossSprite {
-	0% { -webkit-transform:translateX(0px); }
-	100% { -webkit-transform:translateX(-960px); }
-}
+
 
 .Albatross {
 	background-image: url("assets/albatross/albatross-sprite-sheet.png");
@@ -477,10 +472,6 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-timing-function: steps(10);
-	-webkit-animation-name: animateAlbatrossSprite;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: steps(10, end);
 
 
 
