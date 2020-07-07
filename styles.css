@@ -107,19 +107,24 @@ main::after{
 }
 
 .page > *:first-child{
-	margin-top: 5%;
+	margin-top: 10%;
 	font-size:8vmin;
 	font-weight: bold;
 }
 
+.page:nth-child(-n+6) > *:first-child{
+	margin-top: 5%;
+}
+.page:first-child > *:first-child{
+	margin-top: 10%;
+}
+
 #osi{
 	font-size: 7vmin;
-	margin-top: 10%;
 }
 
 #bw, #doc, #gal{
 	font-size: 6vmin;
-	margin-top: 10%;
 }
 
 a img{
@@ -175,6 +180,10 @@ input, .page, input:focus, button{
 	width: 80%;
 }
 
+#gallery-preview > div > input{
+	width: 47.5%;
+}
+
 label, h1, h2, input[type=button], input[type=submit]{
 	color: #444;
 }
@@ -228,22 +237,27 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 	overflow-x: hidden;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: 1fr 1fr 1fr;
-	background-color: black;
+	background-color: #0C1A5F;
 }
 
 #gal + div > img{
 	max-width: 100%;
 	width: 100%;
 	object-fit: cover;
+	transition:0.5s;
 }
 
-.image-expanded{
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 3;
+#gal + div > img:hover{
+	transform: scale(1.15);
+	box-shadow: 0.5vmin 0.5vmin 3vmin 0.25vmin black;
+	cursor: pointer;
 	overflow: visible;
+	z-index: 5
+}
+
+#backgroundPage{
+	z-index: 0;
+	box-shadow: 0 0 0 0;
 }
 
 /*/////////////////////////////////////////*/

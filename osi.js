@@ -33,9 +33,9 @@ function spawnParticle(e){
 }
 
 function changePage(page){
-	$(".page:nth-child("+currentPage+")").hide();
+	$(".page:nth-child("+currentPage+")").fadeOut();
 	currentPage = page;
-	$(".page:nth-child("+currentPage+")").show();
+	$(".page:nth-child("+currentPage+")").fadeIn();
 }
 
 function turnPage(dir){
@@ -125,6 +125,11 @@ $(document).ready(function(){
 	let bgkimg = concept_art[Math.floor(Math.random()*concept_art.length)];
 	$("#backgroundDisplay").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
 	$("#isl").css("background-image","url('concept-art/"+bgkimg+".png')")
+
+
+	$("form").append("<div class=page id=backgroundPage></div>");
+
+
 
 	setInterval(spawnParticle, 55);
 
@@ -242,7 +247,7 @@ $(document).ready(function(){
 			else{
 				changePage(2);
 			}
-		},150);
+		},600);
 	});
 
 	$("#save").click(function(e){
