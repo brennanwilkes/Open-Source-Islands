@@ -261,9 +261,25 @@ function downloadStaticPNG(png,name){
 //-------------------------------------CONSTANTS------------------------------------------
 
 
-
+/**
+	Scale factor. Higher values results in more pixelated images
+	@type {number}
+	@constant
+*/
 const ISLAND_PIXEL_SCALE = 4;
+
+/**
+	Magic number for structure meta data. Can be any magic number, just has to be unique
+	@type {number}
+	@constant
+*/
 const STRUCTURE_META = 36;
+
+/**
+	Sprite scale factor
+	@type {number}
+	@constant
+*/
 const SPRITE_SIZE = 8;
 
 
