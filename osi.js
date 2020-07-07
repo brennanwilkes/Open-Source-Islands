@@ -153,6 +153,13 @@ $(document).ready(function(){
 
 	if(Math.abs($("body").height() - window.innerHeight) > 1){
 		$("body").height(window.innerHeight);
+		$("body").width(window.innerWidth);
+
+		$(".page").css("max-width",window.innerHeight * 0.675);
+		$(".page").width(window.innerWidth * 0.9);
+		$(".page").height(window.innerWidth * 1.2);
+		$(".page").css("max-height",window.innerHeight * 0.9);
+
 	}
 
 
