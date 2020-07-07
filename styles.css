@@ -50,7 +50,7 @@ body{
 	-webkit-animation-duration: 12s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: alternate;
-	-webkit-animation-timing-function: steps(5);
+	-webkit-animation-timing-function: steps(5, end);
 
 	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
 	-o-animation:		renderLighting 12s steps(5) infinite alternate;
@@ -462,7 +462,7 @@ input.text, input[type=text], input[type=button], input[type=submit]{
 	-webkit-animation-name: animateAlbatrossSprite;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: steps(10);
+	-webkit-animation-timing-function: steps(10, end);
 	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
