@@ -45,7 +45,14 @@ body{
 #backgroundDisplay::after{
 	width: 10240px;
 	background-image:inherit;
+
 	-webkit-animation:	renderLighting 12s steps(5) infinite alternate;
+	animation-name: renderLighting;
+	animation-duration: 12s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: steps(5);
+
 	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
 	-o-animation:		renderLighting 12s steps(5) infinite alternate;
 	animation: 			renderLighting 12s steps(5) infinite alternate;
