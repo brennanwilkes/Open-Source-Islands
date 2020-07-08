@@ -125,8 +125,8 @@ main::after{
 }
 
 a img{
-	max-width: 10vmin;
-	max-height: 10vmin;
+	max-width: 6vmin;
+	max-height: 6vmin;
 }
 
 
@@ -138,17 +138,16 @@ a img{
 	text-align: left;
 }
 
+.page a *{
+	margin-left: 5vmin;
+	margin-right: 5vmin;
+	height: 8vmin;
+}
+
 a{
 	text-decoration: none;
 }
 
-.page > a, .page a > *{
-	border-radius: 1vmin 5vmin 5vmin 1vmin;
-}
-
-.page a:nth-child(4) img{
-	border-radius: 1vmin;
-}
 
 .page > div > *, .page > a > *{
 	max-width: 60%;
@@ -163,7 +162,7 @@ input[type=checkbox]{
 	height:5.5vmin;
 }
 
-input, .page, input:focus, button{
+input, .page, input:focus{
 	border-radius: 0.25vmin;
 	outline-width: 0;
 }
@@ -180,14 +179,28 @@ input, .page, input:focus, button{
 	width: 100%;
 }
 
-label, h1, h2, input[type=button], input[type=submit]{
+h1, h2{
 	color: #444;
 }
 
+label, input[type=button], input[type=submit], button{
+	color: #222;
+	padding-top: 0.25%;
+}
 
+input[type=button]{
+	width: 80%;
+}
 
-input, button{
-	border: 1px solid #444;
+button, input[type=button], input[type=submit], a{
+	outline-width: 0;
+	line-height: 8vmin;
+	vertical-align: middle;
+	border-radius: 2vmin;
+}
+
+input, button, a{
+	border: 1px solid #222;
 	min-width: 0;
 	flex-shrink: 1;
 	background-color: #F8E7C9;
@@ -197,15 +210,9 @@ input[type=color]{
 	background-color: #F3D6A5;
 }
 
-input[type=button], input[type=submit], button{
-	padding-top: 0.5vmin;
-}
 
 
 
-input[type=button]{
-	width: 80%;
-}
 
 .dual label{
 	width:150%;
@@ -215,14 +222,14 @@ input[type=button]{
 	width:200%;
 }
 
-input:hover, button:hover, .page > a:hover, .page > a *:hover{
+input:hover, button:hover, a:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }
 input[type=text]:hover{
 	cursor:text;
 }
-input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus{
+input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus, a:active{
 	background-color: #DFBB7C;
 }
 
@@ -264,17 +271,18 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 
 #gal, #gallery-preview{
 	display: grid;
-	grid-template-rows: 15% 73%;
+	grid-template-rows: 15% 70%;
 	align-content: center;
 	text-align: center;
-}
-
-#gal *, #gallery-preview *{
 }
 
 #backgroundPage{
 	z-index: 0;
 	box-shadow: 0 0 0 0;
+}
+
+#JS{
+	border: 1px solid black;
 }
 
 /*/////////////////////////////////////////*/
