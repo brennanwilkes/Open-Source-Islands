@@ -199,6 +199,13 @@ button, input[type=button], input[type=submit], a{
 	border-radius: 2vmin;
 }
 
+
+.page:nth-child(6) input[type=button], .page:nth-child(6) input[type=submit]{
+	line-height: 5vmin;
+	border-radius: 0.5vmin;
+	padding-top: 0.5%;
+}
+
 input, button, a{
 	border: 1px solid #222;
 	min-width: 0;
