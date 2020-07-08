@@ -1,11 +1,14 @@
 /**
-	@namespace project.js
+	@namespace island.js
 	CPSC-2030-W01
 	@since 05/06/2020
 	@version 1.0
 	@author Brennan Wilkes
 	@author 100322326
 */
+
+//JSDOCS generation command
+//jsdoc -d documentation/ island.js osi.js name_list.js
 
 //------------------------------------HELPER FUNCTIONS--------------------------------------
 
@@ -1015,6 +1018,7 @@ class Island{
 			let town_buildings = this.settings.village_size;
 			this.gen_obj(0,Island.numVillageGraphics,town_buildings,Math.max(6,Math.floor(this.settings.village_size/2)),Math.max(6,Math.floor(this.settings.village_size/2)),0.3,0.45,500,this.town[0],this.town[1]);
 
+			//Set atleast one village object to be sprite 0
 			if(this.objects.length <= 3 && this.objects.length > 0){
 				this.objects[0][2] = 0;
 			}
@@ -1039,29 +1043,48 @@ class Island{
 		@param {number} numObj Number of objects to generate
 		@param {number} spreadX X axis spread value. How far from objects must be from other objects. If set to -1, an optimal value is calculated based on sprite and pixel size.
 		@param {number} spreadY Y axis spread value. How far from objects must be from other objects. If set to -1, an optimal value is calculated based on sprite and pixel size.
-		@param {number} rangeMin
-		@param {number} rangeMax
-		@param {number} hashShift
-		@param {number} originX
-		@param {number} originY
-
+		@param {number} rangeMin Minimum height value prospective object spawn coordinates must be
+		@param {number} rangeMax Maximum height value prospective object spawn coordinates must be
+		@param {number} hashShift Hash seed
+		@param {number} originX Origin x coordinate to spawn objects around
+		@param {number} originY Origin y coordinate to spawn objects around
 	*/
 	gen_obj(graphicStart,graphicShift,numObj,spreadX,spreadY,rangeMin,rangeMax,hashShift,originX,originY){
+
+		//Calculate optimum x and y spreads
 		spreadX = (spreadX===-1 ? Math.floor(this.size[0]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadX);
 		spreadY = (spreadY===-1 ? Math.floor(this.size[1]/SPRITE_SIZE/ISLAND_PIXEL_SCALE/2) : spreadY);
+
+		//Initialize
 		let shift = 0;
 		let obj_coord;
 		let a,b,c;
 		let len = this.objects.length;
+
+		//Iterate once for every intended object
 		for(let t=len;t<numObj+len;t++){
+
+			//Repeatedly search for valid coordinates
 			do{
+
+				//Calculate prosepctive x coordinate
 				a = hash(hash(this.seed-12)-(t+shift))%spreadX-Math.floor(spreadX/2);
+
+				//Adjust x coordinate
 				a =  originX+a*ISLAND_PIXEL_SCALE*SPRITE_SIZE;
+
+				//Calculate prosepctive y coordinate
 				b = hash(hash(this.seed-13)-(t+shift+hashShift))%spreadY-Math.floor(spreadY/2);
+
+				//Adjust y coordinate
 				b = originY+b*ISLAND_PIXEL_SCALE*SPRITE_SIZE;
+
+				//Pick random sprite from selection
 				c = hash(hash(this.seed-13)-(t+shift+hashShift))%graphicShift + graphicStart;
 				this.objects[t] = [a,b,c];
 				shift++;
+
+				//Check range of coordinates
 				if(a < 0 || a >= this.size[0]*3/4 || b < 0 || b >= this.size[1]*3/4){
 					obj_coord = -1;
 				}
@@ -1069,53 +1092,83 @@ class Island{
 					obj_coord = this.raw_data[a][b];
 				}
 			}
+
+			//Continue looping on bad coordinate
 			while((obj_coord > rangeMax || obj_coord < rangeMin || obj_coord===-1) && shift < 200 + numObj*2);
+
+			//Remove last object if no valid coordinate was found
 			if(shift >= numObj*2){
 				this.objects.splice(t,this.objects.length-t);
 				break;
 			}
+
+			//Set relavent shadow meta data for object
 			this.cast_shadow(this.objects[t]);
 		}
 	}
 
+	/**
+		Sets relavent shadow meta data for objects. Instead of returning, updates {@link raw_data}
+		@param {number[]} shadow Object data to cast shadow
+	*/
 	cast_shadow(shadow){
+
+		//Ensure object can cast shadow
 		if(Island.graphics[shadow[2]].shadowScale < 0.05){
 			return;
 		}
 
+		//Draw diagnal line of predetermined width
 		let scl = 3 / Island.graphics[shadow[2]].shadowScale;
 		for(let x=Math.floor(Island.graphics[shadow[2]].width/(-1*scl));x<Math.floor(Island.graphics[shadow[2]].width/scl);x++){
 			for(let y=Math.floor(Island.graphics[shadow[2]].height/(-1*scl));y<Math.floor(Island.graphics[shadow[2]].height/scl);y++){
 				if(Math.abs(x+y) <= 2 ){
+
+					//Salt data with structure meta data
 					this.raw_data[shadow[0]+x][shadow[1]+y] += STRUCTURE_META;
 				}
 			}
 		}
 	}
 
+	/**
+		Bakes a diagnal pixel strip of lighting data. Renders shadows by directly drawing semi-transparent black squares to a passed ctx img object.
+		@param {number} maxsize Max distance of rendered strip
+		@param {number} y Y coordinate in world to start strip from
+		@param {object} ctx_img A 2d context to directly render shadows to.
+	*/
 	bake_strip(maxsize, y, ctx_img){
-		let peak, nextpeak, h, hn, xx,yy;
 
+		//Initialization
+		let peak, nextpeak, h, hn, xx,yy;
 		peak = undefined;
 		nextpeak = undefined;
+
+		//Iterate along the ray
 		for(let x=0;x<maxsize;x+=ISLAND_PIXEL_SCALE){
+
+			//Calculate ray coordinates
 			xx = Math.floor(x/ISLAND_PIXEL_SCALE);
 			yy = Math.floor(y/ISLAND_PIXEL_SCALE) + xx;
 
+			//Bounds checks
 			if(xx+1 >= this.raw_data.size || xx <= 0 || this.raw_data===undefined || this.raw_data[xx+1] ===undefined || yy+1 >= this.raw_data[xx+1].size || yy <= 0 ){
 				continue;
 			}
 
+			//Looks up height data for current pixel as well as next pixel for comparison
 			h = this.raw_data[xx][yy];
 			hn = this.raw_data[xx+1][yy+1];
 
-
-
+			//Compares pixels to check if pixel is a peak that should cast shadows
 			if(colour_round(h) > colour_round(hn) && (colour_round(hn) > 2 || colour_round(h)===4)){
 				nextpeak = [xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h];
 			}
 
+			//Check to see if pixel should have a shadow rendered
 			if( peak!=undefined && (colour_round(peak[2]) > 2 && colour_round(peak[2]) > colour_round(h) || ( colour_round(peak[2])===4 && colour_round(h)===4)  )){
+
+				//Render shadow pixel
 				ctx_img.fillStyle = "rgba(0, 0, 0, "+get_lighting(peak,[xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,h],this.settings.time)+")";
 				ctx_img.fillRect(xx*ISLAND_PIXEL_SCALE,yy*ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE,ISLAND_PIXEL_SCALE);
 			}
@@ -1123,90 +1176,149 @@ class Island{
 		}
 	}
 
-
+	/**
+		Generates the lighting canvas element. Instead of returning, updates {@link lighting_img}
+	*/
 	bake_lighting(){
+
+		//Create canvas elements
 		let ctx_img;
-		this.lighting_img = document.createElement('canvas');
+		this.lighting_img = document.createElement("canvas");
 		this.lighting_img.width = this.size[0];
 		this.lighting_img.height = this.size[1];
 		ctx_img = this.lighting_img.getContext("2d");
 
+		/*
+			Bake each strip or ray.
+			This is done in a separate function to allow for potential pseudo-multithreading. If lighting needs to be baked in real time, this function can be called on an interval, instead of directly in a loop.
+		*/
 		let maxsize = Math.max(this.size[0],this.size[1])-ISLAND_PIXEL_SCALE;
-
 		for(let y=maxsize*-1;y<maxsize;y+=ISLAND_PIXEL_SCALE){
 			this.bake_strip(maxsize,y, ctx_img);
 		}
 	}
 
+	/**
+		Renders base layer island to a ctx object
+		@param {number} c colour to render
+		@param {object} ctx_img 2d canvas context to render colour strips to
+	*/
 	gen_ctx_colour(c,ctx_img){
+
+		//Set colour
 		ctx_img.fillStyle = this.colours[c];
+
+		//Iterate over rectangles
 		for(let p=0;p<this.display_data[this.colours[c]].length;p++){
+
+			//Render
 			ctx_img.fillRect(this.display_data[this.colours[c]][p][0]*ISLAND_PIXEL_SCALE, this.display_data[this.colours[c]][p][1]*ISLAND_PIXEL_SCALE, this.display_data[this.colours[c]][p][3]*ISLAND_PIXEL_SCALE, this.display_data[this.colours[c]][p][2]*ISLAND_PIXEL_SCALE);
 		}
 	}
 
-
+	/**
+		Generates the base layer canvas element. Instead of returning, updates {@link canvas_img}
+	*/
 	gen_ctx_img(){
-		this.canvas_img = document.createElement('canvas');
 
+		//Create canvas element
+		this.canvas_img = document.createElement('canvas');
 		this.canvas_img.width = this.size[0];
 		this.canvas_img.height = this.size[1];
 		let ctx_img = this.canvas_img.getContext("2d");
 
+		/*
+			Render each colour.
+			This is done in a separate function to allow for potential pseudo-multithreading. If rendering needs to be done in real time, this function can be called on an interval, instead of directly in a loop.
+		*/
 		for(let c=1;c<this.colours.length;c++){
 			this.gen_ctx_colour(c,ctx_img);
 		}
 	}
 
+	/**
+		Compiles an entire island object into a static raw PNG datastream. This can be downloaded as a PNG file, or rendered directly through the browser, instead of going through the canvas interface.
+		@param {boolean} objects If objects such as village structures and trees should be included
+		@param {boolean} lighting If the lighting layer should be included
+		@returns A static PNG datastream
+	*/
 	compileStaticImage(objects=true,lighting=false){
+
+		//Create a temporary canvas element
 		let saved_img=document.createElement("canvas");
 		saved_img.width = this.size[0];
 		saved_img.height = this.size[1];
 		let img_ctx = saved_img.getContext("2d");
 
-
+		//Fill background colour
 		if(this.settings.colour_background){
 			img_ctx.fillStyle = this.settings.DEEP_OCEAN;
 			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
 		}
 
+		//Render base layer
 		img_ctx.drawImage(this.canvas_img,0,0);
 
-
+		//Render lighting shadow layer
 		if(lighting){
 			img_ctx.drawImage(this.lighting_img,0,0);
 		}
+
+		//Render objects
 		if(objects){
 			img_ctx.drawImage(this.objects_img,0,0);
 		}
+
+		//Render lighting gradient overlay
 		if(lighting){
+
+			//Generate gradient through JS
 			let grad = img_ctx.createLinearGradient(0,0,this.size[0],this.size[1]);
 			grad.addColorStop(1, "#FF000040");
 			grad.addColorStop(0.5, "#FF000080");
 			grad.addColorStop(0, "#FFC922FF");
 
+			//Draw
 			img_ctx.globalAlpha = Math.max(this.settings.time-35,0)/120;
 			img_ctx.fillStyle = grad;
 			img_ctx.fillRect(0,0,this.size[0],this.size[1]);
-
 		}
 
+		//Convert canvas to a PNG datastream
 		return saved_img.toDataURL("image/png").replace("image/png", "image/octet-stream");
 	}
 
+	/**
+		Downloads an image of the island. Utilizes {@link downloadStaticPNG} and {@link compileStaticImage}
+		@param {boolean} objects If objects such as village structures and trees should be included
+		@param {boolean} lighting If the lighting layer should be included
+	*/
 	saveImage(objects=true,lighting=false){
 		downloadStaticPNG(this.compileStaticImage(objects,lighting),this.name.replace(' ','-').replace('\'','')+".png");
 	}
+
+	/**
+		Downloads an the lighting as a spritesheet. Utilizes {@link downloadStaticPNG} and {@link compileStaticBakedShadows}
+		@param {boolean} objects If objects such as village structures and trees should be included
+		@param {boolean} lighting If the lighting layer should be included
+	*/
 	saveBakedLighting(){
 		downloadStaticPNG(this.compileStaticBakedShadows(),this.name.replace(' ','-').replace('\'','')+"-lighting.png");
 	}
 
+	/**
+		Renders shadows out at an interval into a spritesheet
+		@returns a static PNG datastream
+	*/
 	compileStaticBakedShadows(){
+
+		//Create temporary canvas element for spritesheet
 		let saved_img=document.createElement("canvas");
 		saved_img.width = this.size[0]*10;
 		saved_img.height = this.size[1];
 		let img_ctx = saved_img.getContext("2d");
 
+		//Iterate over time intervals and re-bake lighting for each, saving as a seprate frame
 		for(let t=0;t<10;t++){
 			this.settings.time=20+t*10;
 			this.bake_lighting();
@@ -1216,17 +1328,27 @@ class Island{
 	}
 }
 
-
-
-
+/**
+	Storage for image sprites
+	@type {object[]}
+	@static
+*/
 Island.graphics = new Array();
+
+//Set each image to a canvas image element
 for(let img = 0; img<8; img++){
 	Island.graphics[img] = new Image();
+
+	//To bypass browser crossorigin security measures
 	Island.graphics[img].origin="anonymous";
 	Island.graphics[img].crossorigin="anonymous";
 }
 
-
+/**
+	Number of sprites related to villages. For sorting purposes
+	@type {number}
+	@const
+*/
 Island.numVillageGraphics = 3;
 Island.graphics[0].src = "assets/town/fale.png";
 Island.graphics[0].shadowScale = 0.8;
@@ -1234,10 +1356,21 @@ Island.graphics[1].src = "assets/town/fale2.png";
 Island.graphics[1].shadowScale = 0.8;
 Island.graphics[2].src = "assets/town/stones.png";
 Island.graphics[2].shadowScale = 0;
-//Island.graphics[3].src = "assets/town/chief-fale.png";
+//Island.graphics[3].src = "assets/town/chief-fale.png";		//I just don't think this sprite I made looks any good
 //Island.graphics[3].shadowScale = 0.8;
 
+/**
+	Number of sprites related to trees. For sorting purposes
+	@type {number}
+	@const
+*/
 Island.numTreeGraphics = 3;
+
+/**
+	Index of first sprite related to trees. For sorting purposes
+	@type {number}
+	@const
+*/
 Island.shiftTreeGraphics = 4;
 Island.graphics[4].src = "assets/trees/coconut-tree.png";
 Island.graphics[4].shadowScale = 1;
@@ -1246,7 +1379,18 @@ Island.graphics[5].shadowScale = 1;
 Island.graphics[6].src = "assets/trees/coconut-tree3.png";
 Island.graphics[6].shadowScale = 1;
 
+/**
+	Number of sprites related to plants. For sorting purposes
+	@type {number}
+	@const
+*/
 Island.numPlantGraphics = 1;
+
+/**
+	Index of first sprite related to plants. For sorting purposes
+	@type {number}
+	@const
+*/
 Island.shiftPlantGraphics = 7;
 Island.graphics[7].src = "assets/trees/taro.png";
 Island.graphics[7].shadowScale = 0.25;
