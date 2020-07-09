@@ -172,12 +172,9 @@ input, .page, input:focus{
 }
 
 .page > div:last-child > *{
-	width:40%;
+	width:45%;
 }
 
-#gallery-preview > :last-child *{
-	width: 45%;
-}
 
 h1, h2{
 	color: #444;
@@ -186,10 +183,6 @@ h1, h2{
 label, input[type=button], input[type=submit], button{
 	color: #222;
 	padding-top: 0.25%;
-}
-
-input[type=button]{
-	width: 80%;
 }
 
 button, input[type=button], input[type=submit], a{
@@ -290,6 +283,10 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 
 #JS{
 	border: 1px solid black;
+}
+
+#preview_display ~ div > *{
+	width:49.6%;
 }
 
 /*/////////////////////////////////////////*/
