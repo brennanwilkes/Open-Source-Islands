@@ -61,10 +61,7 @@ function changePage(page){
 		page = pageHistory.pop();
 	}
 	else{
-		pageHistory.push(currentPage);
-		if(pageHistory.length > 3){
-			pageHistory.shift();
-		}
+		stackPage();
 	}
 
 	$(".page:nth-child("+currentPage+")").fadeOut();
@@ -75,6 +72,13 @@ function changePage(page){
 function turnPage(dir){
 	if($("form")[0].reportValidity()){
 		changePage(currentPage+dir);
+	}
+}
+
+function stackPage(){
+	pageHistory.push(currentPage);
+	if(pageHistory.length > 3){
+		pageHistory.shift();
 	}
 }
 
@@ -305,6 +309,13 @@ $(document).ready(function(){
 
 	$("#sources").click(function(e){
 		changePage(SOURCES);
+	});
+
+	$("#gallery-preview img, #preview_display").click(function(e){
+		stackPage();
+		$("#backgroundPage").hide();
+		$("#backgroundDisplay").fadeOut();
+		$(".page:nth-child("+currentPage+")").fadeOut();
 	});
 
 	$("#compile, #recompile").click(function(e){
