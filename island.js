@@ -209,7 +209,7 @@ function colour_round(height){
 	else if(height  < 0.75){
 		return 6;
 	}
-	else if(height < 0.9 && height > 0.88){
+	else if(height < 0.885 && height > 0.875){
 		return 9;
 	}
 	else if(height < 0.925){
@@ -688,6 +688,7 @@ class Island{
 			}
 		}
 
+		let a,b;
 		//Iterate over new array
 		for(let x=0;x<n_x;x++){
 			for(let y=0;y<n_y;y++){
@@ -695,9 +696,11 @@ class Island{
 				//Iterate over nearby pixels
 				for(let xx=0;xx<factor;xx++){
 					for(let yy=0;yy<factor;yy++){
-
+						a = this.raw_data[x*factor+xx][y*factor+yy];
+						b = comp[x][y];
 						//copy highest priority pixel
-						comp[x][y] = Math.max(this.raw_data[x*factor+xx][y*factor+yy], comp[x][y]);
+						comp[x][y] = colour_round(a) > colour_round(b) ? a : b;
+						//comp[x][y] = Math.max(this.raw_data[x*factor+xx][y*factor+yy], comp[x][y]);
 					}
 				}
 			}
@@ -766,7 +769,7 @@ class Island{
 				else if(adjusted_height < 0.75){
 					this.display_data[this.settings.LAND_THREE].push([x,y]);
 				}
-				else if(adjusted_height < 0.9 && adjusted_height > 0.88){
+				else if(adjusted_height < 0.885 && adjusted_height > 0.875){
 					this.display_data[this.settings.ROCK_ONE].push([x,y]);
 				}
 				else if(adjusted_height < 0.925){

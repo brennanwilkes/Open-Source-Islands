@@ -323,10 +323,18 @@ input[type=range]::-moz-range-thumb {
 }
 
 
-input.text, input[type=text], input[type=button], input[type=submit]{
+input[type=text], input[type=button], input[type=submit]{
 	-webkit-appearance: none;
 }
 
+.page p{
+	border-radius: 1vmin;
+	font-size: 2vmin;
+	padding: 5%;
+	width: 70%;
+	height: 50%;
+	background-color: #F8E7C9;
+}
 
 /*////////////////////////*/
 
