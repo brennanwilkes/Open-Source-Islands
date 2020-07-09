@@ -698,9 +698,9 @@ class Island{
 					for(let yy=0;yy<factor;yy++){
 						a = this.raw_data[x*factor+xx][y*factor+yy];
 						b = comp[x][y];
+
 						//copy highest priority pixel
 						comp[x][y] = colour_round(a) > colour_round(b) ? a : b;
-						//comp[x][y] = Math.max(this.raw_data[x*factor+xx][y*factor+yy], comp[x][y]);
 					}
 				}
 			}

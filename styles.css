@@ -176,7 +176,7 @@ input, .page, input:focus{
 }
 
 #gallery-preview > :last-child *{
-	width: 100%;
+	width: 45%;
 }
 
 h1, h2{
