@@ -467,6 +467,10 @@ input[type=text], input[type=button], input[type=submit]{
 	position:relative;
 	overflow:hidden;
 	}
+
+/*
+	This originally was an elegent pseudoclass, but animations on pseudoclasses don't work in safari! This doesn't seem like a big deal, but a large percentage of mobile users are using safari and my design is specifically for mobile!
+*/
 .Albatross .sprite {
 	position:absolute;
 	top:0;
