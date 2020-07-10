@@ -418,16 +418,16 @@ input[type=text], input[type=button], input[type=submit]{
 
 
 @-webkit-keyframes renderLighting {
-	100% { -webkit-transform:translateX(-10240px); }
+	100% { -webkit-transform:translate3d(-10240px,0,0); }
 }
 @-moz-keyframes renderLighting {
-	100% { -moz-transform:translateX(-10240px); }
+	100% { -moz-transform:translate3d(-10240px,0,0); }
 }
 @-o-keyframes renderLighting {
-	100% { -o-transform:translateX(-10240px); }
+	100% { -o-transform:translate3d(-10240px,0,0); }
 }
 @keyframes renderLighting {
-	100% { transform:translateX(-10240px); }
+	100% { transform:translate3d(-10240px,0,0); }
 }
 
 .Particle{
@@ -448,16 +448,16 @@ input[type=text], input[type=button], input[type=submit]{
 
 
 @-webkit-keyframes animateAlbatrossSprite {
-	to { -webkit-transform:translateX(-960px); }
+	to { -webkit-transform:translate3d(-960px,0,0); }
 }
 @-moz-keyframes animateAlbatrossSprite {
-	to { -moz-transform:translateX(-960px); }
+	to { -moz-transform:translate3d(-960px,0,0); }
 }
 @-o-keyframes animateAlbatrossSprite {
-	to { -o-transform:translateX(-960px); }
+	to { -o-transform:translate3d(-960px,0,0); }
 }
 @keyframes animateAlbatrossSprite{
-	to { transform:translateX(-960px); }
+	to { transform:translate3d(-960px,0,0); }
 }
 
 
