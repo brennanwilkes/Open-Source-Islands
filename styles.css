@@ -462,27 +462,22 @@ input[type=text], input[type=button], input[type=submit]{
 
 
 .Albatross {
-	background-image: url("assets/albatross/albatross-sprite-sheet.png");
-	background-size:0;
 	height: 48px;
 	width: 96px;
 	position:relative;
 	overflow:hidden;
 	}
-.Albatross::before {
-	content:"";
+.Albatross .sprite {
 	position:absolute;
 	top:0;
 	left:0;
 	width:960px;
 	bottom:0;
-	background-image:inherit;
+	background-image: url("assets/albatross/albatross-sprite-sheet.png");
 	-webkit-animation:	animateAlbatrossSprite 1s steps(10) infinite;
 	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
-
-
 }
 .greyVarient{
 	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");

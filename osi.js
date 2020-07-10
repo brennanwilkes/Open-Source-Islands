@@ -312,6 +312,10 @@ $(document).ready(function(){
 	});
 
 	$("#gallery-preview img, #preview_display").click(function(e){
+		changePage(5);
+
+		//generate island
+
 		stackPage();
 		$("#backgroundPage").hide();
 		$(".page:nth-child("+currentPage+")").fadeOut();
