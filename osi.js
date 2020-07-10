@@ -15,6 +15,9 @@ var pageHistory = new Array();
 
 var island;
 
+var isMoving = false;
+var direction = -1;
+
 const HOMEPAGE = 1;
 const GENERATOR = 2;
 const GALLERY = 7;
@@ -329,6 +332,7 @@ $(document).ready(function(){
 		//create new bkground elem
 		$("<div style='display:none;' id=islandTest class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>").insertBefore("main");
 
+
 		//set image
 		let fn = this.src.split("/").pop().split(".")[0];
 		$("#islandTest .lighting").css("background-image","url('concept-art/"+fn+"-lighting.png')");
@@ -342,6 +346,32 @@ $(document).ready(function(){
 
 		$("#sunset-overlay").fadeIn();
 		$("#islandTest").fadeIn();
+
+		var movementInt = setInterval(function(e){
+			if(isMoving){
+				let dirs = ["left","bottom","left","bottom"];
+				let mult = [-1,1,1,-1];
+				$("#player").css(dirs[direction],parseInt($("#player").css(dirs[direction]).substring(0,$("#player").css(dirs[direction]).length-2))+(mult[direction])+"px");
+			}
+		},10);
+
+		$(document).keydown(function(e) {
+			if(e.which >= 37 && e.which <= 40){
+				if(!isMoving){
+					$("#player div").addClass("canoe-anim");
+					$("#player").addClass("move-anim");
+				}
+				direction = e.which-37;
+
+				isMoving = true;
+				let deg = 90*(direction-1);
+				$("#player").css({
+				"-webkit-transform" : "rotate("+ deg +"deg)",
+				"-moz-transform" : "rotate("+ deg +"deg)",
+				"-ms-transform" : "rotate("+ deg +"deg)",
+				"transform" : "rotate("+ deg +"deg)"});
+			}
+		});
 
 	});
 
@@ -364,6 +394,20 @@ $(document).ready(function(){
 	$("#save").click(function(e){
 		island.saveImage($("#village").prop("checked"),true);
 	});
+
+	$("#player div")[0].addEventListener("webkitAnimationEnd", function(e){
+		$("#player div").removeClass("canoe-anim");
+		$("#player").removeClass("move-anim");
+		isMoving = false;
+	});
+	$("#player div")[0].addEventListener("animationend", function(e){
+		$("#player div").removeClass("canoe-anim");
+		$("#player").removeClass("move-anim");
+		isMoving = false;
+	});
+
+
+
 
 
 	if(!SAFARI){
