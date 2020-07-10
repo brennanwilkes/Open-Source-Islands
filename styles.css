@@ -42,6 +42,7 @@ body{
 	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
 	-o-animation:		renderLighting 12s steps(5) infinite alternate;
 	animation: 			renderLighting 12s steps(5) infinite alternate;
+	will-change: transform;
 }
 
 .backgroundIsland > .baselayer{
@@ -74,7 +75,7 @@ main::after{
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
 	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 	animation: 			fadeInAndOut 12s linear infinite alternate;
-
+	will-change: opacity;
 }
 
 .page{
@@ -442,6 +443,7 @@ input[type=text], input[type=button], input[type=submit]{
 	-moz-animation:		fadeout 2s infinite;
 	-o-animation:		fadeout 2s infinite;
 	animation: 			fadeout 2s infinite;
+	will-change: opacity;
 
 }
 
@@ -482,6 +484,7 @@ input[type=text], input[type=button], input[type=submit]{
 	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
+	will-change: transform;
 }
 .greyVarient{
 	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
