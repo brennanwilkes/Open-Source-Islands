@@ -314,67 +314,6 @@ $(document).ready(function(){
 		changePage(SOURCES);
 	});
 
-	$("#gallery-preview img, #preview_display").click(function(e){
-		changePage(5);
-
-
-
-		$("#backgroundDisplay").fadeOut();
-		$("#sunset-overlay").fadeOut();
-
-		//generate island
-
-		stackPage();
-		$("#backgroundPage").hide();
-		$(".page:nth-child("+currentPage+")").fadeOut();
-
-
-		//create new bkground elem
-		$("<div style='display:none;' id=islandTest class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>").insertBefore("main");
-
-
-		//set image
-		let fn = this.src.split("/").pop().split(".")[0];
-		$("#islandTest .lighting").css("background-image","url('concept-art/"+fn+"-lighting.png')");
-		$("#islandTest .baselayer").css("background-image","url('concept-art/"+fn+".png')");
-
-		$("#sunset-overlay").removeClass("lignting-anim");
-		void $("#sunset-overlay")[0].offsetWidth;
-		$("#sunset-overlay").addClass("lignting-anim");
-
-
-
-		$("#sunset-overlay").fadeIn();
-		$("#islandTest").fadeIn();
-
-		var movementInt = setInterval(function(e){
-			if(isMoving){
-				let dirs = ["left","bottom","left","bottom"];
-				let mult = [-1,1,1,-1];
-				$("#player").css(dirs[direction],parseInt($("#player").css(dirs[direction]).substring(0,$("#player").css(dirs[direction]).length-2))+(mult[direction])+"px");
-			}
-		},10);
-
-		$(document).keydown(function(e) {
-			if(e.which >= 37 && e.which <= 40){
-				if(!isMoving){
-					$("#player div").addClass("canoe-anim");
-					$("#player").addClass("move-anim");
-				}
-				direction = e.which-37;
-
-				isMoving = true;
-				let deg = 90*(direction-1);
-				$("#player").css({
-				"-webkit-transform" : "rotate("+ deg +"deg)",
-				"-moz-transform" : "rotate("+ deg +"deg)",
-				"-ms-transform" : "rotate("+ deg +"deg)",
-				"transform" : "rotate("+ deg +"deg)"});
-			}
-		});
-
-	});
-
 	$("#compile, #recompile").click(function(e){
 		turnPage(this.id==="compile" ? 1 : -1);
 		if(this.id==="recompile"){

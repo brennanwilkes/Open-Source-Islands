@@ -464,22 +464,6 @@ input[type=text], input[type=button], input[type=submit]{
 	to { transform:translate3d(-960px,0,0); }
 }
 
-@-webkit-keyframes animateCanoe {
-	from { -webkit-transform:translate3d(-32px,0,0); }
-	to { -webkit-transform:translate3d(-288px,0,0); }
-}
-@-moz-keyframes animateCanoe {
-	from { -moz-transform:translate3d(-32px,0,0); }
-	to { -moz-transform:translate3d(-288px,0,0); }
-}
-@-o-keyframes animateCanoe {
-	from { -o-transform:translate3d(-32px,0,0); }
-	to { -o-transform:translate3d(-288px,0,0); }
-}
-@keyframes animateCanoe{
-	from { transform:translate3d(-32px,0,0); }
-	to { transform:translate3d(-288px,0,0); }
-}
 
 .sprite{
 	position:relative;
@@ -513,30 +497,4 @@ input[type=text], input[type=button], input[type=submit]{
 }
 .greyVarient{
 	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
-}
-
-.canoe{
-	height: 32px;
-	width: 32px;
-}
-
-.canoe > div{
-	width:288px;
-	background-image: url("assets/canoe/canoe-sprite-Sheet.png");
-}
-
-.move-anim{
-	-webkit-animation:	moveSprite 0.75s;
-	-moz-animation:		moveSprite 0.75s;
-	-o-animation:		moveSprite 0.75s;
-	animation: 			moveSprite 0.75s;
-	animation-fill-mode: forwards;
-	-webkit-animation-fill-mode: forwards;
-}
-
-.canoe-anim{
-	-webkit-animation:	animateCanoe 0.75s steps(8);
-	-moz-animation:		animateCanoe 0.75s steps(8);
-	-o-animation:		animateCanoe 0.75s steps(8);
-	animation: 			animateCanoe 0.75s steps(8);
 }
