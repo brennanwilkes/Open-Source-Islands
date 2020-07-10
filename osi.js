@@ -332,8 +332,13 @@ $(document).ready(function(){
 
 
 		$("#backgroundDisplay").fadeOut();
-		let transformInit = parseFloat(document.defaultView.getComputedStyle($("#sunset-overlay .timer")[0],null)["opacity"]);
-		$("#islandTest .lighting").css("animation-delay",(1-transformInit)*-12+"s");
+		let transformInit = parseFloat(document.defaultView.getComputedStyle($("#sunset-overlay")[0],null)["opacity"])/0.65;
+		console.log(transformInit);
+		console.log((transformInit)*-12);
+		console.log((transformInit)*-6);
+		console.log((transformInit)*-24);
+		$("#islandTest .lighting").css("animation-delay",(transformInit)*-12+"s");
+		$("#sunset-overlay").css("animation-delay",(transformInit)*-12+"s");
 		$("#islandTest").fadeIn();
 
 	});
