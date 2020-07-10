@@ -315,22 +315,23 @@ $(document).ready(function(){
 		stackPage();
 		$("#backgroundPage").hide();
 		$(".page:nth-child("+currentPage+")").fadeOut();
-		//$("main").fadeOut();
-
-		$("#backgroundDisplay .lighting").css("animation-timing-function","linear");
-
-		let transformInit = new WebKitCSSMatrix(document.defaultView.getComputedStyle($("#backgroundDisplay .lighting")[0],null)["transform"]);
-
-		$("#backgroundDisplay .lighting").css("animation-timing-function","steps(10)");
 
 
+		//create new bkground elem
 		$("<div style='display:none;' id=islandTest class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>").insertBefore("main");
 
+		//set image
+		let fn = this.src.split("/").pop().split(".")[0];
+		$("#islandTest .lighting").css("background-image","url('concept-art/"+fn+"-lighting.png')");
+		$("#islandTest .baselayer").css("background-image","url('concept-art/"+fn+".png')");
 
-		$("#islandTest .lighting").css("background-image","url('concept-art/"+concept_art[0]+"-lighting.png')");
+		//set mode to precise
+		$("#backgroundDisplay .lighting").css("animation-timing-function","linear");
+		//grab amt
+		let transformInit = new WebKitCSSMatrix(document.defaultView.getComputedStyle($("#backgroundDisplay .lighting")[0],null)["transform"]);
+		//reset anim mode
+		$("#backgroundDisplay .lighting").css("animation-timing-function","steps(10)");
 		$("#islandTest .lighting").css("animation-delay",transformInit.m41/1024+"s");
-		$("#islandTest .baselayer").css("background-image","url('concept-art/"+concept_art[0]+".png')");
-
 
 		$("#backgroundDisplay").fadeOut();
 		setTimeout(function(){
