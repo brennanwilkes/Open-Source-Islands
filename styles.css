@@ -57,15 +57,14 @@ body{
 	top: 40vh;
 }
 
-.backgroundIsland > .baselayer, .backgroundIsland > .lighting, main::after{
-	content: "";
+.backgroundIsland > .baselayer, .backgroundIsland > .lighting, #sunset-overlay{
 	position: absolute;
 	left: 0;
 	top: 0;
 	bottom: 0;
 }
 
-main::after{
+#sunset-overlay{
 	background-image: linear-gradient(-45deg, #FF000040, #FF000080, #FFC922FF);
 
 	width: 100%;
@@ -75,6 +74,17 @@ main::after{
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
 	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 	animation: 			fadeInAndOut 12s linear infinite alternate;
+	will-change: opacity;
+}
+
+.timer{
+	position: absolute;
+	width: 0;
+	height: 0;
+	-webkit-animation:	fadeout 24s infinite;
+	-moz-animation:		fadeout 24s infinite;
+	-o-animation:		fadeout 24s infinite;
+	animation: 			fadeout 24s infinite;
 	will-change: opacity;
 }
 

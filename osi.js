@@ -329,18 +329,12 @@ $(document).ready(function(){
 		$("#islandTest .lighting").css("background-image","url('concept-art/"+fn+"-lighting.png')");
 		$("#islandTest .baselayer").css("background-image","url('concept-art/"+fn+".png')");
 
-		//set mode to precise
-		$("#backgroundDisplay .lighting").css("animation-timing-function","linear");
-		//grab amt
-		let transformInit = new WebKitCSSMatrix(document.defaultView.getComputedStyle($("#backgroundDisplay .lighting")[0],null)["transform"]);
-		//reset anim mode
-		$("#backgroundDisplay .lighting").css("animation-timing-function","steps(10)");
-		$("#islandTest .lighting").css("animation-delay",transformInit.m41/1024+"s");
+
 
 		$("#backgroundDisplay").fadeOut();
-		setTimeout(function(){
-			$("#islandTest").fadeIn();
-		},600);
+		let transformInit = parseFloat(document.defaultView.getComputedStyle($("#sunset-overlay .timer")[0],null)["opacity"]);
+		$("#islandTest .lighting").css("animation-delay",(1-transformInit)*-12+"s");
+		$("#islandTest").fadeIn();
 
 	});
 
