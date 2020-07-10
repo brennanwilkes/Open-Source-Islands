@@ -161,8 +161,8 @@ $(document).ready(function(){
 	setValidMessage("seed","Island Seeds may only contain digits");
 
 	let bgkimg = concept_art[Math.floor(Math.random()*concept_art.length)];
-	$("#backgroundDisplay").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
-	$("#isl").css("background-image","url('concept-art/"+bgkimg+".png')")
+	$("#backgroundDisplay .lighting").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
+	$("#backgroundDisplay .baselayer").css("background-image","url('concept-art/"+bgkimg+".png')")
 
 
 	$("form").append("<div class=page id=backgroundPage></div>");
@@ -314,8 +314,29 @@ $(document).ready(function(){
 	$("#gallery-preview img, #preview_display").click(function(e){
 		stackPage();
 		$("#backgroundPage").hide();
-		$("#backgroundDisplay").fadeOut();
 		$(".page:nth-child("+currentPage+")").fadeOut();
+		//$("main").fadeOut();
+
+		$("#backgroundDisplay .lighting").css("animation-timing-function","linear");
+
+		let transformInit = new WebKitCSSMatrix(document.defaultView.getComputedStyle($("#backgroundDisplay .lighting")[0],null)["transform"]);
+
+		$("#backgroundDisplay .lighting").css("animation-timing-function","steps(10)");
+
+
+		$("<div style='display:none;' id=islandTest class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>").insertBefore("main");
+
+
+		$("#islandTest .lighting").css("background-image","url('concept-art/"+concept_art[0]+"-lighting.png')");
+		$("#islandTest .lighting").css("animation-delay",transformInit.m41/1024+"s");
+		$("#islandTest .baselayer").css("background-image","url('concept-art/"+concept_art[0]+".png')");
+
+
+		$("#backgroundDisplay").fadeOut();
+		setTimeout(function(){
+			$("#islandTest").fadeIn();
+		},600);
+
 	});
 
 	$("#compile, #recompile").click(function(e){

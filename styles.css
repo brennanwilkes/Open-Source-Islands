@@ -26,32 +26,37 @@ body{
 	width:100vw;
 }
 
-#isl{
-	width: 60vmax;
-	height: 60vmax;
-	background-repeat: no-repeat;
-}
-
-#backgroundDisplay{
+.backgroundIsland{
 	position: absolute;
-	left: 50vw;
-	top: 40vh;
 	background-size:0;
 	height: 1024px;
 	width: 1024px;
 	position:relative;
 	overflow:hidden;
 }
-#backgroundDisplay::after{
+
+.backgroundIsland > .lighting{
 	width: 10240px;
-	background-image:inherit;
+	z-index: -1;
 	-webkit-animation:	renderLighting 12s steps(5) infinite alternate;
 	-moz-animation:		renderLighting 12s steps(5) infinite alternate;
 	-o-animation:		renderLighting 12s steps(5) infinite alternate;
 	animation: 			renderLighting 12s steps(5) infinite alternate;
 }
 
-#isl, #backgroundDisplay::after, main::after{
+.backgroundIsland > .baselayer{
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+}
+
+#backgroundDisplay{
+	left: 50vw;
+	top: 40vh;
+}
+
+.backgroundIsland > .baselayer, .backgroundIsland > .lighting, main::after{
 	content: "";
 	position: absolute;
 	left: 0;
@@ -341,7 +346,6 @@ input[type=text], input[type=button], input[type=submit]{
 	top:0;
 	width:50vmin;
 	height:50vmin;
-	z-index: 2;
 }
 
 #loading-container{
@@ -431,7 +435,7 @@ input[type=text], input[type=button], input[type=submit]{
 	width:0.7vmin;
 	height:0.7vmin;
 	background-color: #2d5ba4;
-	z-index: -1;
+	z-index: -3;
 
 	/*This kind of stuff annoys me*/
 	-webkit-animation:	fadeout 2s infinite;
