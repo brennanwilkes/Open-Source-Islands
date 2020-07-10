@@ -70,21 +70,13 @@ body{
 	width: 100%;
 	height: 100%;
 	z-index: 0;
+}
+
+.lignting-anim{
 	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
 	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 	animation: 			fadeInAndOut 12s linear infinite alternate;
-	will-change: opacity;
-}
-
-.timer{
-	position: absolute;
-	width: 0;
-	height: 0;
-	-webkit-animation:	fadeout 24s infinite;
-	-moz-animation:		fadeout 24s infinite;
-	-o-animation:		fadeout 24s infinite;
-	animation: 			fadeout 24s infinite;
 	will-change: opacity;
 }
 

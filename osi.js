@@ -314,6 +314,11 @@ $(document).ready(function(){
 	$("#gallery-preview img, #preview_display").click(function(e){
 		changePage(5);
 
+
+
+		$("#backgroundDisplay").fadeOut();
+		$("#sunset-overlay").fadeOut();
+
 		//generate island
 
 		stackPage();
@@ -329,16 +334,13 @@ $(document).ready(function(){
 		$("#islandTest .lighting").css("background-image","url('concept-art/"+fn+"-lighting.png')");
 		$("#islandTest .baselayer").css("background-image","url('concept-art/"+fn+".png')");
 
+		$("#sunset-overlay").removeClass("lignting-anim");
+		void $("#sunset-overlay")[0].offsetWidth;
+		$("#sunset-overlay").addClass("lignting-anim");
 
 
-		$("#backgroundDisplay").fadeOut();
-		let transformInit = parseFloat(document.defaultView.getComputedStyle($("#sunset-overlay")[0],null)["opacity"])/0.65;
-		console.log(transformInit);
-		console.log((transformInit)*-12);
-		console.log((transformInit)*-6);
-		console.log((transformInit)*-24);
-		$("#islandTest .lighting").css("animation-delay",(transformInit)*-12+"s");
-		$("#sunset-overlay").css("animation-delay",(transformInit)*-12+"s");
+
+		$("#sunset-overlay").fadeIn();
 		$("#islandTest").fadeIn();
 
 	});
