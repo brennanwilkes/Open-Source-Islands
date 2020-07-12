@@ -17,7 +17,7 @@
 		global $pdo;
 
 
-		$sql = "SELECT filename FROM islands ORDER BY date";
+		$sql = "SELECT filename FROM islands ORDER BY submission_date";
 		$result = $pdo->query($sql);
 		while ($row = $result->fetch()){
 			echo "<img src=".$row[0]."></img>";
