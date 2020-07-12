@@ -69,7 +69,7 @@
 
 		$id = $pdo->lastInsertId();
 
-		$fn = "gallery/".id.".png";
+		$fn = "gallery/".$id.".png";
 
 		$sql = "UPDATE islands SET (filename) = (:fnVAL) WHERE id = ".$id;
 		$statement = $pdo->prepare($sql);
