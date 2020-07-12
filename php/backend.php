@@ -86,9 +86,11 @@
 		$statement->execute([$_GET["isLandCopy"]]);
 		$row = $statement->fetch();
 
-		foreach($row as $setting) {
-			echo "<span>".$setting."</span>";
-		}
+		echo $row;
+
+		//foreach($row as $setting) {
+		//	echo "<span>".$setting."</span>";
+		//}
 
 
 
