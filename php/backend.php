@@ -17,13 +17,13 @@
 		global $pdo;
 
 
-		//$sql = "DESCRIBE islands";
-		//$result = $pdo->query($sql);
-		//while ($row = $result->fetch()){
-		//	echo "<span>".$row[0]."</span>";
-		//}
+		$sql = "SELECT filename FROM islands ORDER BY date";
+		$result = $pdo->query($sql);
+		while ($row = $result->fetch()){
+			echo "<img src=".$row[0]."></img>";
+		}
 
-		echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";
+		//echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";
 	}
 
 	function handle_submit(){
@@ -32,7 +32,7 @@
 		//setup sql statement
 
 
-		$sql = "INSERT INTO islands (seed, name, colour_background, deep_ocean, shallow_ocean, land_one, land_two, land_three, beach, rock_one, rock_two, lava_one, lava_two, sunset, has_motu, has_reef, is_volcano, is_atoll, has_town, has_trees, tree_amt, isl_persist, isl_lac, isl_scale, image_data, submission_date, filename) VALUES (:seedVAL, :nameVAL, :colour_backgroundVAL, :deep_oceanVAL, :shallow_oceanVAL, :land_oneVAL, :land_twoVAL, :land_threeVAL, :beachVAL, :rock_oneVAL, :rock_twoVAL, :lava_oneVAL, :lava_twoVAL, :sunsetVAL, :has_motuVAL, :has_reefVAL, :is_volcanoVAL, :is_atollVAL, :has_townVAL, :has_treesVAL, :tree_amtVAL, :isl_persistVAL, :isl_lacVAL, :isl_scaleVAL, :image_dataVAL, :submission_dateVAL, :filenameVAL) ";
+		$sql = "INSERT INTO islands (seed, name, colour_background, deep_ocean, shallow_ocean, land_one, land_two, land_three, beach, rock_one, rock_two, lava_one, lava_two, sunset, has_motu, has_reef, is_volcano, is_atoll, has_town, has_trees, tree_amt, isl_persist, isl_lac, isl_scale, submission_date, filename) VALUES (:seedVAL, :nameVAL, :colour_backgroundVAL, :deep_oceanVAL, :shallow_oceanVAL, :land_oneVAL, :land_twoVAL, :land_threeVAL, :beachVAL, :rock_oneVAL, :rock_twoVAL, :lava_oneVAL, :lava_twoVAL, :sunsetVAL, :has_motuVAL, :has_reefVAL, :is_volcanoVAL, :is_atollVAL, :has_townVAL, :has_treesVAL, :tree_amtVAL, :isl_persistVAL, :isl_lacVAL, :isl_scaleVAL, :submission_dateVAL, :filenameVAL) ";
 		$statement = $pdo->prepare($sql);
 
 		//bind values
@@ -60,7 +60,6 @@
 		$statement->bindValue(":isl_persistVAL",$_POST["persistence"]);
 		$statement->bindValue(":isl_lacVAL",$_POST["lacunarity"]);
 		$statement->bindValue(":isl_scaleVAL",$_POST["scale"]);
-		$statement->bindValue(":image_dataVAL","Deprecated");
 		$statement->bindValue(":submission_dateVAL",date('Y-m-d'));
 		$statement->bindValue(":filenameVAL","filler");
 
@@ -71,7 +70,6 @@
 		$fn = "gallery/".$id.".png";
 		$sql = "UPDATE islands SET filename=? WHERE id=?";
 		$pdo->prepare($sql)->execute([$fn, $id]);
-
 
 		$myfile = fopen($fn, "w") or die("Unable to open file!");
 		fwrite($myfile, $_POST["imageData"]);
