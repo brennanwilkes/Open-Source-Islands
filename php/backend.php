@@ -69,8 +69,13 @@
 
 		$id = $pdo->lastInsertId();
 
-		$sql = "UPDATE islands SET filename = gallery/".id.".png WHERE id = ".$id;
-		$result = $pdo->query($sql);
+		$fn = "gallery/".id.".png";
+
+		$sql = "UPDATE islands SET (filename) = (:fnVAL) WHERE id = ".$id;
+		$statement = $pdo->prepare($sql);
+		$statement->bindValue(":fnVAL",$fn);
+		$statement->execute();
+
 
 		//echo "<div id=status>RAN</div>";
 
