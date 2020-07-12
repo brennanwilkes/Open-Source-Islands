@@ -38,7 +38,7 @@
 		//bind values
 		$statement->bindValue(":seedVAL",$_POST["seed"]);
 		$statement->bindValue(":nameVAL",$_POST["name"]);
-		$statement->bindValue(":colour_backgroundVAL",isset($_POST["background"]));
+		$statement->bindValue(":colour_backgroundVAL",isset($_POST["background"]) ? 1 : 0);
 		$statement->bindValue(":deep_oceanVAL",$_POST["ocean"]);
 		$statement->bindValue(":shallow_oceanVAL",$_POST["shallows"]);
 		$statement->bindValue(":land_oneVAL",$_POST["ground1"]);
@@ -50,12 +50,12 @@
 		$statement->bindValue(":lava_oneVAL",$_POST["lava1"]);
 		$statement->bindValue(":lava_twoVAL",$_POST["lava2"]);
 		$statement->bindValue(":sunsetVAL",$_POST["time"]);
-		$statement->bindValue(":has_motuVAL",isset($_POST["motu"]));
-		$statement->bindValue(":has_reefVAL",isset($_POST["reef"]));
-		$statement->bindValue(":is_volcanoVAL",isset($_POST["volcano"]));
-		$statement->bindValue(":is_atollVAL",isset($_POST["atoll"]));
-		$statement->bindValue(":has_townVAL",isset($_POST["village"]));
-		$statement->bindValue(":has_treesVAL",isset($_POST["trees"]));
+		$statement->bindValue(":has_motuVAL",isset($_POST["motu"]) ? 1 : 0);
+		$statement->bindValue(":has_reefVAL",isset($_POST["reef"]) ? 1 : 0);
+		$statement->bindValue(":is_volcanoVAL",isset($_POST["volcano"]) ? 1 : 0);
+		$statement->bindValue(":is_atollVAL",isset($_POST["atoll"]) ? 1 : 0);
+		$statement->bindValue(":has_townVAL",isset($_POST["village"]) ? 1 : 0);
+		$statement->bindValue(":has_treesVAL",isset($_POST["trees"]) ? 1 : 0);
 		$statement->bindValue(":tree_amtVAL",$_POST["tree_amt"]);
 		$statement->bindValue(":isl_persistVAL",$_POST["persistence"]);
 		$statement->bindValue(":isl_lacVAL",$_POST["lacunarity"]);
