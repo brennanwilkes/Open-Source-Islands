@@ -67,7 +67,7 @@
 		//execute
 		$statement->execute();
 
-		echo "<div id=status>RAN</div>"
+		echo "<div id=status>RAN</div>";
 
 
 	}
