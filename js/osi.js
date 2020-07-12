@@ -323,8 +323,6 @@ $(document).ready(function(){
 				turnPage(1);
 				$("#seed").val(island.replicable_seed);
 				$("#name").val(island.name);
-				console.log($("#seed").val());
-				console.log($("#name").val());
 			}
 			else{
 				changePage(GENERATOR);

@@ -66,6 +66,10 @@
 
 		//execute
 		$statement->execute();
+
+		echo "<div id=status>RAN</div>"
+
+
 	}
 
 ?>
