@@ -14,7 +14,30 @@
 	}
 
 	function get_images(){
-		echo "<img src=concept-art/Aru.png>";
+		echo "<img src=concept-art/Aru.png>
+		<img src=concept-art/Atalia-Nanai.png>
+		<img src=concept-art/Hokulele-Kekoa.png>
+		<img src=concept-art/Kainano-Taualai.png>
+		<img src=concept-art/Murihau.png>
+		<img src=concept-art/Rangi-Karauna.png>
+		<img src=concept-art/Tamah-Talatonu.png>
+		<img src=concept-art/Tama-Ropata.png>
+		<img src=concept-art/Aru.png>
+		<img src=concept-art/Atalia-Nanai.png>
+		<img src=concept-art/Hokulele-Kekoa.png>
+		<img src=concept-art/Kainano-Taualai.png>
+		<img src=concept-art/Murihau.png>
+		<img src=concept-art/Rangi-Karauna.png>
+		<img src=concept-art/Tamah-Talatonu.png>
+		<img src=concept-art/Tama-Ropata.png>
+		<img src=concept-art/Aru.png>
+		<img src=concept-art/Atalia-Nanai.png>
+		<img src=concept-art/Hokulele-Kekoa.png>
+		<img src=concept-art/Kainano-Taualai.png>
+		<img src=concept-art/Murihau.png>
+		<img src=concept-art/Rangi-Karauna.png>
+		<img src=concept-art/Tamah-Talatonu.png>
+		<img src=concept-art/Tama-Ropata.png>";
 	}
 
 ?>
