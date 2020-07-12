@@ -198,30 +198,9 @@
 				<div class=page id=gal>
 					<h1>Island Gallery</h1>
 					<div>
-						<img src="concept-art/Aru.png" />
-						<img src="concept-art/Atalia-Nanai.png" />
-						<img src="concept-art/Hokulele-Kekoa.png" />
-						<img src="concept-art/Kainano-Taualai.png" />
-						<img src="concept-art/Murihau.png" />
-						<img src="concept-art/Rangi-Karauna.png" />
-						<img src="concept-art/Tamah-Talatonu.png" />
-						<img src="concept-art/Tama-Ropata.png" />
-						<img src="concept-art/Aru.png" />
-						<img src="concept-art/Atalia-Nanai.png" />
-						<img src="concept-art/Hokulele-Kekoa.png" />
-						<img src="concept-art/Kainano-Taualai.png" />
-						<img src="concept-art/Murihau.png" />
-						<img src="concept-art/Rangi-Karauna.png" />
-						<img src="concept-art/Tamah-Talatonu.png" />
-						<img src="concept-art/Tama-Ropata.png" />
-						<img src="concept-art/Aru.png" />
-						<img src="concept-art/Atalia-Nanai.png" />
-						<img src="concept-art/Hokulele-Kekoa.png" />
-						<img src="concept-art/Kainano-Taualai.png" />
-						<img src="concept-art/Murihau.png" />
-						<img src="concept-art/Rangi-Karauna.png" />
-						<img src="concept-art/Tamah-Talatonu.png" />
-						<img src="concept-art/Tama-Ropata.png" />
+						<?php
+							get_images();
+						?>
 					</div>
 					<button type=button class=home>Home</button>
 				</div>
