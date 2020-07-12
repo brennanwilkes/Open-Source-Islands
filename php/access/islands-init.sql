@@ -46,6 +46,8 @@ SHOW GRANTS FOR 'osi'@'localhost';
 -- Table structure for table `islands`
 --
 
+USE `osi`
+
 CREATE TABLE `islands` (
   `id` int(11) NOT NULL,
   `seed` double NOT NULL,
