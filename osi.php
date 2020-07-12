@@ -3,17 +3,17 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Open Source Islands</title>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="css/styles.css">
 		<link rel="icon" href="icon.png" type="image/icon type">
 
 
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-		<script type="text/javascript" src="name_list.js"></script>
-		<script type="text/javascript" src="Stefan-Gustavson-Perlin.js"></script>
-		<script type="text/javascript" src="island.js"></script>
-		<script type="text/javascript" src="osi.js"></script>
+		<script type="text/javascript" src="js/island-generator/name_list.js"></script>
+		<script type="text/javascript" src="js/island-generator/perlin-noise/Stefan-Gustavson-Perlin.js"></script>
+		<script type="text/javascript" src="js/island-generator/island.js"></script>
+		<script type="text/javascript" src="js/osi.js"></script>
 	</head>
 	<body>
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
