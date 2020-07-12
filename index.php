@@ -5,6 +5,7 @@
 	require_once 'php/backend.php';
 	require_once 'php/access/config.php';
 
+	$pdo = db_connect();
 
 ?><!DOCTYPE html>
 <html>
