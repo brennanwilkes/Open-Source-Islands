@@ -75,11 +75,28 @@
 		fwrite($myfile, $_POST["imageData"]);
 		fclose($myfile);
 
+	}
+
+	function get_edit_params(){
+		global $pdo;
+
+		echo "<div id=loadSettingsRequest>";
+
+		$sql = "SELECT * FROM islands WHERE id=?";
+		$pdo->prepare($sql)->execute([$_GET["isLandCopy"]]);
+		$result = $pdo->query($sql);
+		$row = $result->fetch();
+
+		foreach($row as $setting) {
+			echo "<span>".$setting."</span>";
+		}
 
 
-		//echo "<div id=status>RAN</div>";
+
+		echo "</div>";
 
 
 	}
+
 
 ?>

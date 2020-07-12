@@ -7,10 +7,7 @@
 
 	$pdo = db_connect();
 
-	if(isset($_GET["isLandCopy"])){
-		echo "<div id=yes></div>";
-	}
-	else if($_SERVER["REQUEST_METHOD"] == "POST"){
+	if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET["isLandCopy"])){
 		handle_submit();
 	}
 
@@ -32,6 +29,11 @@
 		<script type="text/javascript" src="js/osi.js"></script>
 	</head>
 	<body>
+		<?php
+			if(isset($_GET["isLandCopy"])){
+				get_edit_params();
+			}
+		?>
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
 		<main>
 			<form method="post">
