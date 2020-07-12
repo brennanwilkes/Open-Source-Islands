@@ -67,7 +67,7 @@
 		//execute
 		$statement->execute();
 
-		$id = mysql_insert_id();
+		$id = $pdo->lastInsertId();
 
 		$sql = "UPDATE islands SET filename = gallery/".id.".png WHERE id = ".$id;
 		$result = $pdo->query($sql);
