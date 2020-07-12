@@ -489,12 +489,12 @@ input[type=text], input[type=button], input[type=submit]{
 */
 .Albatross > div {
 	width:960px;
-	background-image: url("assets/albatross/albatross-sprite-sheet.png");
+	background-image: url("../assets/albatross/albatross-sprite-sheet.png");
 	-webkit-animation:	animateAlbatrossSprite 1s steps(10) infinite;
 	-moz-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
 }
 .greyVarient{
-	background-image : url("assets/albatross/albatross-grey-sprite-sheet.png");
+	background-image : url("../assets/albatross/albatross-grey-sprite-sheet.png");
 }
