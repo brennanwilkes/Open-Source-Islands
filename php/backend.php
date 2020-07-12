@@ -84,6 +84,8 @@
 
 		$statement = $pdo->prepare("SELECT * FROM islands WHERE id=?");
 		$statement->execute([$_GET["isLandCopy"]]);
+		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
 		$row = $statement->fetch();
 
 
