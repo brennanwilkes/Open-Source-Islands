@@ -338,7 +338,7 @@ $(document).ready(function(){
 		$("<input />")
 			.attr("type", "hidden")
 			.attr("name", "imageData")
-			.attr("value", $("#preview_display").attr("src"));
+			.attr("value", $("#preview_display").attr("src"))
 			.appendTo(this);
 		return true;
 	});
