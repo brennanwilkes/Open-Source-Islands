@@ -164,8 +164,8 @@
 
 					<div class=dual>
 						<label for="lava1">Lava</label>
-						<input type="color" value="#8B0000" name="lava" id="lava1">
-						<input type="color" value="#FFA500" name="lava" id="lava2">
+						<input type="color" value="#8B0000" name="lava1" id="lava1">
+						<input type="color" value="#FFA500" name="lava2" id="lava2">
 					</div>
 
 					<div>
