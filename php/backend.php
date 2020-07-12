@@ -49,7 +49,7 @@
 		$statement->bindValue(":rock_twoVAL",$_POST["rock2"]);
 		$statement->bindValue(":lava_oneVAL",$_POST["lava1"]);
 		$statement->bindValue(":lava_twoVAL",$_POST["lava2"]);
-		$statement->bindValue(":sunsetVAL",$_POST["name"]);
+		$statement->bindValue(":sunsetVAL",$_POST["time"]);
 		$statement->bindValue(":has_motuVAL",isset($_POST["motu"]));
 		$statement->bindValue(":has_reefVAL",isset($_POST["reef"]));
 		$statement->bindValue(":is_volcanoVAL",isset($_POST["volcano"]));
