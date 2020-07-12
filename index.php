@@ -7,7 +7,10 @@
 
 	$pdo = db_connect();
 
-	if($_SERVER["REQUEST_METHOD"] == "POST"){
+	if(isset($_GET["isLandCopy"])){
+		echo "<div id=yes></div>";
+	}
+	else if($_SERVER["REQUEST_METHOD"] == "POST"){
 		handle_submit();
 	}
 
