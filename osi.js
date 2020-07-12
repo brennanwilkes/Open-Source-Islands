@@ -334,18 +334,6 @@ $(document).ready(function(){
 		island.saveImage($("#village").prop("checked"),true);
 	});
 
-	$("#player div")[0].addEventListener("webkitAnimationEnd", function(e){
-		$("#player div").removeClass("canoe-anim");
-		$("#player").removeClass("move-anim");
-		isMoving = false;
-	});
-	$("#player div")[0].addEventListener("animationend", function(e){
-		$("#player div").removeClass("canoe-anim");
-		$("#player").removeClass("move-anim");
-		isMoving = false;
-	});
-
-
 
 
 
