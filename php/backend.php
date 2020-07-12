@@ -14,7 +14,7 @@
 	}
 
 	function get_images(){
-		echo "<img src=concept-art/Aru.png>"
+		echo "<img src=concept-art/Aru.png>";
 	}
 
 ?>
