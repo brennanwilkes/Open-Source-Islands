@@ -60,7 +60,7 @@
 		$statement->bindValue(":isl_persistVAL",$_POST["persistence"]);
 		$statement->bindValue(":isl_lacVAL",$_POST["lacunarity"]);
 		$statement->bindValue(":isl_scaleVAL",$_POST["scale"]);
-		$statement->bindValue(":image_dataVAL",$_POST["imageData"]);
+		$statement->bindValue(":image_dataVAL","Deprecated");
 		$statement->bindValue(":submission_dateVAL",date('Y-m-d'));
 		$statement->bindValue(":filenameVAL","filler");
 
@@ -71,6 +71,13 @@
 		$fn = "gallery/".$id.".png";
 		$sql = "UPDATE islands SET filename=? WHERE id=?";
 		$pdo->prepare($sql)->execute([$fn, $id]);
+
+
+		$myfile = fopen($fn, "w") or die("Unable to open file!");
+		fwrite($myfile, $_POST["imageData"]);
+		fclose($myfile);
+
+
 
 		//echo "<div id=status>RAN</div>";
 
