@@ -17,10 +17,10 @@
 		global $pdo;
 
 
-		$sql = "SELECT filename FROM islands ORDER BY submission_date";
+		$sql = "SELECT filename, id FROM islands ORDER BY submission_date";
 		$result = $pdo->query($sql);
 		while ($row = $result->fetch()){
-			echo "<img src=".file_get_contents($row[0], FILE_USE_INCLUDE_PATH)."></img>";
+			echo "<img src=".file_get_contents($row[0], FILE_USE_INCLUDE_PATH)." islID=".$row[1]."></img>";
 		}
 
 		//echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";

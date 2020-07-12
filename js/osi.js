@@ -267,7 +267,9 @@ $(document).ready(function(){
 		changePage(GENERATOR);
 	});
 	$("#copy").click(function(e){
-		changePage(GENERATOR);
+		//<a rel=noopener href=index.php?islandCopy="+id+">"
+		window.location.href = window.location.href.split("index.php")[0]+"index.php?isLandCopy="+$("#gallery-preview img").attr("islID");
+		//changePage(GENERATOR);
 	});
 
 	$(".home").click(function(e){
