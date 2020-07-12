@@ -264,8 +264,6 @@ $(document).ready(function(){
 	});
 
 	$("#edit").click(function(e){
-		$("#seed").val(island.replicable_seed);
-		$("#name").val(island.name);
 		changePage(GENERATOR);
 	});
 	$("#copy").click(function(e){
@@ -323,6 +321,8 @@ $(document).ready(function(){
 		setTimeout(function(){
 			if(compileIsland()){
 				turnPage(1);
+				$("#seed").val(island.replicable_seed);
+				$("#name").val(island.name);
 			}
 			else{
 				changePage(GENERATOR);
