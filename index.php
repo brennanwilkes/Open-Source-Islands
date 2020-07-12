@@ -7,6 +7,10 @@
 
 	$pdo = db_connect();
 
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		handle_submit();
+	}
+
 ?><!DOCTYPE html>
 <html>
 	<head>
