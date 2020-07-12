@@ -382,16 +382,16 @@ class IslandSettings{
 		this.ROCK_TWO = "#626354";
 
 		/**
-			Low lava colour repersented by an HTML5 colour value
+			Low lava colour repersented in hexidecimal
 			@type {string}
 		*/
-		this.LAVA_ONE = "darkred";
+		this.LAVA_ONE = "#8B0000";
 
 		/**
-			High lava colour repersented by an HTML5 colour value
+			High lava colour repersented in hexidecimal
 			@type {string}
 		*/
-		this.LAVA_TWO = "orange";
+		this.LAVA_TWO = "#FF8C00";
 
 		/**
 			Village colour repersented in hexidecimal
