@@ -89,7 +89,7 @@
 
 
 		foreach($row as $setting) {
-			echo "<span>".$setting."</span>";
+			echo "<span>".$setting[0]."</span>";
 		}
 
 
