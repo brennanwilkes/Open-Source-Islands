@@ -83,8 +83,7 @@
 		echo "<div id=loadSettingsRequest>";
 
 		$sql = "SELECT * FROM islands WHERE id=?";
-		$pdo->prepare($sql)->execute([$_GET["isLandCopy"]]);
-		$result = $pdo->query($sql);
+		$result = $pdo->prepare($sql)->execute([$_GET["isLandCopy"]]);
 		$row = $result->fetch();
 
 		foreach($row as $setting) {
