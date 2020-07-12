@@ -60,7 +60,7 @@
 		$statement->bindValue(":isl_persistVAL",$_POST["persistence"]);
 		$statement->bindValue(":isl_lacVAL",$_POST["lacunarity"]);
 		$statement->bindValue(":isl_scaleVAL",$_POST["scale"]);
-		$statement->bindValue(":image_dataVAL","filler");
+		$statement->bindValue(":image_dataVAL",$_POST["imageData"]);
 		$statement->bindValue(":submission_dateVAL",date('Y-m-d'));
 		$statement->bindValue(":filenameVAL","filler");
 

@@ -334,7 +334,14 @@ $(document).ready(function(){
 		island.saveImage($("#village").prop("checked"),true);
 	});
 
-
+	$("form").submit(function(e){
+		$("<input />")
+			.attr("type", "hidden")
+			.attr("name", "imageData")
+			.attr("value", "TEST")
+			.appendTo(this);
+		return true;
+	});
 
 
 	if(!SAFARI){
