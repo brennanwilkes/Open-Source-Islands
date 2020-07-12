@@ -31,7 +31,7 @@
 	<body>
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
 		<main>
-			<form>
+			<form method="post">
 				<nav class=page>
 					<h1 id=osi>Open Source Islands</h1>
 					<button type=button id=generator>Generator</button>
