@@ -212,6 +212,7 @@ $(document).ready(function(){
 	$("#gal div").children().click(function(e){
 		changePage(GALLERYPREVIEW);
 		$("#gallery-preview img").attr("src",$(this).attr("src"))
+		$("#gallery-preview img").attr("islid",$(this).attr("islid"))
 		$("#gallery-preview h1")[0].innerHTML = "TEST TEST"
 	});
 
