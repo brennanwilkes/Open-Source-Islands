@@ -20,7 +20,7 @@
 		$sql = "DESCRIBE islands";
 		$result = $pdo->query($sql);
 		while ($row = $result->fetch()){
-			echo "<span>".$row."</span>"
+			echo "<span>".$row."</span>";
 		}
 
 		echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";
