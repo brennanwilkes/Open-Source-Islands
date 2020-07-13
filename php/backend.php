@@ -17,10 +17,20 @@
 		global $pdo;
 
 
-		$sql = "SELECT filename, id FROM islands ORDER BY submission_date";
+
+		$attrs = array("id", "seed", "name", "colour_background", "deep_ocean", "shallow_ocean", "land_one", "land_two", "land_three", "beach", "rock_one", "rock_two", "lava_one", "lava_two", "sunset", "has_motu", "has_reef", "is_volcano", "is_atoll", "has_town", "has_trees", "tree_amt", "isl_persist", "isl_lac", "isl_scale", "submission_date", "filename");
+
+
+		$sql = "SELECT * FROM islands ORDER BY submission_date";
 		$result = $pdo->query($sql);
 		while ($row = $result->fetch()){
-			echo "<img src=".file_get_contents($row[0], FILE_USE_INCLUDE_PATH)." islid=".$row[1]."></img>";
+			echo "<img src=".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH);
+
+			for ($i = 0; $i < count($attrs)-1; $i++) {
+				echo " isl".$attrs[$i]."=".$row[$i];
+			}
+
+			echo "></img>";
 		}
 
 		//echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";
