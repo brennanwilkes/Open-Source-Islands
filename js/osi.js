@@ -303,6 +303,7 @@ $(document).ready(function(){
 		$("#trees").prop("checked",img.attr("islhas_trees")==="1");
 
 		$("#tree_amt").val(parseInt(img.attr("isltree_amt")))
+		$("#village_size").val(parseInt(img.attr("islvillage_size")))
 		$("#persistence").val(parseFloat(img.attr("islisl_persist")))
 		$("#lacunarity").val(parseFloat(img.attr("islisl_lac")))
 		$("#scale").val(parseFloat(img.attr("islisl_scale")))
