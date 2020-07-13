@@ -21,7 +21,7 @@
 		$attrs = array("id", "seed", "name", "colour_background", "deep_ocean", "shallow_ocean", "land_one", "land_two", "land_three", "beach", "rock_one", "rock_two", "lava_one", "lava_two", "sunset", "has_motu", "has_reef", "is_volcano", "is_atoll", "has_town", "has_trees", "tree_amt", "village_size", "isl_persist", "isl_lac", "isl_scale", "submission_date", "filename");
 
 
-		$sql = "SELECT DISTINCT * FROM islands ORDER BY submission_date DESC";
+		$sql = "SELECT * FROM islands ORDER BY submission_date DESC";
 		$result = $pdo->query($sql);
 		while ($row = $result->fetch()){
 			echo "<img src=".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH);
@@ -40,7 +40,7 @@
 		//setup sql statement
 
 
-		$sql = "INSERT INTO islands (seed, name, colour_background, deep_ocean, shallow_ocean, land_one, land_two, land_three, beach, rock_one, rock_two, lava_one, lava_two, sunset, has_motu, has_reef, is_volcano, is_atoll, has_town, has_trees, tree_amt, village_size, isl_persist, isl_lac, isl_scale, submission_date, filename) VALUES (:seedVAL, :nameVAL, :colour_backgroundVAL, :deep_oceanVAL, :shallow_oceanVAL, :land_oneVAL, :land_twoVAL, :land_threeVAL, :beachVAL, :rock_oneVAL, :rock_twoVAL, :lava_oneVAL, :lava_twoVAL, :sunsetVAL, :has_motuVAL, :has_reefVAL, :is_volcanoVAL, :is_atollVAL, :has_townVAL, :has_treesVAL, :tree_amtVAL, :village_sizeVAL, :isl_persistVAL, :isl_lacVAL, :isl_scaleVAL, :submission_dateVAL, :filenameVAL) ";
+		$sql = "INSERT IGNORE INTO islands (seed, name, colour_background, deep_ocean, shallow_ocean, land_one, land_two, land_three, beach, rock_one, rock_two, lava_one, lava_two, sunset, has_motu, has_reef, is_volcano, is_atoll, has_town, has_trees, tree_amt, village_size, isl_persist, isl_lac, isl_scale, submission_date, filename) VALUES (:seedVAL, :nameVAL, :colour_backgroundVAL, :deep_oceanVAL, :shallow_oceanVAL, :land_oneVAL, :land_twoVAL, :land_threeVAL, :beachVAL, :rock_oneVAL, :rock_twoVAL, :lava_oneVAL, :lava_twoVAL, :sunsetVAL, :has_motuVAL, :has_reefVAL, :is_volcanoVAL, :is_atollVAL, :has_townVAL, :has_treesVAL, :tree_amtVAL, :village_sizeVAL, :isl_persistVAL, :isl_lacVAL, :isl_scaleVAL, :submission_dateVAL, :filenameVAL) ";
 		$statement = $pdo->prepare($sql);
 
 		//bind values
