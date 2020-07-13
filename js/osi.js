@@ -278,7 +278,7 @@ $(document).ready(function(){
 	});
 	$("#copy").click(function(e){
 
-		let img = $(this);
+		let img = $("#gallery-preview img");
 
 		$("#seed").val(img.attr("seed"))
 		$("#val").val(img.attr("name"))
