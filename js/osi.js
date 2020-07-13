@@ -280,6 +280,9 @@ $(document).ready(function(){
 
 		let img = $("#gallery-preview img");
 
+		console.log(img);
+		console.log(img.attr("seed"));
+
 		$("#seed").val(img.attr("seed"))
 		$("#val").val(img.attr("name"))
 		$("#colour_background").prop("checked",img.attr("colour_background")===1);
