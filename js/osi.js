@@ -280,12 +280,10 @@ $(document).ready(function(){
 
 		let img = $("#gallery-preview img");
 
-		console.log(img);
-		console.log(img.attr("seed"));
 
 		$("#seed").val(img.attr("islseed"))
 		$("#val").val(img.attr("islname"))
-		$("#colour_background").prop("checked",img.attr("islcolour_background")===1);
+		$("#colour_background").prop("checked",img.attr("islcolour_background")==="1");
 		$("#ocean").val(img.attr("isldeep_ocean"))
 		$("#shallows").val(img.attr("islshallow_ocean"))
 		$("#ground1").val(img.attr("islland_one"))
@@ -297,12 +295,12 @@ $(document).ready(function(){
 		$("#lava1").val(img.attr("isllava_one"))
 		$("#lava2").val(img.attr("isllava_two"))
 		$("#time").val(parseInt(img.attr("islsunset")))
-		$("#motu").prop("checked",img.attr("islhas_motu")===1);
-		$("#reef").prop("checked",img.attr("islhas_reef")===1);
-		$("#volcano").prop("checked",img.attr("islis_volcano")===1);
-		$("#atoll").prop("checked",img.attr("islis_atoll")===1);
-		$("#village").prop("checked",img.attr("islhas_town")===1);
-		$("#trees").prop("checked",img.attr("islhas_trees")===1);
+		$("#motu").prop("checked",img.attr("islhas_motu")==="1");
+		$("#reef").prop("checked",img.attr("islhas_reef")==="1");
+		$("#volcano").prop("checked",img.attr("islis_volcano")==="1");
+		$("#atoll").prop("checked",img.attr("islis_atoll")==="1");
+		$("#village").prop("checked",img.attr("islhas_town")==="1");
+		$("#trees").prop("checked",img.attr("islhas_trees")==="1");
 
 		$("#tree_amt").val(parseInt(img.attr("isltree_amt")))
 		$("#persistence").val(parseFloat(img.attr("islisl_persist")))
