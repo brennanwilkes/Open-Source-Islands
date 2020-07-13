@@ -282,7 +282,7 @@ $(document).ready(function(){
 
 
 		$("#seed").val(img.attr("islseed"))
-		$("#val").val(img.attr("islname"))
+		$("#name").val(img.attr("islname"))
 		$("#colour_background").prop("checked",img.attr("islcolour_background")==="1");
 		$("#ocean").val(img.attr("isldeep_ocean"))
 		$("#shallows").val(img.attr("islshallow_ocean"))
