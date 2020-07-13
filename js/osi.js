@@ -253,13 +253,6 @@ $(document).ready(function(){
 	}
 
 
-
-	for(let p=1;p<=MAX_PAGE;p++){
-		$(".page:nth-child("+p+")").hide();
-	}
-	$(".page:nth-child(1)").show();
-
-
 	$("input[type=button], input[type=submit], button").click(function(e){
 		$(this).blur();
 	});
