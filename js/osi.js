@@ -217,7 +217,6 @@ $(document).ready(function(){
 		let preview = $("#gallery-preview img");
 
 		$.each(attrs, function() {
-			console.log(this.name==="style");
 			if(this.name !== "style"){
 				preview.attr(this.name, this.value);
 			}
@@ -278,9 +277,36 @@ $(document).ready(function(){
 		changePage(GENERATOR);
 	});
 	$("#copy").click(function(e){
-		//<a rel=noopener href=index.php?islandCopy="+id+">"
-		//window.location.href = window.location.href.split("index.php")[0]+"index.php?isLandCopy="+$("#gallery-preview img").attr("islid");
-		//changePage(GENERATOR);
+
+		let img = $(this);
+
+		$("#seed").val(img.attr("seed"))
+		$("#val").val(img.attr("name"))
+		$("#colour_background").prop("checked",img.attr("colour_background")===1);
+		$("#ocean").val(img.attr("deep_ocean"))
+		$("#shallows").val(img.attr("shallow_ocean"))
+		$("#ground1").val(img.attr("land_one"))
+		$("#ground2").val(img.attr("land_two"))
+		$("#ground3").val(img.attr("land_three"))
+		$("#beach").val(img.attr("beach"))
+		$("#rock1").val(img.attr("rock_one"))
+		$("#rock2").val(img.attr("rock_two"))
+		$("#lava1").val(img.attr("lava_one"))
+		$("#lava2").val(img.attr("lava_two"))
+		$("#time").val(parseInt(img.attr("sunset")))
+		$("#motu").prop("checked",img.attr("has_motu")===1);
+		$("#reef").prop("checked",img.attr("has_reef")===1);
+		$("#volcano").prop("checked",img.attr("is_volcano")===1);
+		$("#atoll").prop("checked",img.attr("is_atoll")===1);
+		$("#village").prop("checked",img.attr("has_town")===1);
+		$("#trees").prop("checked",img.attr("has_trees")===1);
+
+		$("#tree_amt").val(parseInt(img.attr("tree_amt")))
+		$("#persistence").val(parseFloat(img.attr("isl_persist")))
+		$("#lacunarity").val(parseFloat(img.attr("isl_lac")))
+		$("#scale").val(parseFloat(img.attr("isl_scale")))
+
+		changePage(GENERATOR);
 	});
 
 	$(".home").click(function(e){
