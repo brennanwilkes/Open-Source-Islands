@@ -29,11 +29,6 @@
 		<script type="text/javascript" src="js/osi.js"></script>
 	</head>
 	<body>
-		<?php
-			if(isset($_GET["isLandCopy"])){
-				get_edit_params();
-			}
-		?>
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
 		<main>
 			<form method="post">

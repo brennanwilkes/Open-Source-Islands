@@ -211,9 +211,16 @@ $(document).ready(function(){
 	}
 	$("#gal div").children().click(function(e){
 		changePage(GALLERYPREVIEW);
-		$("#gallery-preview img").attr("src",$(this).attr("src"))
-		$("#gallery-preview img").attr("islid",$(this).attr("islid"))
-		$("#gallery-preview h1")[0].innerHTML = "TEST TEST"
+
+		let selected = $(this);
+		let attrs = selected.prop("attributes");
+		let preview = $("#gallery-preview img");
+
+		$.each(attributes, function() {
+			preview.attr(this.name, this.value);
+		});
+
+		$("#gallery-preview h1")[0].innerHTML = preview.attr("islname");
 	});
 
 
@@ -269,7 +276,7 @@ $(document).ready(function(){
 	});
 	$("#copy").click(function(e){
 		//<a rel=noopener href=index.php?islandCopy="+id+">"
-		window.location.href = window.location.href.split("index.php")[0]+"index.php?isLandCopy="+$("#gallery-preview img").attr("islid");
+		//window.location.href = window.location.href.split("index.php")[0]+"index.php?isLandCopy="+$("#gallery-preview img").attr("islid");
 		//changePage(GENERATOR);
 	});
 

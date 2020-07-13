@@ -32,8 +32,6 @@
 
 			echo "></img>";
 		}
-
-		//echo "<img src=concept-art/Aru.png><img src=concept-art/Atalia-Nanai.png><img src=concept-art/Hokulele-Kekoa.png><img src=concept-art/Kainano-Taualai.png><img src=concept-art/Murihau.png>";
 	}
 
 	function handle_submit(){
@@ -84,30 +82,6 @@
 		$myfile = fopen($fn, "w") or die("Unable to open file!");
 		fwrite($myfile, $_POST["imageData"]);
 		fclose($myfile);
-
 	}
-
-	function get_edit_params(){
-		global $pdo;
-
-		echo "<div id=loadSettingsRequest>";
-
-		$statement = $pdo->prepare("SELECT * FROM islands WHERE id=?");
-		$statement->execute([$_GET["isLandCopy"]]);
-		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
-		foreach($row as $setting) {
-			echo "<span>".$setting[0]."</span>";
-		}
-
-
-
-		echo "</div>";
-
-
-	}
-
 
 ?>
