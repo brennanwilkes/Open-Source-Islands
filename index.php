@@ -39,7 +39,7 @@
 					<button type=button id=documentation>Documentation</button>
 					<button type=button id=about>About</button>
 				</nav>
-				<div class=page>
+				<div class=page style="display: none">
 					<h1>Properties</h1>
 					<div>
 						<label for="name">Name</label>
@@ -95,7 +95,7 @@
 						<input type="button" value="next">
 					</div>
 				</div>
-				<div class=page>
+				<div class=page style="display: none">
 					<h1>Generation</h1>
 
 					<div>
@@ -128,7 +128,7 @@
 						<input type="button" value="next">
 					</div>
 				</div>
-				<div class=page>
+				<div class=page  style="display: none">
 					<h1>Colours</h1>
 
 					<div>
@@ -178,7 +178,7 @@
 						<input type="button" value="Compile" id="compile">
 					</div>
 				</div>
-				<div class=page>
+				<div class=page  style="display: none">
 					<h1>Compiling</h1>
 					<div id=loading-container>
 						<div id=loading-circle>
@@ -186,7 +186,7 @@
 						</div>
 					</div>
 				</div>
-				<div class=page>
+				<div class=page  style="display: none">
 					<h1>Preview</h1>
 					<img id=preview_display>
 					<div>
@@ -199,7 +199,7 @@
 					</div>
 					<input type="submit" value="Submit">
 				</div>
-				<div class=page id=gal>
+				<div class=page id=gal style="display: none">
 					<h1>Island Gallery</h1>
 					<div>
 						<?php
@@ -208,7 +208,7 @@
 					</div>
 					<button type=button class=home>Home</button>
 				</div>
-				<div class=page id=gallery-preview>
+				<div class=page id=gallery-preview  style="display: none">
 					<h1></h1>
 					<img>
 					<div>
@@ -216,7 +216,7 @@
 						<input type="button" value="Edit" id="copy">
 					</div>
 				</div>
-				<div class=page>
+				<div class=page  style="display: none">
 					<h1 id=doc>Documentation</h1>
 					<button type=button id=devnotes>Developer Notes</button>
 					<a target="_blank" href="documentation/index.html">
@@ -230,19 +230,19 @@
 					<button type=button id=sources>Sources & Attributions</button>
 					<button type=button class=home>Home</button>
 				</div>
-				<div class=page>
+				<div class=page style="display: none">
 					<h1>Dev Notes</h1>
 					<input type="button" value="back">
 
 				</div>
-				<div class=page>
+				<div class=page style="display: none">
 					<h1>Sources</h1>
 					<p>
 
 					</p>
 					<input type="button" value="back">
 				</div>
-				<div class=page>
+				<div class=page style="display: none">
 					<h1 id=bw>Brennan Wilkes</h1>
 					<a target="_blank" href="https://github.com/brennanwilkes">
 						<label for="github">Github</label>
