@@ -217,6 +217,7 @@ $(document).ready(function(){
 		let preview = $("#gallery-preview img");
 
 		$.each(attrs, function() {
+			console.log(this.name);
 			if(this.name !== "style"){
 				preview.attr(this.name, this.value);
 			}
