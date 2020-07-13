@@ -217,7 +217,9 @@ $(document).ready(function(){
 		let preview = $("#gallery-preview img");
 
 		$.each(attrs, function() {
-			preview.attr(this.name, this.value);
+			if(this.name !== "style"){
+				preview.attr(this.name, this.value);
+			}
 		});
 
 		$("#gallery-preview h1")[0].innerHTML = preview.attr("islname");
