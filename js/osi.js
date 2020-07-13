@@ -216,7 +216,7 @@ $(document).ready(function(){
 		let attrs = selected.prop("attributes");
 		let preview = $("#gallery-preview img");
 
-		$.each(attributes, function() {
+		$.each(attrs, function() {
 			preview.attr(this.name, this.value);
 		});
 
