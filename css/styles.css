@@ -161,7 +161,7 @@ a{
 	max-width: 60%;
 }
 
-.page div input[type=text], p, p > *{
+.page div input[type=text], .scrollable-text, .scrollable-text > *{
 	text-transform: none;
 }
 
@@ -192,7 +192,7 @@ label, input[type=button], input[type=submit], button{
 	padding-top: 0.25%;
 }
 
-label, input[type=button], input[type=submit], button, p, p > *{
+label, input[type=button], input[type=submit], button, .scrollable-text, .scrollable-text > *{
 	color: #222;
 }
 
@@ -335,7 +335,7 @@ input[type=text], input[type=button], input[type=submit]{
 	-webkit-appearance: none;
 }
 
-.page > p{
+.page > .scrollable-text{
 	border-radius: 1vmin;
 	padding: 5%;
 	width: 70%;
@@ -346,19 +346,19 @@ input[type=text], input[type=button], input[type=submit]{
 	overflow-x: hidden;
 }
 
-.page > p, .page > p > *{
+.page > .scrollable-text, .page > .scrollable-text > *{
 	font-family: "Times New Roman", "Inconsolata", serif;
 	font-size: 2vmin;
 	line-height: 1.25;
 }
 
-.page > p > span{
+.scrollable-text > h3{
 	font-size: 2.75vmin;
 	line-height: 1.5;
 	font-weight: bold;
 }
 
-.page > p > a{
+.page > .scrollable-text > a{
 	text-decoration: underline;
 	color: blue;
 }

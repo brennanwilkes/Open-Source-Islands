@@ -237,23 +237,26 @@
 				</div>
 				<div class=page style="display: none">
 					<h1>Sources</h1>
-					<p>
+					<div class=scrollable-text>
 
-						<span>Perlin Noise</span><br />
+						<h3>Perlin Noise</h3>
 
-						I have cloned and utilized the Perlin Noise algorithm, developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle, as an adaptation to Perlin's original design. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
+						<p>
+							I have cloned and utilized the Perlin Noise algorithm, developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle, as an adaptation to Perlin's original design. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
+						</p>
 
-						<br /><br />
 
-						<span>Graphics</span><br />
+						<h3>Graphics</h3>
 
-						Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links<br />
+						<p>
+							Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links<br />
+						</p>
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
 
 
-					</p>
+					</div>
 					<input type="button" value="back">
 				</div>
 				<div class=page style="display: none">
