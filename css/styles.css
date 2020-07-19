@@ -359,6 +359,9 @@ article > h3{
 	margin-bottom: 2vh;
 	margin-top: 4vh;
 }
+article > h3:first-of-type{
+	margin-top: 0;
+}
 
 .page > article > a{
 	text-decoration: underline;
