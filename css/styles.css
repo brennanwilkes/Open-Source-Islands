@@ -188,7 +188,7 @@ h1, h2{
 	color: #444;
 }
 
-label, input[type=button], input[type=submit], button{
+label, input[type=button], input[type=submit], button, p{
 	color: #222;
 	padding-top: 0.25%;
 }
@@ -339,6 +339,7 @@ input[type=text], input[type=button], input[type=submit]{
 	width: 70%;
 	height: 50%;
 	background-color: #F8E7C9;
+
 	overflow-y: scroll;
 	overflow-x: hidden;
 	font-family: "Times New Roman", "Inconsolata", serif;
