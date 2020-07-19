@@ -352,7 +352,7 @@ input[type=text], input[type=button], input[type=submit]{
 	line-height: 1.25;
 }
 
-.page > p > h4{
+.page > p > span{
 	font-size: 2.75vmin;
 	line-height: 1.5;
 	font-weight: bold;
