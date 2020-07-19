@@ -242,9 +242,9 @@
 						<h3>Perlin Noise</h3>
 
 						<p>
-							I have cloned and utilized the Perlin Noise algorithm, developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle, as an adaptation to Perlin's original design. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
+							I have cloned and utilized the Perlin Noise algorithm, developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle, as an adaptation to Perlin's original design. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from
 						</p>
-
+						<a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
 
 						<h3>Graphics</h3>
 
@@ -254,7 +254,6 @@
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
-
 
 					</article>
 					<input type="button" value="back">
