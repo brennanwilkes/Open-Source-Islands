@@ -15,9 +15,6 @@ var pageHistory = new Array();
 
 var island;
 
-var isMoving = false;
-var direction = -1;
-
 const HOMEPAGE = 1;
 const GENERATOR = 2;
 const GALLERY = 7;
@@ -94,14 +91,19 @@ function compileIsland(){
 		set = new IslandSettings();
 	}
 
-	if($("#name").val().length > 0){
-		set.name = $("#name").val();
-	}
 
-	set.HAS_MOTU = $("#motu").prop("checked");
-	set.HAS_REEF = $("#reef").prop("checked");
-	set.IS_ATOLL = $("#atoll").prop("checked");
-	set.IS_VOLCANO = $("#volcano").prop("checked");
+	let boolCheck = [
+		["motu","HAS_MOTU"],
+		["reef","HAS_REEF"],
+		["atoll","IS_ATOLL"],
+		["volcano","IS_VOLCANO"],
+		["trees","HAS_TREES"],
+		["background","colour_background"]
+	];
+	for(let i=0;i<boolCheck.length;i++){
+		set[boolCheck[i][1]] = $("#"+boolCheck[i][0]).prop("checked");
+
+	}
 
 	set.ISL_PERSIST = parseInt($("#persistence").val())/10;
 	set.ISL_LAC = parseInt($("#lacunarity").val())/100;
@@ -109,41 +111,30 @@ function compileIsland(){
 
 	set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
 	set.village_size = parseInt($("#village_size").val());
-	set.HAS_TREES = $("#trees").prop("checked");
 	set.tree_amt = parseInt($("#tree_amt").val())*20;
 
-	if($("#ocean").val().length > 0){
-		set.DEEP_OCEAN = $("#ocean").val();
-	}
-	if($("#shallows").val().length > 0){
-		set.SHALLOW_OCEAN = $("#shallows").val();
-	}
-	if($("#ground1").val().length > 0){
-		set.LAND_ONE = $("#ground1").val();
-	}
-	if($("#ground2").val().length > 0){
-		set.LAND_TWO = $("#ground2").val();
-	}
-	if($("#ground3").val().length > 0){
-		set.LAND_THREE = $("#ground3").val();
-	}
-	if($("#beach").val().length > 0){
-		set.BEACH = $("#beach").val();
-	}
-	if($("#rock1").val().length > 0){
-		set.ROCK_ONE = $("#rock1").val();
-	}
-	if($("#rock2").val().length > 0){
-		set.ROCK_TWO = $("#rock2").val();
-	}
-	if($("#lava1").val().length > 0){
-		set.LAVA_ONE = $("#lava1").val();
-	}
-	if($("#lava2").val().length > 0){
-		set.LAVA_TWO = $("#lava2").val();
+	let valsCheck = [
+		["name","name"],
+		["ocean","DEEP_OCEAN"],
+		["shallows","SHALLOW_OCEAN"],
+		["ground1","LAND_ONE"],
+		["ground2","LAND_TWO"],
+		["ground3","LAND_THREE"],
+		["beach","BEACH"],
+		["rock1","ROCK_ONE"],
+		["rock2","ROCK_TWO"],
+		["lava1","LAVA_ONE"],
+		["lava2","LAVA_TWO"]
+	];
+	let tempLookup;
+	for(let i=0;i<valsCheck.length;i++){
+		tempLookup = $("#"+valsCheck[i][0]).val();
+		if(tempLookup.length > 0){
+			set[valsCheck[i][1]] = tempLookup;
+		}
 	}
 
-	set.colour_background = $("#background").prop("checked");
+
 	set.time = parseInt($("#time").val());
 
 
