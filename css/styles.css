@@ -363,9 +363,13 @@ article > h3:first-of-type{
 	margin-top: 0;
 }
 
-.page > article > a{
+article > a{
 	text-decoration: underline;
 	color: blue;
+}
+
+article > p:last-of-type{
+	margin-top:4vh;
 }
 
 /*////////////////////////*/

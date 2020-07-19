@@ -29,7 +29,7 @@ const ABOUT = 12;
 const MAX_PAGE = 12;
 
 /*
-	https://stackoverflow.com/questions/5899783/detect-safari-using-jquery
+	https://stackoverflow.com/a/7768006
 
 	Got this regex safari detector from stack overflow. Hope its ok.
 	Apparently safari decides that if you apply any styling to an HTML5

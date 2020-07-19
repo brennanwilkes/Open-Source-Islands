@@ -249,11 +249,22 @@
 						<h3>Graphics</h3>
 
 						<p>
-							Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links<br />
+							Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links.
 						</p>
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
-						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
+						<a href="https://commons.wikimedia.org/wiki/File:Linkedin.svg" target="_blank">commons.wikimedia.org/Linkedin.svg</a>
+
+						<h3>Regex</h3>
+
+						<p>
+							In order to overcome challenges unique to the Safari browser, I apply a few CSS rules to all non-safari browsers. To facilitate this, I use a small regex string to detect Safari, which I directly copied from the stack-overflow thread listed below.
+						</p>
+						<a href="https://stackoverflow.com/a/7768006" target="_blank">stackoverflow.com/a/7768006</a>
+
+						<p>
+							All other code, IP, and assets were developed exclusively by Brennan Wilkes &copy;2020
+						</p>
 
 					</article>
 					<input type="button" value="back">
