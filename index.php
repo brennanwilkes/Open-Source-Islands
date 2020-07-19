@@ -237,7 +237,7 @@
 				</div>
 				<div class=page style="display: none">
 					<h1>Sources</h1>
-					<div class=scrollable-text>
+					<article>
 
 						<h3>Perlin Noise</h3>
 
@@ -256,7 +256,7 @@
 						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
 
 
-					</div>
+					</article>
 					<input type="button" value="back">
 				</div>
 				<div class=page style="display: none">
