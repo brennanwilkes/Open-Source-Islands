@@ -341,7 +341,7 @@ input[type=text], input[type=button], input[type=submit]{
 	width: 70%;
 	height: 50%;
 	background-color: #F8E7C9;
-
+	text-align: justify;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -349,6 +349,7 @@ input[type=text], input[type=button], input[type=submit]{
 .page > p, .page > p > *{
 	font-family: "Times New Roman", "Inconsolata", serif;
 	font-size: 2vmin;
+	line-height: 1.25;
 }
 
 /*////////////////////////*/
