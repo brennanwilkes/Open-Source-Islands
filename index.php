@@ -238,10 +238,13 @@
 				<div class=page style="display: none">
 					<h1>Sources</h1>
 					<p>
+
+						<h4>Perlin Noise</h4>
 						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
 
 						<br /><br />
 
+						<h4>Perlin Noise</h4>
 						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from https://github.com/josephg/noisejs
 
 
