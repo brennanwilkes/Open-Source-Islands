@@ -20,7 +20,7 @@
 		<link rel="icon" href="icon.png" type="image/icon type">
 
 
-		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Ubuntu:wght@300&Inconsolata:wght@300display=swap" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 		<script type="text/javascript" src="js/island-generator/name_list.js"></script>
@@ -238,39 +238,7 @@
 				<div class=page style="display: none">
 					<h1>Sources</h1>
 					<p>
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test
-						test test test test test test test test test test test test test test 
+
 					</p>
 					<input type="button" value="back">
 				</div>
