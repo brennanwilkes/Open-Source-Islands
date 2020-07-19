@@ -238,11 +238,11 @@
 				<div class=page style="display: none">
 					<h1>Sources</h1>
 					<p>
-						<ul>
-							<li>
-								
-							</li>
-						</ul>
+						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from https://github.com/josephg/noisejs
+
+						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from https://github.com/josephg/noisejs
+
+						
 					</p>
 					<input type="button" value="back">
 				</div>
