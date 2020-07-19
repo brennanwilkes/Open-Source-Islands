@@ -237,7 +237,7 @@ input:hover, button:hover, div > a:hover, div > a *:hover{
 input[type=text]:hover{
 	cursor:text;
 }
-input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus, a:active{
+input[type=button]:active, input[type=submit]:active, button:active, input:focus, button:focus, a:active, a:focus{
 	background-color: #DFBB7C;
 }
 
