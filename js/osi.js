@@ -253,39 +253,46 @@ $(document).ready(function(){
 		turnPage(1);
 	});
 
-	$("input[value=back]").click(function(e){
-		changePage();
-	});
 
-	$("#edit").click(function(e){
-		changePage(GENERATOR);
-	});
 	$("#copy").click(function(e){
 
 		let img = $("#gallery-preview img");
 
-
-		$("#seed").val(img.attr("islseed"))
-		$("#name").val(img.attr("islname"))
 		$("#colour_background").prop("checked",img.attr("islcolour_background")==="1");
-		$("#ocean").val(img.attr("isldeep_ocean"))
-		$("#shallows").val(img.attr("islshallow_ocean"))
-		$("#ground1").val(img.attr("islland_one"))
-		$("#ground2").val(img.attr("islland_two"))
-		$("#ground3").val(img.attr("islland_three"))
-		$("#beach").val(img.attr("islbeach"))
-		$("#rock1").val(img.attr("islrock_one"))
-		$("#rock2").val(img.attr("islrock_two"))
-		$("#lava1").val(img.attr("isllava_one"))
-		$("#lava2").val(img.attr("isllava_two"))
-		$("#time").val(parseInt(img.attr("islsunset")))
-		$("#motu").prop("checked",img.attr("islhas_motu")==="1");
-		$("#reef").prop("checked",img.attr("islhas_reef")==="1");
-		$("#volcano").prop("checked",img.attr("islis_volcano")==="1");
-		$("#atoll").prop("checked",img.attr("islis_atoll")==="1");
-		$("#village").prop("checked",img.attr("islhas_town")==="1");
-		$("#trees").prop("checked",img.attr("islhas_trees")==="1");
 
+		let valsSet = [
+			["seed","islseed"],
+			["name","islname"],
+			["ocean","isldeep_ocean"],
+			["shallows","islshallow_ocean"],
+			["ground1","islland_one"],
+			["ground2","islland_two"],
+			["ground3","islland_three"],
+			["beach","islbeach"],
+			["rock1","islrock_one"],
+			["rock2","islrock_two"],
+			["lava1","isllava_one"],
+			["lava2","isllava_two"]
+		];
+
+		for(let i=0;i<valsSet.length;i++){
+			$("#"+valsSet[i][0]).val(img.attr(valsSet[i][1]));
+		}
+
+		let boolsSet = [
+			["motu","islhas_motu"],
+			["reef","islhas_reef"],
+			["volcano","islis_volcano"],
+			["atoll","islis_atoll"],
+			["village","islhas_town"],
+			["trees","islhas_trees"]
+		];
+
+		for(let i=0;i<boolsSet.length;i++){
+			$("#"+boolsSet[i][0]).prop("checked",img.attr(boolsSet[i][1])==="1");
+		}
+
+		$("#time").val(parseInt(img.attr("islsunset")))
 		$("#tree_amt").val(parseInt(img.attr("isltree_amt")))
 		$("#village_size").val(parseInt(img.attr("islvillage_size")))
 		$("#persistence").val(parseFloat(img.attr("islisl_persist")))
@@ -295,13 +302,7 @@ $(document).ready(function(){
 		changePage(GENERATOR);
 	});
 
-	$(".home").click(function(e){
-		changePage(HOMEPAGE);
-	});
 
-	$("#generator").click(function(e){
-		changePage(GENERATOR);
-	});
 
 	$("#gallery").click(function(e){
 		changePage(GALLERY);
@@ -321,21 +322,7 @@ $(document).ready(function(){
 		},5);
 	});
 
-	$("#documentation").click(function(e){
-		changePage(DOCS);
-	});
 
-	$("#about").click(function(e){
-		changePage(ABOUT);
-	});
-
-	$("#devnotes").click(function(e){
-		changePage(DEVNOTES);
-	});
-
-	$("#sources").click(function(e){
-		changePage(SOURCES);
-	});
 
 	$("#compile, #recompile").click(function(e){
 		turnPage(this.id==="compile" ? 1 : -1);
@@ -358,6 +345,29 @@ $(document).ready(function(){
 	$("#save").click(function(e){
 		island.saveImage($("#village").prop("checked"),true);
 	});
+
+	let buttonMap = [
+		["#documentation",DOCS],
+		["#about",ABOUT],
+		["#devnotes",DEVNOTES],
+		["#sources",SOURCES],
+		["input[value=back]",undefined],
+		["#edit",GENERATOR],
+		[".home",HOMEPAGE],
+		["#generator",undefined],
+		["#edit",GENERATOR],
+	];
+
+	for(let i=0;i<buttonMap.length;i++){
+		$(buttonMap[i][0]).click(function(e){
+			changePage(buttonMap[i][1]);
+		});
+	}
+
+	$("#documentation").click(function(e){
+		changePage(DOCS);
+	});
+
 
 	$("form").submit(function(e){
 		$("<input />")
