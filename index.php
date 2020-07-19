@@ -241,11 +241,16 @@
 
 						<span>Perlin Noise</span><br />
 
-						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
+						I have cloned and utilized the Perlin Noise algorithm, developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle, as an adaptation to Perlin's original design. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from <a href="https://github.com/josephg/noisejs" target="_blank">github.com/josephg/noisejs</a>
 
 						<br /><br />
 
-						Perlin Noise algorithm, originally developed by Stefan Gustavson, Peter Eastman, and Joseph Gentle. This code was placed in the public domain by its original author Stefan Gustavson. My exact version can be cloned from https://github.com/josephg/noisejs
+						<span>Graphics</span><br />
+
+						Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links<br />
+						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
+						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
+						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
 
 
 					</p>

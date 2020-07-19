@@ -358,6 +358,11 @@ input[type=text], input[type=button], input[type=submit]{
 	font-weight: bold;
 }
 
+.page > p > a{
+	text-decoration: underline;
+	color: blue;
+}
+
 /*////////////////////////*/
 
 .island-image{
