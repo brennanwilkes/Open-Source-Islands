@@ -92,7 +92,7 @@ function gen_noise_map(width, height, scale, oct, persist, lac, seed, normalize=
 				yy = y / scale * freq;
 
 				//generate base noise
-				map[x][y] += (noise.perlin2(xx, yy)*2-1) * amp;
+				map[x][y] += (noise.simplex2(xx, yy)*2-1) * amp;
 
 				//update modifiers
 				amp *= persist;

@@ -238,7 +238,11 @@
 				<div class=page style="display: none">
 					<h1>Sources</h1>
 					<p>
-						<a href="javascript:changePage(GALLERY)">Click to go to gallery</a>
+						<ul>
+							<li>
+								
+							</li>
+						</ul>
 					</p>
 					<input type="button" value="back">
 				</div>
