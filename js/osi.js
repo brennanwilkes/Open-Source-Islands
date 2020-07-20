@@ -324,28 +324,28 @@ $(document).ready(function(){
 
 
 
-	$("#compile, #recompile").click(function(e){
-		turnPage(this.id==="compile" ? 1 : -1);
-		if(this.id==="recompile"){
-			$("#seed").val("");
-			$("#name").val("");
-		}
-		setTimeout(function(){
-			if(compileIsland()){
-				turnPage(1);
-				$("#seed").val(island.replicable_seed);
-				$("#name").val(island.name);
-			}
-			else{
-				changePage(GENERATOR);
-			}
-		},600);
+
+
+
+
+
+	$("form").submit(function(e){
+		$("<input />")
+			.attr("type", "hidden")
+			.attr("name", "imageData")
+			.attr("value", $("#preview_display").attr("src"))
+			.appendTo(this);
+		return true;
 	});
 
-	$("#save").click(function(e){
-		island.saveImage($("#village").prop("checked"),true);
-	});
 
+	if(!SAFARI){
+		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
+	}
+});
+
+
+function setUpButtonClicks(){
 	let buttonMap = [
 		["#documentation",DOCS],
 		["#about",ABOUT],
@@ -364,22 +364,27 @@ $(document).ready(function(){
 		});
 	}
 
-	$("#documentation").click(function(e){
-		changePage(DOCS);
+	$("#compile, #recompile").click(compileEvent);
+
+	$("#save").click(function(e){
+		island.saveImage($("#village").prop("checked"),true);
 	});
+}
 
-
-	$("form").submit(function(e){
-		$("<input />")
-			.attr("type", "hidden")
-			.attr("name", "imageData")
-			.attr("value", $("#preview_display").attr("src"))
-			.appendTo(this);
-		return true;
-	});
-
-
-	if(!SAFARI){
-		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
+function compileEvent(e){
+	turnPage(this.id==="compile" ? 1 : -1);
+	if(this.id==="recompile"){
+		$("#seed").val("");
+		$("#name").val("");
 	}
-});
+	setTimeout(function(){
+		if(compileIsland()){
+			turnPage(1);
+			$("#seed").val(island.replicable_seed);
+			$("#name").val(island.name);
+		}
+		else{
+			changePage(GENERATOR);
+		}
+	},600);
+}
