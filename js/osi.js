@@ -399,5 +399,5 @@ function compileEvent(e){
 		else{
 			changePage(GENERATOR);
 		}
-	},600);
+	},200);
 }
