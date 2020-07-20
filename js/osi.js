@@ -64,6 +64,9 @@ function changePage(page){
 		stackPage();
 	}
 
+	console.log(page);
+	console.log(currentPage);
+
 	$(".page:nth-child("+currentPage+")").fadeOut();
 	currentPage = page;
 	$(".page:nth-child("+currentPage+")").fadeIn();
