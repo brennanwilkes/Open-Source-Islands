@@ -288,16 +288,21 @@ function setUpButtonClicks(){
 		turnPage(1);
 	});
 
-	$("#compile, #recompile").click(compileEvent);
-
-	$("#save").click(saveEvent);
-
-	$("#gallery").click(galleryEvent);
-
-	$("#copy").click(copyEvent);
-
-
 	$("#gal div").children().click(imageClickEvent);
+	
+
+
+	let complexEvents = [
+		["#compile, #recompile",compileEvent],
+		["#save",saveEvent],
+		["#gallery",galleryEvent],
+		["#copy",copyEvent]
+	];
+
+	for(let i=0;i<complexEvents.length;i++){
+		$(complexEvents[i][0]).click(complexEvents[i][1]);
+	}
+
 }
 
 function imageClickEvent(e){
