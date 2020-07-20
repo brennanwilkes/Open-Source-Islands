@@ -355,9 +355,8 @@ function setUpButtonClicks(){
 		["#devnotes",DEVNOTES],
 		["#sources",SOURCES],
 		["input[value=back]",undefined],
-		["#edit",GENERATOR],
 		[".home",HOMEPAGE],
-		["#generator",undefined],
+		["#generator",GENERATOR],
 		["#edit",GENERATOR]
 	];
 
