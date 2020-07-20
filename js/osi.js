@@ -355,10 +355,14 @@ function setUpButtonClicks(){
 		["#edit",GENERATOR],
 		[".home",HOMEPAGE],
 		["#generator",undefined],
-		["#edit",GENERATOR],
+		["#edit",GENERATOR]
 	];
 
 	for(let i=0;i<buttonMap.length;i++){
+		console.log(buttonMap[i]);
+		console.log(buttonMap[i][0]);
+		console.log(buttonMap[i][1]);
+
 		$(buttonMap[i][0]).click(function(e){
 			changePage(buttonMap[i][1]);
 		});
