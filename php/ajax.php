@@ -1,3 +1,3 @@
 <?php
-	echo $_POST["id"].$_POST["mode"].;
+	echo "suc";// $_POST["id"].$_POST["mode"].;
 ?>
