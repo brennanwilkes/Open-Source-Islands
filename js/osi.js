@@ -499,6 +499,7 @@ function imageClickEvent(e){
 }
 
 function getIslandData(param,id){
+	var temp;
 	$.ajax({
 		url: "php/ajax.php",
 		method: "POST",
@@ -506,10 +507,11 @@ function getIslandData(param,id){
 			id: id,
 			request: param
 		}}).done(function(data){
-			return data;
+			temp = data;
 		}).fail(function(jqXHR,status){
 			alert("failed! "+jqXHR+status);
 		});
+	return temp;
 }
 
 /**
