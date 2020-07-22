@@ -24,7 +24,7 @@
 
 
 		$res = $sql->fetch(PDO::FETCH_ASSOC);
-		echo "name= ".$res[$_POST["request"]];
+		echo $res[$_POST["request"]];
 	}
 	else{
 		echo die("ERROR");

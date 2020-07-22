@@ -503,6 +503,7 @@ function getIslandData(param,id){
 	$.ajax({
 		url: "php/ajax.php",
 		method: "POST",
+		async: false,
 		data: {
 			id: id,
 			request: param
