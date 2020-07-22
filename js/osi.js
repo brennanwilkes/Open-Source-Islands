@@ -500,7 +500,7 @@ function imageClickEvent(e){
 	Gets a specific island param from the database of island with specific idea
 	@param {number} id ID to query
 	@param {string} param Param to query for
-	@param {function} behaviour Special behaviour to run
+	@param {function} behaviour Special behaviour to run. If left undefined, value will be returned
 	@returns {string} data from database
 	@memberof osi
 */
@@ -509,7 +509,7 @@ function getIslandData(param,id, behaviour){
 	$.ajax({
 		url: "php/ajax.php",
 		method: "POST",
-		async: (behaviour!=undefed),
+		async: (behaviour!=undefined),
 		data: {
 			id: id,
 			request: param
