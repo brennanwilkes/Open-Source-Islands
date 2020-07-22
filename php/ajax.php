@@ -10,7 +10,7 @@
 		$sql->bindValue(":idParam", (int)$_POST["id"],PDO::PARAM_INT);
 		$sql->execute();
 
-		echo $sql->errorInfo();
+		echo $sql->errorInfo()[0];
 		echo $sql->debugDumpParams();
 
 
