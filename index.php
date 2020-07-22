@@ -185,9 +185,9 @@
 						</div>
 					</div>
 				</div>
-				<div class=page  style="display: none">
+				<div class=page  style="display: none" id="preview-display-wrapper">
 					<h2>Preview</h2>
-					<img id=preview_display src="" alt="Island image preview">
+
 					<div>
 						<input type="button" value="Edit" id="edit">
 						<input type="button" value="New Seed" id="recompile">
@@ -208,8 +208,7 @@
 					<button type=button class=home>Home</button>
 				</div>
 				<div class=page id=gallery-preview  style="display: none">
-					<h2></h2>
-					<img src="" alt="Island image preview">
+					<h2>PREVIEW</h2>
 					<div>
 						<input type="button" value="back">
 						<input type="button" value="Edit" id="copy">

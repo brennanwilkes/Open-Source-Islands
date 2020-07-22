@@ -329,6 +329,10 @@ function main(){
 	//Set background page for smoother transitions
 	$("form").append("<div class=page id=backgroundPage></div>");
 
+	//Create temp image holders
+	$("<img src=\"\" alt=\"Island image preview\">").insertAfter("#gallery-preview h2");
+	$("<img id=preview_display src=\"\" alt=\"Island image preview\">").insertAfter("#preview-display-wrapper h2");
+
 	//IOS mode - Adjust element heights to match IOS screen size. Damn you apple!!! >:(
 	if(Math.abs($("body").height() - window.innerHeight) > 1){
 		$("body").height(window.innerHeight);
