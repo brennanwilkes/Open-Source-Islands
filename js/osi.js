@@ -66,6 +66,14 @@ const HOMEPAGE = 1;
 const GENERATOR = 2;
 
 /**
+	Compiling index enum
+	@type {number}
+	@memberof osi
+	@constant
+*/
+const COMPILING = 5;
+
+/**
 	Gallery index enum
 	@type {number}
 	@memberof osi
@@ -533,6 +541,8 @@ function getIslandData(param,id, behaviour){
 */
 function copyEvent(e){
 
+	changePage(COMPILING);
+
 	//jQuery request
 	let img = $("#gallery-preview img");
 	let imgID = img.attr("alt");
@@ -572,7 +582,7 @@ function copyEvent(e){
 
 	//Copy state into checkboxes
 	for(let i=0;i<boolsSet.length;i++){
-		$("#"+boolsSet[i][0]).prop("checked",getIslandData(valsSet[i][1],imgID)==="1");
+		$("#"+boolsSet[i][0]).prop("checked",getIslandData(boolsSet[i][1],imgID)==="1");
 	}
 
 	//Special case attribute copy
@@ -632,7 +642,7 @@ function saveEvent(e){
 function compileEvent(e){
 
 	//Recompile or compile normal navigation. Navigates to compile screen
-	turnPage(this.id==="compile" ? 1 : -1);
+	changePage(COMPILING);
 
 	//Resets seed and name on recompile
 	if(this.id==="recompile"){
