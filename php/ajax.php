@@ -16,7 +16,7 @@
 		echo "did it work";
 	}
 	else{
-		die("ERROR"));
+		echo 'no';//die("ERROR"));
 	}
 
 ?>
