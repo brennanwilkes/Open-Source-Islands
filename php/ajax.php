@@ -5,7 +5,7 @@
 
 		$sql = "SELECT ? FROM islands WHERE id=?";
 		$pdo->prepare($sql)->execute([$req,$id]);
-		echo $pdo->fetch();
+		echo "suc";
 	}
 	else{
 		die(json_encode(array("message"=>"ERROR","code"=>422)));
