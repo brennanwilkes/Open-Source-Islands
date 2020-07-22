@@ -1,6 +1,6 @@
 <?php
-	require_once("access/config.php");
-	require_once("connection.php");
+	include_once("access/config.php");
+	include_once("connection.php");
 
 	function get_images(){
 		global $pdo;

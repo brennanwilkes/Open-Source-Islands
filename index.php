@@ -2,9 +2,9 @@
 	ini_set('display_errors', 1);
 	error_reporting(E_ALL);
 
-	require_once 'php/backend.php';
-	require_once 'php/connection.php';
-	require_once 'php/access/config.php';
+	include_once('php/backend.php');
+	include_once('php/connection.php');
+	include_once('php/access/config.php');
 
 	$pdo = db_connect();
 
