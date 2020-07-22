@@ -504,7 +504,7 @@ function imageClickEvent(e){
 		}}).done(function(response){
 			alert(response);
 		}).fail(function(jqXHR,textStatus){
-			alert("failed");
+			alert("failed "+jqXHR+textStatus);
 		});
 }
 
