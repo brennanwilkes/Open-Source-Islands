@@ -6,11 +6,6 @@
 	function get_images(){
 		global $pdo;
 
-
-
-		$attrs = array("id", "seed", "name", "colour_background", "deep_ocean", "shallow_ocean", "land_one", "land_two", "land_three", "beach", "rock_one", "rock_two", "lava_one", "lava_two", "sunset", "has_motu", "has_reef", "is_volcano", "is_atoll", "has_town", "has_trees", "tree_amt", "village_size", "isl_persist", "isl_lac", "isl_scale", "submission_date", "filename");
-
-
 		$sql = "SELECT * FROM islands ORDER BY submission_date";
 		$result = $pdo->query($sql);
 
@@ -21,9 +16,6 @@
 
 			$tmp = $tmp." id='".$row["id"]."'";
 			$tmp = $tmp." alt='Island Image'";
-			//for ($i = 0; $i < count($attrs)-1; $i++) {
-			//	$tmp=$tmp." isl".$attrs[$i]."='".$row[$i]."'";
-			//}
 
 			$tmp=$tmp."></img>";
 			$echotmp=$tmp.$echotmp;
