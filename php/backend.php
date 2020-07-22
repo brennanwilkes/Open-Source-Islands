@@ -19,9 +19,11 @@
 		while ($row = $result->fetch()){
 			$tmp = "<img src='".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH)."'";
 
-			for ($i = 0; $i < count($attrs)-1; $i++) {
-				$tmp=$tmp." isl".$attrs[$i]."='".$row[$i]."'";
-			}
+			$tmp = $tmp." id='".$row["id"]."'";
+			$tmp = $tmp." alt='Island Image'";
+			//for ($i = 0; $i < count($attrs)-1; $i++) {
+			//	$tmp=$tmp." isl".$attrs[$i]."='".$row[$i]."'";
+			//}
 
 			$tmp=$tmp."></img>";
 			$echotmp=$tmp.$echotmp;

@@ -493,7 +493,7 @@ function imageClickEvent(e){
 	});
 
 	//Set name text
-	$("#gallery-preview h2")[0].innerHTML = getIslandData("name",1);
+	$("#gallery-preview h2")[0].innerHTML = getIslandData("name",parseInt(this.id));
 
 
 }
