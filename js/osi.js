@@ -370,7 +370,7 @@ function main(){
 		}
 	});
 
-	//Set more de
+	//Set toggleable input events
 	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
@@ -378,23 +378,10 @@ function main(){
 		});
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
+	//Set up button click events
 	setUpButtonClicks();
 
-
-
-
+	//Add extra form data on submission events
 	$("form").submit(function(e){
 		$("<input />")
 			.attr("type", "hidden")
@@ -404,14 +391,18 @@ function main(){
 		return true;
 	});
 
-
+	//Add non-safari-safe css styling
 	if(!SAFARI){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
 	}
 }
 
-
+/**
+	Builds the button click events that power the sitemap navigation
+*/
 function setUpButtonClicks(){
+
+	//Basic link buttons
 	let buttonMap = [
 		["#documentation",DOCS],
 		["#about",ABOUT],
@@ -423,25 +414,27 @@ function setUpButtonClicks(){
 		["#edit",GENERATOR]
 	];
 
+	//Listeners
 	for(let i=0;i<buttonMap.length;i++){
 		$(buttonMap[i][0]).click(function(e){
 			changePage(buttonMap[i][1]);
 		});
 	}
 
+	//Special case blur animation
 	$("input[type=button], input[type=submit], button").click(function(e){
 		$(this).blur();
 	});
 
-
+	//Turn to next page with form validation
 	$("input[value=next]").click(function(e){
 		turnPage(1);
 	});
 
+	//Gallery image click event
 	$("#gal div").children().click(imageClickEvent);
 
-
-
+	//Button function events
 	let complexEvents = [
 		["#compile, #recompile",compileEvent],
 		["#save",saveEvent],
@@ -452,28 +445,43 @@ function setUpButtonClicks(){
 	for(let i=0;i<complexEvents.length;i++){
 		$(complexEvents[i][0]).click(complexEvents[i][1]);
 	}
-
 }
 
+/**
+	Event handler for image gallery image clicks
+	@param {object} e Event
+*/
 function imageClickEvent(e){
+
+	//Change to preview page
 	changePage(GALLERYPREVIEW);
 
+	//jQuery requests
 	let selected = $(this);
 	let attrs = selected.prop("attributes");
 	let preview = $("#gallery-preview img");
 
+	//Copy attributes over to prewview image
 	$.each(attrs, function() {
 		if(this.name !== "style"){
 			preview.attr(this.name, this.value);
 		}
 	});
 
+	//Set name text
 	$("#gallery-preview h1")[0].innerHTML = preview.attr("islname");
 }
 
+/**
+	"Edit" clone of image in gallery event
+	@param {object} e Event
+*/
 function copyEvent(e){
+
+	//jQuery request
 	let img = $("#gallery-preview img");
 
+	//Attributes to copy
 	let valsSet = [
 		["seed","islseed"],
 		["name","islname"],
@@ -489,10 +497,12 @@ function copyEvent(e){
 		["lava2","isllava_two"]
 	];
 
+	//Copy into form fields
 	for(let i=0;i<valsSet.length;i++){
 		$("#"+valsSet[i][0]).val(img.attr(valsSet[i][1]));
 	}
 
+	//Boolean attributes
 	let boolsSet = [
 		["motu","islhas_motu"],
 		["reef","islhas_reef"],
@@ -503,10 +513,12 @@ function copyEvent(e){
 		["colour_background","islcolour_background"]
 	];
 
+	//Copy state into checkboxes
 	for(let i=0;i<boolsSet.length;i++){
 		$("#"+boolsSet[i][0]).prop("checked",img.attr(boolsSet[i][1])==="1");
 	}
 
+	//Special case attribute copy
 	$("#time").val(parseInt(img.attr("islsunset")))
 	$("#tree_amt").val(parseInt(img.attr("isltree_amt")))
 	$("#village_size").val(parseInt(img.attr("islvillage_size")))
@@ -514,15 +526,25 @@ function copyEvent(e){
 	$("#lacunarity").val(parseFloat(img.attr("islisl_lac")))
 	$("#scale").val(parseFloat(img.attr("islisl_scale")))
 
+	//Change to generator page
 	changePage(GENERATOR);
 }
 
+/**
+	Event handler for entering image gallery
+	@param {object} e Event
+*/
 function galleryEvent(e){
+
+	//Navigation
 	changePage(GALLERY);
+
+	//Scroll the page down
 	let div = $("#gal div");
 	div.scrollTop(div.height());
 	let amt = div.height();
 
+	//Slowly scroll page back to top
 	let scrollTimer = setInterval(function(){
 		amt -= div.height()/50;
 		if(amt<=0){
@@ -535,27 +557,47 @@ function galleryEvent(e){
 	},5);
 }
 
+/**
+	Event handler for saving an image. See {@link Island}
+	@param {object} e Event
+*/
 function saveEvent(e){
 	island.saveImage($("#village").prop("checked"),true);
 }
 
+/**
+	Event handler for compiling island
+	@param {object} e Event
+*/
 function compileEvent(e){
+
+	//Recompile or compile normal navigation. Navigates to compile screen
 	turnPage(this.id==="compile" ? 1 : -1);
+
+	//Resets seed and name on recompile
 	if(this.id==="recompile"){
 		$("#seed").val("");
 		$("#name").val("");
 	}
+
+	//Wait 600ms for animations to start. Without this, island compilation freezes keyframes
 	setTimeout(function(){
+
+		//Compile island
 		if(compileIsland()){
+
+			//On success, save seed and name and proceed to preview screen
 			turnPage(1);
 			$("#seed").val(island.replicable_seed);
 			$("#name").val(island.name);
 		}
 		else{
+
+			//On failure, return to generator screen
 			changePage(GENERATOR);
 		}
 	},600);
 }
 
-
+//Run main function on document load
 $(document).ready(main);
