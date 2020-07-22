@@ -5,8 +5,18 @@
 
 	if(isset($_POST["id"]) && isset($_POST["request"])){
 
-		$sql = $pdo->prepare("SELECT :reqParam FROM islands WHERE id=:idParam");
-		$sql->bindValue(":reqParam", $_POST["request"],PDO::PARAM_INT);
+		switch ($_POST["request"]) {
+			case "name":
+				$req = "name";
+				break;
+			case "seed":
+				$req = "seed";
+				break;
+			}
+
+
+
+		$sql = $pdo->prepare("SELECT ".$req." FROM islands WHERE id=:idParam");
 		$sql->bindValue(":idParam", (int)$_POST["id"],PDO::PARAM_INT);
 		$sql->execute();
 
