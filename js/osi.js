@@ -543,58 +543,63 @@ function copyEvent(e){
 
 	changePage(COMPILING);
 
-	//jQuery request
-	let img = $("#gallery-preview img");
-	let imgID = img.attr("alt");
+	//wait 600ms for animation to start
+	setTimeout(function(){
+
+		//jQuery request
+		let img = $("#gallery-preview img");
+		let imgID = img.attr("alt");
 
 
-	//Attributes to copy
-	let valsSet = [
-		["seed","seed"],
-		["name","name"],
-		["ocean","deep_ocean"],
-		["shallows","shallow_ocean"],
-		["ground1","land_one"],
-		["ground2","land_two"],
-		["ground3","land_three"],
-		["beach","beach"],
-		["rock1","rock_one"],
-		["rock2","rock_two"],
-		["lava1","lava_one"],
-		["lava2","lava_two"]
-	];
+		//Attributes to copy
+		let valsSet = [
+			["seed","seed"],
+			["name","name"],
+			["ocean","deep_ocean"],
+			["shallows","shallow_ocean"],
+			["ground1","land_one"],
+			["ground2","land_two"],
+			["ground3","land_three"],
+			["beach","beach"],
+			["rock1","rock_one"],
+			["rock2","rock_two"],
+			["lava1","lava_one"],
+			["lava2","lava_two"]
+		];
 
-	//Copy into form fields
-	for(let i=0;i<valsSet.length;i++){
-		$("#"+valsSet[i][0]).val(getIslandData(valsSet[i][1],imgID));
-	}
+		//Copy into form fields
+		for(let i=0;i<valsSet.length;i++){
+			$("#"+valsSet[i][0]).val(getIslandData(valsSet[i][1],imgID));
+		}
 
-	//Boolean attributes
-	let boolsSet = [
-		["motu","has_motu"],
-		["reef","has_reef"],
-		["volcano","is_volcano"],
-		["atoll","is_atoll"],
-		["village","has_town"],
-		["trees","has_trees"],
-		["colour_background","colour_background"]
-	];
+		//Boolean attributes
+		let boolsSet = [
+			["motu","has_motu"],
+			["reef","has_reef"],
+			["volcano","is_volcano"],
+			["atoll","is_atoll"],
+			["village","has_town"],
+			["trees","has_trees"],
+			["colour_background","colour_background"]
+		];
 
-	//Copy state into checkboxes
-	for(let i=0;i<boolsSet.length;i++){
-		$("#"+boolsSet[i][0]).prop("checked",getIslandData(boolsSet[i][1],imgID)==="1");
-	}
+		//Copy state into checkboxes
+		for(let i=0;i<boolsSet.length;i++){
+			$("#"+boolsSet[i][0]).prop("checked",getIslandData(boolsSet[i][1],imgID)==="1");
+		}
 
-	//Special case attribute copy
-	$("#time").val(parseInt(getIslandData("sunset",imgID)))
-	$("#tree_amt").val(parseInt(getIslandData("tree_amt",imgID)))
-	$("#village_size").val(parseInt(getIslandData("village_size",imgID)))
-	$("#persistence").val(parseFloat(getIslandData("isl_persist",imgID)))
-	$("#lacunarity").val(parseFloat(getIslandData("isl_lac",imgID)))
-	$("#scale").val(parseFloat(getIslandData("isl_scale",imgID)))
+		//Special case attribute copy
+		$("#time").val(parseInt(getIslandData("sunset",imgID)))
+		$("#tree_amt").val(parseInt(getIslandData("tree_amt",imgID)))
+		$("#village_size").val(parseInt(getIslandData("village_size",imgID)))
+		$("#persistence").val(parseFloat(getIslandData("isl_persist",imgID)))
+		$("#lacunarity").val(parseFloat(getIslandData("isl_lac",imgID)))
+		$("#scale").val(parseFloat(getIslandData("isl_scale",imgID)))
 
-	//Change to generator page
-	changePage(GENERATOR);
+		//Change to generator page
+		changePage(GENERATOR);
+	},600);
+
 }
 
 /**
