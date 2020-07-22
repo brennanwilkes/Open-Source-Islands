@@ -508,6 +508,7 @@ function getIslandData(param,id){
 			request: param
 		}}).done(function(data){
 			temp = data;
+			console.log(temp);
 		}).fail(function(jqXHR,status){
 			alert("failed! "+jqXHR+status);
 		});
