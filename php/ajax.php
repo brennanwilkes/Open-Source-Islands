@@ -1,3 +1,3 @@
 <?php
-	echo "success"
+	echo $_POST["id"].$_POST["mode"].;
 ?>
