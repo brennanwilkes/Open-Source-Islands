@@ -3,8 +3,6 @@
 
 	$pdo = db_connect();
 
-
-
 	if(isset($_POST["id"]) && isset($_POST["request"])){
 
 		$sql = $pdo->prepare("SELECT :reqParam FROM islands WHERE id=:idParam");
@@ -17,7 +15,7 @@
 		echo "name= ".$res[$_POST["request"]];
 	}
 	else{
-		echo 'no';//die("ERROR"));
+		echo die("ERROR");
 	}
 
 ?>
