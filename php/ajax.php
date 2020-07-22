@@ -3,9 +3,9 @@
 
 	$pdo = db_connect();
 
+	echo "y";
 
-
-	if(isset($_POST["id"]) && isset($_POST["request"])){
+	/*if(isset($_POST["id"]) && isset($_POST["request"])){
 		$id = $_POST["id"];
 		$req = $_POST["mode"];
 
@@ -15,6 +15,6 @@
 	}
 	else{
 		die("ERROR"));
-	}
+	}*/
 
 ?>
