@@ -494,7 +494,7 @@ function imageClickEvent(e){
 
 	//Set name text
 	//$("#gallery-preview h2")[0].innerHTML = preview.attr("islname");
-	$.post("ajax.php",{
+	$.post("php/ajax.php",{
 		id: "1",
 		mode: "name"
 	},function(data, status){
