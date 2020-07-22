@@ -10,7 +10,8 @@
 		$reponse->bindParam(':id', $id, PDO::PARAM_STR);
 		$reponse->execute();
 		$result = $reponse->fetchAll(); //make the select
-		echo $result;
+		print_r($result);  //debug
+
 
 
 
