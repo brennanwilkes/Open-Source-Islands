@@ -13,7 +13,8 @@
 		$sql->execute();
 
 
-		echo $sql->fetchAll(PDO::FETCH_ASSOC)[$_POST["request"]];
+		$res = $sql->fetch(PDO::FETCH_ASSOC);
+		echo "name= ".$res[$_POST["request"]];
 	}
 	else{
 		echo 'no';//die("ERROR"));
