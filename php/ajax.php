@@ -3,18 +3,19 @@
 
 	$pdo = db_connect();
 
-	echo "y";
 
-	/*if(isset($_POST["id"]) && isset($_POST["request"])){
-		$id = $_POST["id"];
-		$req = $_POST["mode"];
 
-		$sql = "SELECT ? FROM islands WHERE id=?";
-		$pdo->prepare($sql)->execute([$req,$id]);
-		echo "suc"
+	if(isset($_POST["id"]) && isset($_POST["request"])){
+		$query = $pdo->query("SELECT :req FROM islands WHERE id=:id");
+		$query->bindParam(":req", $_POST["id"], PDO::PARAM_STR); //assuming it is a string
+		$query->bindParam(":id", $_POST["request"], PDO::PARAM_STR); //assuming it is a string
+		$query->execute();
+		$result = $query->fetchAll(); //make the select
+
+		echo "did it work"
 	}
 	else{
 		die("ERROR"));
-	}*/
+	}
 
 ?>
