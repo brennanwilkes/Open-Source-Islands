@@ -9,6 +9,7 @@
 		$sql->bindValue(":reqParam", $_POST["request"],PDO::PARAM_STR);
 		$sql->bindValue(":idParam", $_POST["id"],PDO::PARAM_INT);
 		$sql->execute();
+		echo $sql->errorInfo();
 
 		$res = $sql->fetch(PDO::FETCH_ASSOC);
 		echo "name= ".$res[$_POST["request"]];
