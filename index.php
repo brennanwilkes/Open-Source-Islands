@@ -232,8 +232,13 @@
 				</div>
 				<div class=page style="display: none">
 					<h1>Dev Notes</h1>
+					<article>
+						<h3>Header</h3>
+						<p>
+							Content
+						</p>
+					</article>
 					<input type="button" value="back">
-
 				</div>
 				<div class=page style="display: none">
 					<h1>Sources</h1>
@@ -258,7 +263,7 @@
 						<h3>Regex</h3>
 
 						<p>
-							In order to overcome challenges unique to the Safari browser, I apply a few CSS rules to all non-safari browsers. To facilitate this, I use a small regex string to detect Safari, which I directly copied from the stack-overflow thread listed below.
+							In order to overcome challenges unique to the Safari browser, I apply a few CSS rules to all non-safari browsers via JavaScript. To facilitate this, I use a small regex string to detect Safari, which I directly copied from the stack-overflow thread listed below.
 						</p>
 						<a href="https://stackoverflow.com/a/7768006" target="_blank">stackoverflow.com/a/7768006</a>
 

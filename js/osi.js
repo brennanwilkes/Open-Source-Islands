@@ -1,4 +1,22 @@
-let concept_art = [
+/**
+	@namespace osi.js
+	CPSC-2030-W01
+	@since 19/07/2020
+	@version 1.0
+	@author Brennan Wilkes
+	@author 100322326
+*/
+
+//JSDOCS generation command
+//jsdoc -d documentation/ island.js osi.js name_list.js
+
+//-------------------------------------CONSTANTS AND GLOBALS------------------------------------------
+
+/**
+	List of concept art file names
+	@type {string[]}
+*/
+var concept_art = [
 	"Atalia-Nanai",
 	"Hokulele-Kekoa",
 	"Kainano-Taualai",
@@ -10,20 +28,79 @@ let concept_art = [
 	"Aru"
 ];
 
+/**
+	Variable to keep track of which page index is currently displayed
+	@type {number}
+*/
 var currentPage = 1;
+
+/**
+	Array of the most recent visted pages. Used for "back" functionality
+	@type {number}
+*/
 var pageHistory = new Array();
 
+/**
+	Storage for generated {@link Island} object
+	@type {object}
+*/
 var island;
 
+/**
+	Homepage index enum
+	@type {number}
+	@constant
+*/
 const HOMEPAGE = 1;
+
+/**
+	Generator index enum
+	@type {number}
+	@constant
+*/
 const GENERATOR = 2;
+
+/**
+	Gallery index enum
+	@type {number}
+	@constant
+*/
 const GALLERY = 7;
+
+/**
+	Gallery preview image index enum
+	@type {number}
+	@constant
+*/
 const GALLERYPREVIEW = 8;
+
+/**
+	Documentation page index enum
+	@type {number}
+	@constant
+*/
 const DOCS = 9;
+
+/**
+	Dev notes index enum
+	@type {number}
+	@constant
+*/
 const DEVNOTES = 10;
+
+/**
+	Sources index enum
+	@type {number}
+	@constant
+*/
 const SOURCES = 11;
+
+/**
+	About index enum
+	@type {number}
+	@constant
+*/
 const ABOUT = 12;
-const MAX_PAGE = 12;
 
 /*
 	https://stackoverflow.com/a/7768006
@@ -36,9 +113,22 @@ const MAX_PAGE = 12;
 	I'm pretty well versed in regex, but only in the scope of using SED/GREP in unix world, and
 	I don't have a clue what this is doing, so I've given up trying to write my own.
 */
+/**
+	Safari regex detector
+	@type {boolean}
+	@constant
+*/
 const SAFARI = (/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
 
 
+//------------------------------------GENERAL PURPOSE FUNCTIONS--------------------------------------
+
+
+/**
+	Sets an elements HTML5 validation message using a neat JS trick
+	@param {string} id of element to search for
+	@param {string} message to set
+*/
 function setValidMessage(id,message){
 	let element = $("#"+id);
 	element.attr("oninvalid","this.setCustomValidity('"+message+"')");
@@ -46,52 +136,96 @@ function setValidMessage(id,message){
 	element.attr("oninput","setCustomValidity(' ')");
 }
 
-function spawnParticle(e){
+/**	Spawns a random particle to the screen with random coordinates and deletes it after two seconds */
+function spawnParticle(){
+
+	//Create particle div element
 	let particle = $("<div class=Particle></div>");
+
+	//Set random coordinates
 	particle.css("left",Math.random()*window.innerWidth*0.95+"px");
 	particle.css("top",Math.random()*window.innerHeight*0.95+"px");
+
+	//Add particle to DOM
 	$("body").prepend(particle)
+
+	//Delete particle after two seconds
 	setTimeout(function(e){
 		particle.remove();
 	}, 2000);
 }
 
+/**
+	Changes directly to a requested page
+	@param {number} page Page index to change to
+*/
 function changePage(page){
+
 	if(page===undefined){
+
+		//"back" mode. Set page to last visited page
 		page = pageHistory.pop();
 	}
 	else{
+
+		//Add current page to the stack
 		stackPage();
 	}
 
+	//Exit current page
 	$(".page:nth-child("+currentPage+")").fadeOut();
+
+	//Update tracker
 	currentPage = page;
+
+	//Move to next page
 	$(".page:nth-child("+currentPage+")").fadeIn();
 }
 
+/**
+	Runs HTML5 form validation, then calls {@link changePage}
+	@param {number} dir forward or backwards / direction to turn
+*/
 function turnPage(dir){
+
+	//Check form validity
 	if($("form")[0].reportValidity()){
+
+		//Move forward/backward
 		changePage(currentPage+dir);
 	}
 }
 
+/** Add the current page to the history stack */
 function stackPage(){
+
+	//pushback
 	pageHistory.push(currentPage);
+
+	//Keep history size reasonable
 	if(pageHistory.length > 3){
 		pageHistory.shift();
 	}
 }
 
+/**
+	Grabs relavent information from the form, and generates an {@link Island}
+	Updates {@link island} instead of returning
+*/
 function compileIsland(){
+
+	//Generate settings object with defaults.
 	let set;
 	if($("#seed").val().length > 0){
+
+		//Use custom seed
 		set = new IslandSettings($("#seed").val());
 	}
 	else{
 		set = new IslandSettings();
 	}
 
-
+	//Grab basic booleans
 	let boolCheck = [
 		["motu","HAS_MOTU"],
 		["reef","HAS_REEF"],
@@ -289,7 +423,7 @@ function setUpButtonClicks(){
 	});
 
 	$("#gal div").children().click(imageClickEvent);
-	
+
 
 
 	let complexEvents = [
