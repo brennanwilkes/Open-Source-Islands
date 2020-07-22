@@ -12,7 +12,7 @@
 		$echotmp = "";
 
 		while ($row = $result->fetch()){
-			$tmp = "<img src='".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH)."'";
+			$tmp = "<img src='".file_get_contents($row["filename"], FILE_USE_INCLUDE_PATH)."'";
 
 			$tmp = $tmp." id='".$row["id"]."'";
 			$tmp = $tmp." alt='Island Image'";
