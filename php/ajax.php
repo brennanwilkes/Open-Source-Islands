@@ -5,6 +5,8 @@
 
 	if(isset($_POST["id"]) && isset($_POST["request"])){
 
+
+		//This is required to avoid PDO auto-quoting. I know its ugly but c'est la vie
 		switch ($_POST["request"]) {
 			case "name":
 				$req = "name";
@@ -19,9 +21,6 @@
 		$sql = $pdo->prepare("SELECT ".$req." FROM islands WHERE id=:idParam");
 		$sql->bindValue(":idParam", (int)$_POST["id"],PDO::PARAM_INT);
 		$sql->execute();
-
-		echo $sql->errorInfo()[0];
-		echo $sql->debugDumpParams();
 
 
 		$res = $sql->fetch(PDO::FETCH_ASSOC);

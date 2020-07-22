@@ -493,18 +493,22 @@ function imageClickEvent(e){
 	});
 
 	//Set name text
-	//$("#gallery-preview h2")[0].innerHTML = preview.attr("islname");
+	$("#gallery-preview h2")[0].innerHTML = getIslandData("name",1);
 
+
+}
+
+function getIslandData(param,id){
 	$.ajax({
 		url: "php/ajax.php",
 		method: "POST",
 		data: {
-			id: "1",
-			request: "name"
-		}}).done(function(response){
-			alert(response);
-		}).fail(function(jqXHR,textStatus){
-			alert("failed "+jqXHR+textStatus);
+			id: id,
+			request: param
+		}}).done(function(data){
+			return data;
+		}).fail(function(jqXHR,status){
+			alert("failed! "+jqXHR+status);
 		});
 }
 
