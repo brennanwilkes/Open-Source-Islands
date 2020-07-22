@@ -218,11 +218,11 @@
 					<h2 id=doc>Documentation</h2>
 					<button type=button id=devnotes>Developer Notes</button>
 					<a target="_blank" href="documentation/index.html">
-						<label for="JS">JS Docs</label>
+						<span>JS Docs</span>
 						<img id=JS src="assets/javascript.svg" alt="JSDocs logo">
 					</a>
 					<a target="_blank" href="https://github.com/brennanwilkes/Open-Source-Islands">
-						<label for="github2">Source Code</label>
+						<span>Source Code</span>
 						<img id=github2 src="assets/github.svg" alt="GitHub logo">
 					</a>
 					<button type=button id=sources>Sources & Attributions</button>
@@ -275,15 +275,15 @@
 				<div class=page style="display: none">
 					<h2 id=bw>Brennan Wilkes</h2>
 					<a target="_blank" href="https://github.com/brennanwilkes">
-						<label for="github">Github</label>
+						<span>Github</span>
 						<img id=github src="assets/github.svg" alt="GitHub logo">
 					</a>
 					<a target="_blank" href="https://bw.codexwilkes.com/portfolio/">
-						<label for="website">Website</label>
+						<span>Website</span>
 						<img id=website src="assets/website.svg" alt="Brennan Wilkes website logo">
 					</a>
 					<a target="_blank" href="https://www.linkedin.com/in/brennan-wilkes-19553b14b/">
-						<label for="linkedin">Linkedin</label>
+						<span>Linkedin</span>
 						<img id=linkedin src="assets/linkedin.svg" alt="LinkedIn logo">
 					</a>
 					<button type=button class=home>Home</button>
