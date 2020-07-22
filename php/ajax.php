@@ -1,7 +1,7 @@
 <?php
 	require "connection.php";
 
-	//$pdo = db_connect();
+	$pdo = db_connect();
 
 
 
