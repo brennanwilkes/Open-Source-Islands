@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: osi.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: osi.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
 	@namespace osi
 	@since 19/07/2020
 	@version 1.0
@@ -156,7 +184,7 @@ function setValidMessage(id,message){
 function spawnParticle(){
 
 	//Create particle div element
-	let particle = $("<div class=Particle></div>");
+	let particle = $("&lt;div class=Particle>&lt;/div>");
 
 	//Set random coordinates
 	particle.css("left",Math.random()*window.innerWidth*0.95+"px");
@@ -257,7 +285,7 @@ function compileIsland(){
 	];
 
 	//Save checkbox states
-	for(let i=0;i<boolCheck.length;i++){
+	for(let i=0;i&lt;boolCheck.length;i++){
 		set[boolCheck[i][1]] = $("#"+boolCheck[i][0]).prop("checked");
 	}
 
@@ -288,7 +316,7 @@ function compileIsland(){
 
 	//If set, save their contentes
 	let tempLookup;
-	for(let i=0;i<valsCheck.length;i++){
+	for(let i=0;i&lt;valsCheck.length;i++){
 		tempLookup = $("#"+valsCheck[i][0]).val();
 		if(tempLookup.length > 0){
 			set[valsCheck[i][1]] = tempLookup;
@@ -327,7 +355,7 @@ function main(){
 	$("#backgroundDisplay .baselayer").css("background-image","url('concept-art/"+bgkimg+".png')")
 
 	//Set background page for smoother transitions
-	$("form").append("<div class=page id=backgroundPage></div>");
+	$("form").append("&lt;div class=page id=backgroundPage>&lt;/div>");
 
 	//IOS mode - Adjust element heights to match IOS screen size. Damn you apple!!! >:(
 	if(Math.abs($("body").height() - window.innerHeight) > 1){
@@ -347,19 +375,19 @@ function main(){
 	let ran;
 	let threes = 0;
 	let last = false;
-	for(let i=0;i<galimgs.length;i++){
+	for(let i=0;i&lt;galimgs.length;i++){
 		ran = Math.random();
 
-		//Set to 3x3 tile - <35% chance due to previous sizes
-		if(ran < 0.35 && (i-threes)%3 === 0 && !last && i > 3){
+		//Set to 3x3 tile - &lt;35% chance due to previous sizes
+		if(ran &lt; 0.35 &amp;&amp; (i-threes)%3 === 0 &amp;&amp; !last &amp;&amp; i > 3){
 			$(galimgs[i]).css("grid-column","auto / span 3");
 			$(galimgs[i]).css("grid-row","auto / span 3");
 			threes++;
 			last = true;
 		}
 
-		//Set to 2x2 tile - <65% chance
-		else if(ran < 0.65 &&(i-threes)%3 != 2){
+		//Set to 2x2 tile - &lt;65% chance
+		else if(ran &lt; 0.65 &amp;&amp;(i-threes)%3 != 2){
 			$(galimgs[i]).css("grid-column","auto / span 2");
 			$(galimgs[i]).css("grid-row","auto / span 2");
 			i+=2;
@@ -387,14 +415,14 @@ function main(){
 
 	//Set motu discrepancy autoclicking
 	$("#motu").change(function() {
-		if(!this.checked && $("#atoll")[0].checked){
+		if(!this.checked &amp;&amp; $("#atoll")[0].checked){
 			$("#motu").prop("checked", true);
 		}
 	});
 
 	//Set toggleable input events
 	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
-	for(let i=0;i<slidertoggle.length;i++){
+	for(let i=0;i&lt;slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
 			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
 		});
@@ -405,7 +433,7 @@ function main(){
 
 	//Add extra form data on submission events
 	$("form").submit(function(e){
-		$("<input />")
+		$("&lt;input />")
 			.attr("type", "hidden")
 			.attr("name", "imageData")
 			.attr("value", $("#preview_display").attr("src"))
@@ -438,7 +466,7 @@ function setUpButtonClicks(){
 	];
 
 	//Listeners
-	for(let i=0;i<buttonMap.length;i++){
+	for(let i=0;i&lt;buttonMap.length;i++){
 		$(buttonMap[i][0]).click(function(e){
 			changePage(buttonMap[i][1]);
 		});
@@ -465,7 +493,7 @@ function setUpButtonClicks(){
 		["#copy",copyEvent]
 	];
 
-	for(let i=0;i<complexEvents.length;i++){
+	for(let i=0;i&lt;complexEvents.length;i++){
 		$(complexEvents[i][0]).click(complexEvents[i][1]);
 	}
 }
@@ -523,7 +551,7 @@ function copyEvent(e){
 	];
 
 	//Copy into form fields
-	for(let i=0;i<valsSet.length;i++){
+	for(let i=0;i&lt;valsSet.length;i++){
 		$("#"+valsSet[i][0]).val(img.attr(valsSet[i][1]));
 	}
 
@@ -539,7 +567,7 @@ function copyEvent(e){
 	];
 
 	//Copy state into checkboxes
-	for(let i=0;i<boolsSet.length;i++){
+	for(let i=0;i&lt;boolsSet.length;i++){
 		$("#"+boolsSet[i][0]).prop("checked",img.attr(boolsSet[i][1])==="1");
 	}
 
@@ -573,7 +601,7 @@ function galleryEvent(e){
 	//Slowly scroll page back to top
 	let scrollTimer = setInterval(function(){
 		amt -= div.height()/50;
-		if(amt<=0){
+		if(amt&lt;=0){
 			div[0].scrollTo({top: 0});
 			clearInterval(scrollTimer);
 		}
@@ -629,3 +657,26 @@ function compileEvent(e){
 
 //Run main function on document load
 $(document).ready(main);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="island-generator.html">island-generator</a></li><li><a href="osi.html">osi</a></li></ul><h3>Classes</h3><ul><li><a href="island-generator.Island.html">Island</a></li><li><a href="island-generator.IslandSettings.html">IslandSettings</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Jul 22 2020 12:02:29 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
