@@ -12,7 +12,7 @@
 		$query->execute();
 		$result = $query->fetchAll(); //make the select
 
-		echo "did it work"
+		echo "did it work";
 	}
 	else{
 		die("ERROR"));
