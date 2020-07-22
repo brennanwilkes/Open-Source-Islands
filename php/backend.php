@@ -1,17 +1,6 @@
 <?php
-	require "access/config.php";
-
-	function db_connect() {
-		try {
-			$pdo = new PDO("mysql:host=".constant("DBHOST").";dbname=".constant("DBNAME"),constant("DBUSER"),constant("DBPASS"));
-			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			return $pdo;
-		}
-		catch (PDOException $e)
-		{
-			die($e->getMessage());
-		}
-	}
+	require_once("access/config.php");
+	require_once("connection.php");
 
 	function get_images(){
 		global $pdo;

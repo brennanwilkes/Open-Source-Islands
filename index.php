@@ -3,6 +3,7 @@
 	error_reporting(E_ALL);
 
 	require_once 'php/backend.php';
+	require_once 'php/connection.php';
 	require_once 'php/access/config.php';
 
 	$pdo = db_connect();
