@@ -494,12 +494,17 @@ function imageClickEvent(e){
 
 	//Set name text
 	//$("#gallery-preview h2")[0].innerHTML = preview.attr("islname");
-	$.post("php/ajax.php",{
-		id: "1",
-		mode: "name"
-	},function(data, status){
-		alert("Data: " + data + "\nStatus: " + status);
-	});
+
+	$.ajax({
+		url: "php/ajax.php",
+		method: "POST",
+		data: {
+			id: "1",
+			mode: "name"
+		},
+		function(data, status){
+			alert("Data: " + data + "\nStatus: " + status);
+		});
 }
 
 /**
