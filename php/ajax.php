@@ -13,7 +13,7 @@
 		$sql->execute();
 
 
-		echo "did it work";
+		echo $sql->fetch();
 	}
 	else{
 		echo 'no';//die("ERROR"));
