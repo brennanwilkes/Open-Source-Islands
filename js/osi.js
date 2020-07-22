@@ -234,11 +234,13 @@ function compileIsland(){
 		["trees","HAS_TREES"],
 		["background","colour_background"]
 	];
+
+	//Save checkbox states
 	for(let i=0;i<boolCheck.length;i++){
 		set[boolCheck[i][1]] = $("#"+boolCheck[i][0]).prop("checked");
-
 	}
 
+	//Save unique value scalers
 	set.ISL_PERSIST = parseInt($("#persistence").val())/10;
 	set.ISL_LAC = parseInt($("#lacunarity").val())/100;
 	set.ISL_SCALE = parseInt($("#scale").val());
@@ -246,7 +248,9 @@ function compileIsland(){
 	set.HAS_TOWN = ($("#village").prop("checked") ? 0 : 1);
 	set.village_size = parseInt($("#village_size").val());
 	set.tree_amt = parseInt($("#tree_amt").val())*20;
+	set.time = parseInt($("#time").val());
 
+	//Grab basic values
 	let valsCheck = [
 		["name","name"],
 		["ocean","DEEP_OCEAN"],
@@ -260,6 +264,8 @@ function compileIsland(){
 		["lava1","LAVA_ONE"],
 		["lava2","LAVA_TWO"]
 	];
+
+	//If set, save their contentes
 	let tempLookup;
 	for(let i=0;i<valsCheck.length;i++){
 		tempLookup = $("#"+valsCheck[i][0]).val();
@@ -268,62 +274,69 @@ function compileIsland(){
 		}
 	}
 
-
-	set.time = parseInt($("#time").val());
-
-
+	//Generate island object
 	island = new Island(set);
 
+	//Try to generate PNG data
 	try{
 		$("#preview_display").prop("src",island.compileStaticImage(true,true));
 	}
 	catch(e) {
+
+		//Offline file mode warning message
 		alert("Island images cannot be generated with trees and villages when the page is being loaded from a local file. This is due to browser security messures. Either generate without trees and villages, or checkout the deployment at https://brennanwilkes.github.io/Open-Source-Islands/")
 		return false;
 	}
 	return true;
 }
 
-$(document).ready(function(){
+/**
+	Main setup function. Prepares the DOM
+*/
+function main(){
+
+	//Set validation messages for regex checkers
 	setValidMessage("name","Island names may only contain letters, spaces hyphens, and apostrophes")
 	setValidMessage("seed","Island Seeds may only contain digits");
 
+	//Set up random background art
 	let bgkimg = concept_art[Math.floor(Math.random()*concept_art.length)];
 	$("#backgroundDisplay .lighting").css("background-image","url('concept-art/"+bgkimg+"-lighting.png')")
 	$("#backgroundDisplay .baselayer").css("background-image","url('concept-art/"+bgkimg+".png')")
 
-
+	//Set background page for smoother transitions
 	$("form").append("<div class=page id=backgroundPage></div>");
 
-
+	//IOS mode - Adjust element heights to match IOS screen size. Damn you apple!!! >:(
 	if(Math.abs($("body").height() - window.innerHeight) > 1){
 		$("body").height(window.innerHeight);
 		$("body").width(window.innerWidth);
-
 		$(".page").css("max-width",window.innerHeight * 0.675);
 		$(".page").width(window.innerWidth * 0.9);
 		$(".page").height(window.innerWidth * 1.2);
 		$(".page").css("max-height",window.innerHeight * 0.9);
-
 	}
 
-
-
+	//Trigger particle spawning
 	setInterval(spawnParticle, 55);
 
-
+	//Randomly set column and row span for gallery images
 	let galimgs = $("#gal div").children();
 	let ran;
 	let threes = 0;
 	let last = false;
 	for(let i=0;i<galimgs.length;i++){
 		ran = Math.random();
+
+		//Set to 3x3 tile - <35% chance due to previous sizes
 		if(ran < 0.35 && (i-threes)%3 === 0 && !last && i > 3){
 			$(galimgs[i]).css("grid-column","auto / span 3");
 			$(galimgs[i]).css("grid-row","auto / span 3");
 			threes++;
 			last = true;
 		}
+
+		//Set to 2x2 tile - <65% chance
 		else if(ran < 0.65 &&(i-threes)%3 != 2){
 			$(galimgs[i]).css("grid-column","auto / span 2");
 			$(galimgs[i]).css("grid-row","auto / span 2");
@@ -335,26 +348,29 @@ $(document).ready(function(){
 		}
 	}
 
-
-
+	//Set atoll requirement autoclicking
 	$("#atoll").change(function() {
 		if(this.checked){
 			$("#volcano").prop("checked", false);
 			$("#motu").prop("checked", true);
 		}
 	});
+
+	//Set volcano discrepancy autoclicking
 	$("#volcano").change(function() {
 		if(this.checked){
 			$("#atoll").prop("checked", false);
 		}
 	});
+
+	//Set motu discrepancy autoclicking
 	$("#motu").change(function() {
 		if(!this.checked && $("#atoll")[0].checked){
 			$("#motu").prop("checked", true);
 		}
 	});
 
-
+	//Set more de
 	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
@@ -392,7 +408,7 @@ $(document).ready(function(){
 	if(!SAFARI){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
 	}
-});
+}
 
 
 function setUpButtonClicks(){
@@ -540,3 +556,6 @@ function compileEvent(e){
 		}
 	},600);
 }
+
+
+$(document).ready(main);
