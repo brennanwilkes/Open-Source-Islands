@@ -501,9 +501,10 @@ function imageClickEvent(e){
 		data: {
 			id: "1",
 			mode: "name"
-		},
-		function(data, status){
-			alert("Data: " + data + "\nStatus: " + status);
+		}}).done(function(response){
+			alert(response);
+		}).fail(function(jqXHR,textStatus){
+			alert("failed");
 		});
 }
 
