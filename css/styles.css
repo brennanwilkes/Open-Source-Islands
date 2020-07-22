@@ -258,7 +258,6 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 	grid-template-columns: repeat(3, 1fr);
 	background-color: #0C1A5F;
 	-ms-overflow-style: none;
-	scrollbar-width: none;
 }
 
 #gal > div::-webkit-scrollbar {
