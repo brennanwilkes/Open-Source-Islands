@@ -480,22 +480,11 @@ function imageClickEvent(e){
 	//Change to preview page
 	changePage(GALLERYPREVIEW);
 
-	//jQuery requests
-	let selected = $(this);
-	let attrs = selected.prop("attributes");
-	let preview = $("#gallery-preview img");
-
-	//Copy attributes over to prewview image
-	$.each(attrs, function() {
-		if(this.name !== "style"){
-			preview.attr(this.name, this.value);
-		}
-	});
+	//Set src attribute
+	$("#gallery-preview img").attr("src", $(this).attr("src"));
 
 	//Set name text
 	$("#gallery-preview h2")[0].innerHTML = getIslandData("name",parseInt(this.id));
-
-
 }
 
 function getIslandData(param,id){
@@ -509,7 +498,6 @@ function getIslandData(param,id){
 			request: param
 		}}).done(function(data){
 			temp = data;
-			console.log(temp);
 		}).fail(function(jqXHR,status){
 			alert("failed! "+jqXHR+status);
 		});
