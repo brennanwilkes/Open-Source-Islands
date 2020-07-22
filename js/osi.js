@@ -500,7 +500,7 @@ function imageClickEvent(e){
 		method: "POST",
 		data: {
 			id: "1",
-			mode: "name"
+			request: "name"
 		}}).done(function(response){
 			alert(response);
 		}).fail(function(jqXHR,textStatus){
