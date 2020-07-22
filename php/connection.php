@@ -1,6 +1,6 @@
 <?php
 
-	include_once("access/config.php");
+	require "access/config.php";
 
 	function db_connect() {
 		try {
