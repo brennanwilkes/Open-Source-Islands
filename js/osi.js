@@ -493,7 +493,13 @@ function imageClickEvent(e){
 	});
 
 	//Set name text
-	$("#gallery-preview h1")[0].innerHTML = preview.attr("islname");
+	//$("#gallery-preview h2")[0].innerHTML = preview.attr("islname");
+	$.post("ajax.php",{
+		id: "1",
+		mode: "name"
+	},function(data, status){
+		alert("Data: " + data + "\nStatus: " + status);
+	});
 }
 
 /**

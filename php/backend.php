@@ -27,7 +27,7 @@
 		$echotmp = "";
 
 		while ($row = $result->fetch()){
-			$tmp = "<img src=".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH);
+			$tmp = "<img src='".file_get_contents($row[count($attrs)-1], FILE_USE_INCLUDE_PATH)."'";
 
 			for ($i = 0; $i < count($attrs)-1; $i++) {
 				$tmp=$tmp." isl".$attrs[$i]."='".$row[$i]."'";

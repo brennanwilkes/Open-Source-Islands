@@ -12,21 +12,21 @@
 	}
 
 ?><!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>Open Source Islands</title>
 		<link rel="stylesheet" href="css/styles.css">
-		<link rel="icon" href="icon.png" type="image/icon type">
+		<link rel="icon" href="icon.png" type="image/icon">
 
 
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Ubuntu:wght@300&Inconsolata:wght@300display=swap" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-		<script type="text/javascript" src="js/island-generator/name_list.js"></script>
-		<script type="text/javascript" src="js/island-generator/perlin-noise/Stefan-Gustavson-Perlin.js"></script>
-		<script type="text/javascript" src="js/island-generator/island.js"></script>
-		<script type="text/javascript" src="js/osi.js"></script>
+		<script src="js/island-generator/name_list.js"></script>
+		<script src="js/island-generator/perlin-noise/Stefan-Gustavson-Perlin.js"></script>
+		<script src="js/island-generator/island.js"></script>
+		<script src="js/osi.js"></script>
 	</head>
 	<body>
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
@@ -40,7 +40,7 @@
 					<button type=button id=about>About</button>
 				</nav>
 				<div class=page style="display: none">
-					<h1>Properties</h1>
+					<h2>Properties</h2>
 					<div>
 						<label for="name">Name</label>
 						<input
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<div class=page style="display: none">
-					<h1>Generation</h1>
+					<h2>Generation</h2>
 
 					<div>
 						<label for="scale">Scale</label>
@@ -129,7 +129,7 @@
 					</div>
 				</div>
 				<div class=page  style="display: none">
-					<h1>Colours</h1>
+					<h2>Colours</h2>
 
 					<div>
 						<label for="background">Background</label>
@@ -179,7 +179,7 @@
 					</div>
 				</div>
 				<div class=page  style="display: none">
-					<h1>Compiling</h1>
+					<h2>Compiling</h2>
 					<div id=loading-container>
 						<div id=loading-circle>
 							<div class="Albatross sprite" id=loading-anim><div></div></div>
@@ -187,8 +187,8 @@
 					</div>
 				</div>
 				<div class=page  style="display: none">
-					<h1>Preview</h1>
-					<img id=preview_display>
+					<h2>Preview</h2>
+					<img id=preview_display src="" alt="Island image preview">
 					<div>
 						<input type="button" value="Edit" id="edit">
 						<input type="button" value="New Seed" id="recompile">
@@ -200,7 +200,7 @@
 					<input type="submit" value="Submit">
 				</div>
 				<div class=page id=gal style="display: none">
-					<h1>Island Gallery</h1>
+					<h2>Island Gallery</h2>
 					<div>
 						<?php
 							get_images();
@@ -209,29 +209,29 @@
 					<button type=button class=home>Home</button>
 				</div>
 				<div class=page id=gallery-preview  style="display: none">
-					<h1></h1>
-					<img>
+					<h2></h2>
+					<img src="" alt="Island image preview">
 					<div>
 						<input type="button" value="back">
 						<input type="button" value="Edit" id="copy">
 					</div>
 				</div>
 				<div class=page  style="display: none">
-					<h1 id=doc>Documentation</h1>
+					<h2 id=doc>Documentation</h2>
 					<button type=button id=devnotes>Developer Notes</button>
 					<a target="_blank" href="documentation/index.html">
 						<label for="JS">JS Docs</label>
-						<img id=JS src="assets/javascript.svg">
+						<img id=JS src="assets/javascript.svg" alt="JSDocs logo">
 					</a>
 					<a target="_blank" href="https://github.com/brennanwilkes/Open-Source-Islands">
 						<label for="github2">Source Code</label>
-						<img id=github2 src="assets/github.svg">
+						<img id=github2 src="assets/github.svg" alt="GitHub logo">
 					</a>
 					<button type=button id=sources>Sources & Attributions</button>
 					<button type=button class=home>Home</button>
 				</div>
 				<div class=page style="display: none">
-					<h1>Dev Notes</h1>
+					<h2>Dev Notes</h2>
 					<article>
 						<h3>Header</h3>
 						<p>
@@ -241,7 +241,7 @@
 					<input type="button" value="back">
 				</div>
 				<div class=page style="display: none">
-					<h1>Sources</h1>
+					<h2>Sources</h2>
 					<article>
 
 						<h3>Perlin Noise</h3>
@@ -275,18 +275,18 @@
 					<input type="button" value="back">
 				</div>
 				<div class=page style="display: none">
-					<h1 id=bw>Brennan Wilkes</h1>
+					<h2 id=bw>Brennan Wilkes</h2>
 					<a target="_blank" href="https://github.com/brennanwilkes">
 						<label for="github">Github</label>
-						<img id=github src="assets/github.svg">
+						<img id=github src="assets/github.svg" alt="GitHub logo">
 					</a>
 					<a target="_blank" href="https://bw.codexwilkes.com/portfolio/">
 						<label for="website">Website</label>
-						<img id=website src="assets/website.svg">
+						<img id=website src="assets/website.svg" alt="Brennan Wilkes website logo">
 					</a>
 					<a target="_blank" href="https://www.linkedin.com/in/brennan-wilkes-19553b14b/">
 						<label for="linkedin">Linkedin</label>
-						<img id=linkedin src="assets/linkedin.svg">
+						<img id=linkedin src="assets/linkedin.svg" alt="LinkedIn logo">
 					</a>
 					<button type=button class=home>Home</button>
 				</div>
