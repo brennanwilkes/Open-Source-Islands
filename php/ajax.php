@@ -3,6 +3,8 @@
 
 	$pdo = db_connect();
 
+
+
 	if(isset($_POST["id"]) && isset($_POST["request"])){
 		$id = $_POST["id"];
 		$req = $_POST["mode"];
@@ -12,7 +14,7 @@
 		echo "suc"
 	}
 	else{
-		die(json_encode(array("message"=>"ERROR","code"=>422)));
+		die("ERROR"));
 	}
 
 ?>
