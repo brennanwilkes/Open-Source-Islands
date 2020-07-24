@@ -31,14 +31,14 @@
 		<div id=backgroundDisplay class=backgroundIsland><div class=lighting></div><div class=baselayer></div></div>
 		<main>
 			<form method="post">
-				<nav class=page>
+				<nav class=page aria-live="assertive">
 					<h1 id=osi>Open Source Islands</h1>
-					<button type=button id=generator>Generator</button>
-					<button type=button id=gallery>Gallery</button>
-					<button type=button id=documentation>Documentation</button>
-					<button type=button id=about>About</button>
+					<button aria-label="Navigate to generator page" type=button id=generator>Generator</button>
+					<button aria-label="Navigate to gallery page" type=button id=gallery>Gallery</button>
+					<button aria-label="Navigate to documentation page" type=button id=documentation>Documentation</button>
+					<button aria-label="Navigate to about page" type=button id=about>About</button>
 				</nav>
-				<section class=page style="display: none">
+				<section class=page style="display: none" aria-live="assertive">
 					<h2>Properties</h2>
 					<div>
 						<label for="name">Name</label>
@@ -64,17 +64,17 @@
 						<input type="checkbox" id="reef" name="reef" value="true">
 					</div>
 
-					<div>
+					<div aria-live="polite">
 						<label for="motu">Motu</label>
 						<input type="checkbox" id="motu" name="motu" value="true">
 					</div>
 
-					<div>
+					<div aria-live="polite">
 						<label for="atoll">Atoll</label>
 						<input type="checkbox" id="atoll" name="atoll" value="true">
 					</div>
 
-					<div>
+					<div aria-live="polite">
 						<label for="volcano">Volcano</label>
 						<input type="checkbox" id="volcano" name="volcano" value="true">
 					</div>
@@ -94,7 +94,7 @@
 						<input type="button" value="next">
 					</div>
 				</section>
-				<section class=page style="display: none">
+				<section class=page style="display: none" aria-live="assertive">
 					<h2>Generation</h2>
 
 					<div>
@@ -127,7 +127,7 @@
 						<input type="button" value="next">
 					</div>
 				</section>
-				<section class=page  style="display: none">
+				<section class=page  style="display: none" aria-live="assertive">
 					<h2>Colours</h2>
 
 					<div>
@@ -137,34 +137,34 @@
 
 					<div>
 						<label for="ocean">Background</label>
-						<input type="color" value="#0C1A5F" name="ocean" id="ocean">
+						<input type="color" value="#0C1A5F" name="ocean" id="ocean" aria-label="Dark ocean colour for deep water">
 					</div>
 					<div>
 						<label for="shallows">Shallows</label>
-						<input type="color" value="#0C49AC" name="shallows" id="shallows">
+						<input type="color" value="#0C49AC" name="shallows" id="shallows" aria-label="Light ocean colour for shallow water">
 					</div>
 					<div>
 						<label for="beach">Beach</label>
-						<input type="color" value="#D0AB76" name="beach" id="beach">
+						<input type="color" value="#D0AB76" name="beach" id="beach" aria-label="Pale colour for beach sand">
 					</div>
 					<div class=tri>
 						<label for="ground1">Ground</label>
-						<input type="color" value="#587E31" name="ground1" id="ground1">
-						<input type="color" value="#274C00" name="ground2" id="ground2">
-						<input type="color" value="#173600" name="ground3" id="ground3">
+						<input type="color" value="#587E31" name="ground1" id="ground1" aria-label="Light green colour for low ground">
+						<input type="color" value="#274C00" name="ground2" id="ground2" aria-label="Medium green colour for medium ground">
+						<input type="color" value="#173600" name="ground3" id="ground3" aria-label="Dark green colour for high ground">
 					</div>
 
 					<div class=dual>
 						<label for="rock1">Rock</label>
-						<input type="color" value="#959688" name="rock1" id="rock1">
-						<input type="color" value="#626354" name="rock2" id="rock2">
+						<input type="color" value="#959688" name="rock1" id="rock1" aria-label="Light grey colour for low mountains">
+						<input type="color" value="#626354" name="rock2" id="rock2" aria-label="Dark grey colour for mountain ridges">
 
 					</div>
 
 					<div class=dual style="display: none">
 						<label for="lava1">Lava</label>
-						<input type="color" value="#8B0000" name="lava1" id="lava1">
-						<input type="color" value="#FFA500" name="lava2" id="lava2">
+						<input type="color" value="#8B0000" name="lava1" id="lava1" aria-label="Dark red colour for lava">
+						<input type="color" value="#FFA500" name="lava2" id="lava2" aria-label="Orange colour for lava highlights">
 					</div>
 
 					<div>
@@ -177,15 +177,15 @@
 						<input type="button" value="Compile" id="compile">
 					</div>
 				</section>
-				<section class=page  style="display: none">
+				<section class=page  style="display: none" aria-live="assertive">
 					<h2>Loading</h2>
-					<div id=loading-container>
+					<div id=loading-container aria-label="Loading icon">
 						<div id=loading-circle>
 							<div class="Albatross sprite" id=loading-anim><div></div></div>
 						</div>
 					</div>
 				</section>
-				<section class=page  style="display: none" id="preview-display-wrapper">
+				<section class=page  style="display: none" id="preview-display-wrapper" aria-live="assertive">
 					<h2>Preview</h2>
 
 					<div>
@@ -198,7 +198,7 @@
 					</div>
 					<input type="submit" value="Submit">
 				</section>
-				<section class=page id=gal style="display: none">
+				<section class=page id=gal style="display: none" aria-live="polite">
 					<h2>Island Gallery</h2>
 					<div>
 						<?php
@@ -207,14 +207,14 @@
 					</div>
 					<button type=button class=home>Home</button>
 				</section>
-				<section class=page id=gallery-preview  style="display: none">
+				<section class=page id=gallery-preview  style="display: none" aria-live="assertive">
 					<h2>PREVIEW</h2>
 					<div>
 						<input type="button" value="back">
 						<input type="button" value="Edit" id="copy">
 					</div>
 				</section>
-				<section class=page  style="display: none">
+				<section class=page  style="display: none" aria-live="assertive">
 					<h2 id=doc>Documentation</h2>
 					<button type=button id=devnotes>Developer Notes</button>
 					<a target="_blank" href="documentation/index.html">
@@ -228,7 +228,7 @@
 					<button type=button id=sources>Sources & Attributions</button>
 					<button type=button class=home>Home</button>
 				</section>
-				<section class=page style="display: none">
+				<section class=page style="display: none" aria-live="assertive">
 					<h2>Dev Notes</h2>
 					<article>
 						<h3>Header</h3>
@@ -238,7 +238,7 @@
 					</article>
 					<input type="button" value="back">
 				</section>
-				<section class=page style="display: none">
+				<section class=page style="display: none" aria-live="assertive">
 					<h2>Sources</h2>
 					<article>
 
@@ -272,7 +272,7 @@
 					</article>
 					<input type="button" value="back">
 				</section>
-				<section class=page style="display: none">
+				<section class=page style="display: none" aria-live="assertive">
 					<h2 id=bw>Brennan Wilkes</h2>
 					<a target="_blank" href="https://github.com/brennanwilkes">
 						<span>Github</span>
