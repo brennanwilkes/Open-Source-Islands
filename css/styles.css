@@ -233,7 +233,7 @@ input[type=color]{
 	width:200%;
 }
 
-input:hover, button:hover, div > a:hover, div > a *:hover, section > a *:hover{
+input:hover, button:hover, div > a:hover, div > a *:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }
@@ -347,7 +347,7 @@ input[type=text], input[type=button], input[type=submit]{
 	overflow-x: hidden;
 }
 
-.page > article, .page > article > *{
+article, article *{
 	font-family: "Times New Roman", "Inconsolata", serif;
 	font-size: 2vmin;
 	line-height: 1.25;
@@ -364,7 +364,7 @@ article > h3:first-of-type{
 	margin-top: 0;
 }
 
-article > a{
+article > a, p > a{
 	text-decoration: underline;
 	color: blue;
 }
