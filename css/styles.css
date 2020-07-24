@@ -233,7 +233,7 @@ input[type=color]{
 	width:200%;
 }
 
-input:hover, button:hover, div > a:hover, div > a *:hover{
+input:hover, button:hover, div > a:hover, div > a *:hover, section > a *:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
 }
