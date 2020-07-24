@@ -204,13 +204,7 @@ function changePage(page){
 	currentPage = page;
 
 	//Move to next page
-	$(".page:nth-child("+currentPage+")").fadeIn()
-
-	//Focus page for ARIA
-	setTimeout(function(e){
-		$(".page:nth-child("+currentPage+")").children().next("input, a, button").focus();
-		console.log($(".page:nth-child("+currentPage+")").children().next("input, a, button"));
-	},600)
+	$(".page:nth-child("+currentPage+")").fadeIn().children().next("input, a, button, div img").focus();
 
 }
 
