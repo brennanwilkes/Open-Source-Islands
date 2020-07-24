@@ -204,7 +204,7 @@ function changePage(page){
 	currentPage = page;
 
 	//Move to next page
-	$(".page:nth-child("+currentPage+")").fadeIn().children().next("input, a, button, div img").focus();
+	$(".page:nth-child("+currentPage+")").fadeIn();//.children().next("input, a, button, div img").focus();
 
 }
 
