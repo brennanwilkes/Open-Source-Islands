@@ -247,7 +247,9 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 #gal > div, #gallery-preview > img{
 	margin-top:5vh;
 	margin-bottom: 5vh;
-	height:80%;
+
+	/*Why 85.718??? Honestly I have no idea but its what is making it scale correctly*/
+	height:85.718%;
 	width:80%;
 }
 
