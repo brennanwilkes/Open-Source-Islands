@@ -140,6 +140,13 @@ const ABOUT = 12;
 */
 const SAFARI = (/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
 
+/**
+	Detects if a user is using a mouse for navigation
+	@type {boolean}
+	@memberof osi
+*/
+var USING_MOUSE = false;
+
 
 //------------------------------------GENERAL PURPOSE FUNCTIONS--------------------------------------
 
@@ -206,10 +213,9 @@ function changePage(page){
 	//Move to next page
 	$(".page:nth-child("+currentPage+")").fadeIn();
 
-	console.log($(".page:nth-child("+currentPage+") :enabled:visible:first"));
-	$(".page:nth-child("+currentPage+") :enabled:visible:first").focus();
-
-	//.children().next("input, a, button, div img").focus();
+	if(!USING_MOUSE){
+		$(".page:nth-child("+currentPage+") :enabled:visible:first").focus();
+	}
 
 }
 
@@ -429,6 +435,11 @@ function main(){
 			.attr("value", $("#preview_display").attr("src"))
 			.appendTo(this);
 		return true;
+	});
+
+	//Detect mouse click
+	$("*").click(function(e){
+		USING_MOUSE = true;
 	});
 
 	//Add non-safari-safe css styling
