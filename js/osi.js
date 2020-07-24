@@ -442,6 +442,9 @@ function main(){
 		USING_MOUSE = true;
 	});
 
+	//Focus title text to start application
+	$("#osi").focus();
+
 	//Add non-safari-safe css styling
 	if(!SAFARI){
 		$("input[type=color]").css("border","0").css("width","40%").css("height","90%");
