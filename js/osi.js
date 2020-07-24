@@ -204,7 +204,12 @@ function changePage(page){
 	currentPage = page;
 
 	//Move to next page
-	$(".page:nth-child("+currentPage+")").fadeIn();//.children().next("input, a, button, div img").focus();
+	$(".page:nth-child("+currentPage+")").fadeIn();
+
+	console.log($(".page:nth-child("+currentPage+") :input:enabled:visible:first"));
+	$(".page:nth-child("+currentPage+") :input:enabled:visible:first").focus();
+
+	//.children().next("input, a, button, div img").focus();
 
 }
 
