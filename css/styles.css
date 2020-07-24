@@ -161,7 +161,7 @@ a{
 	max-width: 60%;
 }
 
-.page div input[type=text], article, article > *{
+.page div input[type=text], article, article *{
 	text-transform: none;
 }
 
