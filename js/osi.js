@@ -204,7 +204,12 @@ function changePage(page){
 	currentPage = page;
 
 	//Move to next page
-	$(".page:nth-child("+currentPage+")").fadeIn().first().focus();
+	$(".page:nth-child("+currentPage+")").fadeIn()
+
+	//Focus page for ARIA
+	setTimeout(function(e){
+		$(".page:nth-child("+currentPage+")").focus();
+	},600)
 
 }
 
