@@ -204,7 +204,8 @@ function changePage(page){
 	currentPage = page;
 
 	//Move to next page
-	$(".page:nth-child("+currentPage+")").fadeIn();
+	$(".page:nth-child("+currentPage+")").fadeIn().focus();
+
 }
 
 /**
