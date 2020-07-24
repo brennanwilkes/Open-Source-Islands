@@ -205,7 +205,7 @@
 							get_images();
 						?>
 					</div>
-					<button type=button class=home>Home</button>
+					<button tabindex=1 type=button class=home>Home</button>
 				</section>
 				<section class=page id=gallery-preview  style="display: none" aria-live="assertive">
 					<h2>PREVIEW</h2>

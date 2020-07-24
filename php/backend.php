@@ -13,7 +13,7 @@
 
 		while ($row = $result->fetch()){
 			$tmp = "<img src='".file_get_contents($row["filename"], FILE_USE_INCLUDE_PATH)."'";
-			$tmp = $tmp." id='".$row["id"]."' alt='Island Image' aria-label='Island image - click to view' role='tab'>";
+			$tmp = $tmp." id='".$row["id"]."' alt='Island Image' aria-label='Island image - click to view' role='tab' tabindex=0>";
 
 			$echotmp=$tmp.$echotmp;
 		}
