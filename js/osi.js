@@ -208,7 +208,7 @@ function changePage(page){
 
 	//Focus page for ARIA
 	setTimeout(function(e){
-		$(".page:nth-child("+currentPage+")").focus();
+		$(".page:nth-child("+currentPage+")").next("input, a, button").focus();
 	},600)
 
 }
