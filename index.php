@@ -38,7 +38,7 @@
 					<button type=button id=documentation>Documentation</button>
 					<button type=button id=about>About</button>
 				</nav>
-				<div class=page style="display: none">
+				<section class=page style="display: none">
 					<h2>Properties</h2>
 					<div>
 						<label for="name">Name</label>
@@ -93,8 +93,8 @@
 						<input type="button" value="home" class=home>
 						<input type="button" value="next">
 					</div>
-				</div>
-				<div class=page style="display: none">
+				</section>
+				<section class=page style="display: none">
 					<h2>Generation</h2>
 
 					<div>
@@ -126,8 +126,8 @@
 						<input type="button" value="back">
 						<input type="button" value="next">
 					</div>
-				</div>
-				<div class=page  style="display: none">
+				</section>
+				<section class=page  style="display: none">
 					<h2>Colours</h2>
 
 					<div>
@@ -176,16 +176,16 @@
 						<input type="button" value="back">
 						<input type="button" value="Compile" id="compile">
 					</div>
-				</div>
-				<div class=page  style="display: none">
+				</section>
+				<section class=page  style="display: none">
 					<h2>Loading</h2>
 					<div id=loading-container>
 						<div id=loading-circle>
 							<div class="Albatross sprite" id=loading-anim><div></div></div>
 						</div>
 					</div>
-				</div>
-				<div class=page  style="display: none" id="preview-display-wrapper">
+				</section>
+				<section class=page  style="display: none" id="preview-display-wrapper">
 					<h2>Preview</h2>
 
 					<div>
@@ -197,8 +197,8 @@
 						<input type="button" value="Save" id="save">
 					</div>
 					<input type="submit" value="Submit">
-				</div>
-				<div class=page id=gal style="display: none">
+				</section>
+				<section class=page id=gal style="display: none">
 					<h2>Island Gallery</h2>
 					<div>
 						<?php
@@ -206,15 +206,15 @@
 						?>
 					</div>
 					<button type=button class=home>Home</button>
-				</div>
-				<div class=page id=gallery-preview  style="display: none">
+				</section>
+				<section class=page id=gallery-preview  style="display: none">
 					<h2>PREVIEW</h2>
 					<div>
 						<input type="button" value="back">
 						<input type="button" value="Edit" id="copy">
 					</div>
-				</div>
-				<div class=page  style="display: none">
+				</section>
+				<section class=page  style="display: none">
 					<h2 id=doc>Documentation</h2>
 					<button type=button id=devnotes>Developer Notes</button>
 					<a target="_blank" href="documentation/index.html">
@@ -227,8 +227,8 @@
 					</a>
 					<button type=button id=sources>Sources & Attributions</button>
 					<button type=button class=home>Home</button>
-				</div>
-				<div class=page style="display: none">
+				</section>
+				<section class=page style="display: none">
 					<h2>Dev Notes</h2>
 					<article>
 						<h3>Header</h3>
@@ -237,8 +237,8 @@
 						</p>
 					</article>
 					<input type="button" value="back">
-				</div>
-				<div class=page style="display: none">
+				</section>
+				<section class=page style="display: none">
 					<h2>Sources</h2>
 					<article>
 
@@ -271,8 +271,8 @@
 
 					</article>
 					<input type="button" value="back">
-				</div>
-				<div class=page style="display: none">
+				</section>
+				<section class=page style="display: none">
 					<h2 id=bw>Brennan Wilkes</h2>
 					<a target="_blank" href="https://github.com/brennanwilkes">
 						<span>Github</span>
@@ -287,7 +287,7 @@
 						<img id=linkedin src="assets/linkedin.svg" alt="LinkedIn logo">
 					</a>
 					<button type=button class=home>Home</button>
-				</div>
+				</section>
 			</form>
 			<div id=sunset-overlay class=lignting-anim></div>
 		</main>
