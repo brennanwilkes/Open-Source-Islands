@@ -487,7 +487,7 @@ function setUpButtonClicks(){
 	});
 
 	//Gallery image click event
-	$("#gal div").children().click(imageClickEvent).keypress(function (e) {
+	$("#gal div").children().click(imageClickEvent).keypress(function(e){
 		if(e.which == 13){
 			$(this).click();
 		}

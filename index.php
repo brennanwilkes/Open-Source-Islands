@@ -231,9 +231,12 @@
 				<section class=page style="display: none" aria-live="assertive">
 					<h2>Dev Notes</h2>
 					<article>
-						<h3>Header</h3>
+						<h3>The Premise</h3>
 						<p>
-							Content
+							Open Source Islands is the meeting point of two points of interest in my life, the great south pacific ocean, and procedural noise algorithms. Prior to this year, I've spent a considerable amount of time <a href="https://bw.codexwilkes.com/travel/" target="_blank">exploring</a> and falling in love with the incredible, yet shockingly un-spoilt nations of the south pacific, and with covid-19 in full effect, I've been stuck here in the city. I've also had a long standing interest in procedural terrain, and noise algorithms like worley and perlin noise. Combine these, and you get the starting point for Open Source Islands.
+						</p>
+						<p>
+							
 						</p>
 					</article>
 					<input type="button" value="back">
