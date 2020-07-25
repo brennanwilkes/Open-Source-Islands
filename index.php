@@ -234,16 +234,16 @@
 
 						<h3>Usage</h3>
 						<p>
-							Open Source Islands has three main sections to check out! To start, go to the <a>generator</a> page, and click through the form without changing any default values. A beautiful, (but perhaps boring!) 8bit art-style island will be generated for your. Then hit edit, and start playing around with the various sliders and check-boxes. I highly recommend that you try them all! When you've found some settings that you like, try clicking "recompile" a handful of times, until you get a seed which strikes your fancy. Finally you can adjust the colour settings, as well as the amount of sunset lighting and shadows applied. When you're happy with your island, hit "save" to download an image file, and hit "submit" to upload it to the public gallery.
+							Open Source Islands has three main sections to check out! To start, go to the <a href="javascript:changePage(GENERATOR);">generator</a> page, and click through the form without changing any default values. A beautiful, (but perhaps boring!) 8bit art-style island will be generated for your. Then hit edit, and start playing around with the various sliders and check-boxes. I highly recommend that you try them all! When you've found some settings that you like, try clicking "recompile" a handful of times, until you get a seed which strikes your fancy. Finally you can adjust the colour settings, as well as the amount of sunset lighting and shadows applied. When you're happy with your island, hit "save" to download an image file, and hit "submit" to upload it to the public gallery.
 						</p>
 						<p>
-							Once you've tried the generator yourself, head over to the <a>gallery</a> page, and explore the vast array of islands other people have made. If you particularity like one, hit "edit", make any adjustments you'd like, and download it!
+							Once you've tried the generator yourself, head over to the <a href="javascript:changePage(GALLERY);">gallery</a> page, and explore the vast array of islands other people have made. If you particularity like one, hit "edit", make any adjustments you'd like, and download it!
 						</p>
 						<p>
-							In addition to the fun functionality of the app, I've put considerable effort into the <a>JS Docs</a> and <a>developer notes</a> sections of the project, and would appreciate you checking them out in order to learn more about the project.
+							In addition to the fun functionality of the app, I've put considerable effort into the <a href="documentation/index.html">JS Docs</a> and <a href=".">developer notes</a> sections of the project, and would appreciate you checking them out in order to learn more about the project.
 						</p>
 						<p>
-							Finally, head over to the <a>about</a> section to learn more about the developer, me!
+							Finally, head over to the <a href="javascript:changePage(ABOUT);">about</a> section to learn more about the developer, me!
 						</p>
 
 						<h3>The Premise</h3>
