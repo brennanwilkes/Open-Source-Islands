@@ -349,7 +349,7 @@ input[type=text], input[type=button], input[type=submit]{
 
 article, article *{
 	font-family: "Times New Roman", "Inconsolata", serif;
-	font-size: 2vmin;
+	font-size: 18pt;
 	line-height: 1.25;
 }
 
