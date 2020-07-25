@@ -231,13 +231,70 @@
 				<section class=page style="display: none" aria-live="assertive">
 					<h2>Dev Notes</h2>
 					<article>
+
+						<h3>Usage</h3>
+						<p>
+							Open Source Islands has three main sections to check out! To start, go to the <a>generator</a> page, and click through the form without changing any default values. A beautiful, (but perhaps boring!) 8bit art-style island will be generated for your. Then hit edit, and start playing around with the various sliders and check-boxes. I highly recommend that you try them all! When you've found some settings that you like, try clicking "recompile" a handful of times, until you get a seed which strikes your fancy. Finally you can adjust the colour settings, as well as the amount of sunset lighting and shadows applied. When you're happy with your island, hit "save" to download an image file, and hit "submit" to upload it to the public gallery.
+						</p>
+						<p>
+							Once you've tried the generator yourself, head over to the <a>gallery</a> page, and explore the vast array of islands other people have made. If you particularity like one, hit "edit", make any adjustments you'd like, and download it!
+						</p>
+						<p>
+							In addition to the fun functionality of the app, I've put considerable effort into the <a>JS Docs</a> and <a>developer notes</a> sections of the project, and would appreciate you checking them out in order to learn more about the project.
+						</p>
+						<p>
+							Finally, head over to the <a>about</a> section to learn more about the developer, me!
+						</p>
+
 						<h3>The Premise</h3>
 						<p>
-							Open Source Islands is the meeting point of two points of interest in my life, the great south pacific ocean, and procedural noise algorithms. Prior to this year, I've spent a considerable amount of time <a href="https://bw.codexwilkes.com/travel/" target="_blank">exploring</a> and falling in love with the incredible, yet shockingly un-spoilt nations of the south pacific, and with covid-19 in full effect, I've been stuck here in the city. I've also had a long standing interest in procedural terrain, and noise algorithms like worley and perlin noise. Combine these, and you get the starting point for Open Source Islands.
+							Open Source Islands is the meeting point of two points of interest in my life, the great south pacific ocean, and procedural noise algorithms. Prior to this year, I've spent a considerable amount of time <a href="https://bw.codexwilkes.com/travel/" target="_blank">exploring</a> and falling in love with the incredible, yet shockingly unspoiled nations of the south pacific, and with covid-19 in full effect, I've felt stuck here in the city. I've also had a long standing interest in procedural terrain, and noise algorithms like worley and perlin noise. Combine these, and you get the starting point for Open Source Islands.
 						</p>
 						<p>
-							
+							Conceptually, Open Source Islands is divided into three main components. The island class and generator, the web-app providing an user interface for it, and the back-end database storing island configurations. The island class needed to be object-orientated, and abstract from the remainder of the project, as I want to implement it in other projects. The UI needed to be intuitive, and the back-end needed to be fast, as I'm deploying it on a small raspberry pi.
 						</p>
+
+						<h3>Island.js</h3>
+						<p>
+							The most conceptually difficult component of the project, my island representation class is the part of Open Source Islands that I'm the most proud of. The entire class, including all default settings, methods, and export functions are self contained, and thus can be included any any project that requires procedural islands.
+						</p>
+						<p>
+							Island generation begins with a base eight octave layer of perlin noise. This noise is then scaled and
+						</p>
+						<p>
+							To get a detailed understanding of island.js, please check out the <a href="https://github.com/brennanwilkes/Open-Source-Islands/tree/master/js/island-generator" target="_blank">source code</a>, as well as the specific <a href="documentation/island-generator.html" target="_blank">documentation</a>
+						</p>
+
+						<h3>jQuery</h3>
+						<p>
+
+						</p>
+
+						<h3>PHP and AJAX</h3>
+						<p>
+
+						</p>
+
+						<h3>MariaDB and SQL</h3>
+						<p>
+
+						</p>
+
+						<h3>Mobile Design and ARIA</h3>
+						<p>
+
+						</p>
+
+						<h3>Open Source</h3>
+						<p>
+
+						</p>
+
+						<h3>The Future</h3>
+						<p>
+
+						</p>
+
 					</article>
 					<input type="button" value="back">
 				</section>
@@ -255,7 +312,7 @@
 						<h3>Graphics</h3>
 
 						<p>
-							Github, JavaScript, and Linkedin SVG logos have all been downloaded from the wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links.
+							Github, JavaScript, and Linkedin SVG logos have all been downloaded from the Wikimedia commons. Small cropping and colour correction alterations have been made. Original logos can be accessed from the below links.
 						</p>
 						<a href="https://commons.wikimedia.org/wiki/File:Ei-sc-github.svg" target="_blank">commons.wikimedia.org/github.svg</a>
 						<a href="https://commons.wikimedia.org/wiki/File:Unofficial_JavaScript_logo_2.svg" target="_blank">commons.wikimedia.org/Unofficial_JavaScript_logo_2.svg</a>
