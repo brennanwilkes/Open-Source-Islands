@@ -322,6 +322,9 @@
 						<p>
 							The database behind Open Source Islands runs MariaDB. The required commands to setup this database can be found <a href="sql/sql-database-commands.sql" target="_blank">here</a>. The PHP back-end sanitizes all inputs prior to accessing the SQL database, preventing SQL-injection attacks.
 						</p>
+						<p>
+							In order to prevent button spamming, or duplicate submission I use SQL constraints on all relevant data fields to automatically drop duplicate entries from the database. This needs to be done manually as some fields are auto-generated and will always be unique, despite not being primary keys.
+						</p>
 
 						<h3>Open Source</h3>
 						<p>
