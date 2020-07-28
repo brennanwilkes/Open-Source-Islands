@@ -198,7 +198,7 @@
 					</div>
 					<input type="submit" value="Submit">
 				</section>
-				<section class=page id=gal style="display: none" aria-live="polite">
+				<section class=page id=gal style="display: none" aria-live="polite" role=tablist>
 					<h2>Island Gallery</h2>
 					<div>
 						<?php
@@ -288,6 +288,9 @@
 						</p>
 						<p>
 							In order to allow my application to be as accessible as possible, I've implemented ARIA controls and attributes into the core of my app. Every page and function can be accessed via the keyboard, and I have done my best to optimize the page for screen reader support.
+						</p>
+						<p>
+							All generated HTML and CSS is
 						</p>
 						<p>
 							Since my application is being hosted from a small server, and includes dynamic php content, I was not content with loading times between pages, so instead of separate php/html files, I group all content into a single file, and dynamically hide and show sections using the jQuery controller. More below.
