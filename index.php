@@ -6,7 +6,7 @@
 
 	$pdo = db_connect();
 
-	if($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_GET["isLandCopy"])){
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		handle_submit();
 	}
 
@@ -246,6 +246,11 @@
 							Finally, head over to the <a href="javascript:changePage(ABOUT);">about</a> section to learn more about the developer, me!
 						</p>
 
+						<h3>Bonus</h3>
+						<p>
+							For potential bonus points, I have integrated AJAX functionality into the core of my project, as well as set up a real-time deployment on my web-server. More details can be found below.
+						</p>
+
 						<h3>The Premise</h3>
 						<p>
 							Open Source Islands is the meeting point of two points of interest in my life, the great south pacific ocean, and procedural noise algorithms. Prior to this year, I've spent a considerable amount of time <a href="https://bw.codexwilkes.com/travel/" target="_blank">exploring</a> and falling in love with the incredible, yet shockingly unspoiled nations of the south pacific, and with covid-19 in full effect, I've felt stuck here in the city. I've also had a long standing interest in procedural terrain, and noise algorithms like worley and perlin noise. Combine these, and you get the starting point for Open Source Islands.
@@ -259,10 +264,33 @@
 							The most conceptually difficult component of the project, my island representation class is the part of Open Source Islands that I'm the most proud of. The entire class, including all default settings, methods, and export functions are self contained, and thus can be included any any project that requires procedural islands.
 						</p>
 						<p>
-							Island generation begins with a base eight octave layer of perlin noise. This noise is then scaled and
+							Island generation begins with a base eight octave layer of perlin noise. This noise is then scaled and normalized based on the radial distance from the center point, creating a cone-like height map. Next additional layers of noise are layered to create realistic island features such as motus and reefs. These features draw inspiration from my direct observations of islands like <a href="https://bw.codexwilkes.com/backpacking/polynesia.html#maupiti" target="_blank">Maupiti, French Polynesia</a>, and the <a href="https://bw.codexwilkes.com/backpacking/maldives.html" target="_blank">North Male Atoll, Maldives</a>.
 						</p>
 						<p>
-							To get a detailed understanding of island.js, please check out the <a href="https://github.com/brennanwilkes/Open-Source-Islands/tree/master/js/island-generator" target="_blank">source code</a>, as well as the specific <a href="documentation/island-generator.html" target="_blank">documentation</a>
+							Next the height map is converted to an array of squares, and then rectangles. These rectangles are coloured based on their height, and rendered to a HTML5 canvas image, which is then rasterized to an octet PNG stream, and is ready for display.
+						</p>
+						<p>
+							Detailed sprites are then procedural placed around the island, and rendered to their own canvas image, and can be rasterized to the octet stream as well. These sprites were all designed by hand in pixel art program aseprite.
+						</p>
+						<p>
+							Next a ray-cast rendering engine calculates semi-transparent lighting effects and creates shadows from differences in height-layers. These shadows can be rendered at a specific length, or exported as a variable sprite-sheet.
+						</p>
+						<p>
+							To get a more detailed understanding of island.js, please check out the <a href="https://github.com/brennanwilkes/Open-Source-Islands/tree/master/js/island-generator" target="_blank">source code</a>, as well as the specific <a href="documentation/island-generator.html" target="_blank">documentation</a>
+						</p>
+
+						<h3>Design and ARIA</h3>
+						<p>
+							Due to the nature of my application, I chose to follow a mobile-first design process for my UI. I began by sketching out my application's wire-frames on a sheet of paper, taking photographs, and viewing them on my phone, to see where adjustments had to be made. I settled on a vertical 4:3 aspect ratio main section, which would take up the majority of the screen on mobile devices.
+						</p>
+						<p>
+							For larger phones, or desktop browsers, I chose to keep the 4:3 ratio and expand the background content to cover the remainder of the screen. To make the page more interesting, instead of a static background image, I use <a href="https://github.com/brennanwilkes/Open-Source-Islands/blob/master/css/styles.css" target="_blank">@keyframe</a> animations to animate a sprite sheet of rendered shadows for a number of pre-generated "concept" islands.
+						</p>
+						<p>
+							In order to allow my application to be as accessible as possible, I've implemented ARIA controls and attributes into the core of my app. Every page and function can be accessed via the keyboard, and I have done my best to optimize the page for screen reader support.
+						</p>
+						<p>
+							Since my application is being hosted from a small server, and includes dynamic php content, I was not content with loading times between pages, so instead of separate php/html files, I group all content into a single file, and dynamically hide and show sections using the jQuery controller. More below.
 						</p>
 
 						<h3>jQuery</h3>
@@ -276,11 +304,6 @@
 						</p>
 
 						<h3>MariaDB and SQL</h3>
-						<p>
-
-						</p>
-
-						<h3>Mobile Design and ARIA</h3>
 						<p>
 
 						</p>
