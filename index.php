@@ -179,7 +179,7 @@
 				</section>
 				<section class=page  style="display: none" aria-live="assertive">
 					<h2>Loading</h2>
-					<div id=loading-container aria-label="Loading icon">
+					<div id=loading-container>
 						<div id=loading-circle>
 							<div class="Albatross sprite" id=loading-anim><div></div></div>
 						</div>
