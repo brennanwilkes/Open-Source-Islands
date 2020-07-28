@@ -213,9 +213,12 @@ function changePage(page){
 	//Move to next page
 	$(".page:nth-child("+currentPage+")").fadeIn();
 
-	if(!USING_MOUSE){
-		$(".page:nth-child("+currentPage+") :enabled:visible:first").focus();
-	}
+	setTimeout(function(e){
+		if(!USING_MOUSE){
+			$(".page:nth-child("+currentPage+") :enabled:visible:first").focus();
+		}
+	},10);
+
 
 }
 
