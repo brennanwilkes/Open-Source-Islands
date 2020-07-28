@@ -1,30 +1,34 @@
 <?php
 	require "connection.php";
 
-
-
+	//Generate gallery
 	function get_images(){
 		global $pdo;
 
+		//Setup sql
 		$sql = "SELECT * FROM islands ORDER BY submission_date";
 		$result = $pdo->query($sql);
 
 		$echotmp = "";
 
 		while ($row = $result->fetch()){
+
+			//Create img element and set id/src attributes to database values
 			$tmp = "<img src='".file_get_contents($row["filename"], FILE_USE_INCLUDE_PATH)."'";
 			$tmp = $tmp." id='".$row["id"]."' alt='Island Image' aria-label='Island image - click to view' role='tab' tabindex=0>";
 
 			$echotmp=$tmp.$echotmp;
 		}
+
+		//Return
 		echo $echotmp;
 	}
 
+	//Form submission
 	function handle_submit(){
-		global $pdo;
 
 		//setup sql statement
-
+		global $pdo;
 
 		$sql = "INSERT IGNORE INTO islands (seed, name, colour_background, deep_ocean, shallow_ocean, land_one, land_two, land_three, beach, rock_one, rock_two, lava_one, lava_two, sunset, has_motu, has_reef, is_volcano, is_atoll, has_town, has_trees, tree_amt, village_size, isl_persist, isl_lac, isl_scale, submission_date, filename) VALUES (:seedVAL, :nameVAL, :colour_backgroundVAL, :deep_oceanVAL, :shallow_oceanVAL, :land_oneVAL, :land_twoVAL, :land_threeVAL, :beachVAL, :rock_oneVAL, :rock_twoVAL, :lava_oneVAL, :lava_twoVAL, :sunsetVAL, :has_motuVAL, :has_reefVAL, :is_volcanoVAL, :is_atollVAL, :has_townVAL, :has_treesVAL, :tree_amtVAL, :village_sizeVAL, :isl_persistVAL, :isl_lacVAL, :isl_scaleVAL, :submission_dateVAL, :filenameVAL) ";
 		$statement = $pdo->prepare($sql);
@@ -61,11 +65,13 @@
 		//execute
 		$statement->execute();
 
+		//Update filename to use ID value
 		$id = $pdo->lastInsertId();
 		$fn = "gallery/".$id.".png";
 		$sql = "UPDATE islands SET filename=? WHERE id=?";
 		$pdo->prepare($sql)->execute([$fn, $id]);
 
+		//Save image file to server
 		$myfile = fopen($fn, "w") or die("Unable to open file!");
 		fwrite($myfile, $_POST["imageData"]);
 		fclose($myfile);

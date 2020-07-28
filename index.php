@@ -290,7 +290,7 @@
 							In order to allow my application to be as accessible as possible, I've implemented ARIA controls and attributes into the core of my app. Every page and function can be accessed via the keyboard, and I have done my best to optimize the page for screen reader support.
 						</p>
 						<p>
-							All generated HTML and CSS is
+							All generated HTML and CSS is valid according to the w3 HTML validator. Warnings (not errors) are generated for using HTML5 colour chooser elements, but after thorough testing, I have deemed this not to be an issue. Validation can be viewed live at validator.w3.org:<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fbw.codexwilkes.com%2FOpen-Source-Islands%2F" target="_blank">HTML</a>, <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fbw.codexwilkes.com%2FOpen-Source-Islands%2Fcss%2Fstyles.css" target="_blank">CSS</a>, or via these screenshots: <a href="assets/validation/html-validated.png" target="_blank">HTML</a>, and <a href="assets/validation/css-validated.png" target="_blank">CSS</a>.
 						</p>
 						<p>
 							Since my application is being hosted from a small server, and includes dynamic php content, I was not content with loading times between pages, so instead of separate php/html files, I group all content into a single file, and dynamically hide and show sections using the jQuery controller. More below.
@@ -298,17 +298,23 @@
 
 						<h3>jQuery</h3>
 						<p>
-
+							Open Source Islands' front-end is controlled by a jQuery controller script. This script does everything from basic page setup, page-to-page navigation, image gallery randomization, and even animation by dynamically generating and deleting particle effects. The controller is extensively documented, and can be explored via the <a href="https://bw.codexwilkes.com/Open-Source-Islands/documentation/osi.html" target="_blank">JS Docs</a> or the <a href="https://github.com/brennanwilkes/Open-Source-Islands/blob/master/js/osi.js" target="_blank">source code</a>.
 						</p>
 
 						<h3>PHP and AJAX</h3>
 						<p>
-
+							Open Source Islands' back-end is written in PHP. At initial page load, the image gallery is populated with the contents of the database (more below), and on form submission, the PHP back-end receives the image parameters, sanitizes them, and uploads them to the database. Server side, everything is viewed as hostile, and is treated as a sanitized string for security purposes.
+						</p>
+						<p>
+							Open Source Islands also takes advantage of AJAX. When a user clicks "edit" on a submitted image, the jQuery controller triggers an AJAX request to the server, getting the data and parameters required to edit and recompile the submitted island image.
+						</p>
+						<p>
+							All back-end functionality is abstracted, to allow for maintainability. Secure information is kept separate from database connection scripts, and AJAX requests are kept separate from the regular PHP handlers.
 						</p>
 
 						<h3>MariaDB and SQL</h3>
 						<p>
-
+							The database behind Open Source Islands runs MariaDB. The required commands to setup this database can be found <a href="sql/sql-database-commands.sql" target="_blank">here</a>. The PHP back-end sanitizes all inputs prior to accessing the SQL database, preventing SQL-injection attacks. 
 						</p>
 
 						<h3>Open Source</h3>
