@@ -262,6 +262,11 @@
 							Conceptually, Open Source Islands is divided into three main components. The island class and generator, the web-app providing an user interface for it, and the back-end database storing island configurations. The island class needed to be object-orientated, and abstract from the remainder of the project, as I want to implement it in other projects. The UI needed to be intuitive, and the back-end needed to be fast, as I'm deploying it on a small raspberry pi.
 						</p>
 
+						<h3>Typical Users</h3>
+						<p>
+							There's a wide range of user's who can benefit from Open Source Islands. The most obvious is people needing access to 8bit style island images as assets for video games, art projects, wallpapers, etc etc. However as Island.js is self contained, and retains original data like the island height map, user's wanting to implement the islands into a real-time video game could include Island.js in their project. For a (very W.I.P.) example of this, head over to my early alpha project <a href="https://brennanwilkes.github.io/Tangaroa/" target="_blank">Tangaroa</a>. The final user is a developer simply wanting to learn about perlin noise algorithms. With easy and interactive visualization of the algorithm, as well as full access to the source, code, Open Source Islands can act as a great educational tool.
+						</p>
+
 						<h3>Island.js</h3>
 						<p>
 							The most conceptually difficult component of the project, my island representation class is the part of Open Source Islands that I'm the most proud of. The entire class, including all default settings, methods, and export functions are self contained, and thus can be included any any project that requires procedural islands.
