@@ -198,7 +198,7 @@
 					</div>
 					<input type="submit" value="Submit">
 				</section>
-				<section class=page id=gal style="display: none" aria-live="polite" role=tablist>
+				<div class=page id=gal style="display: none" aria-live="polite" role=tablist>
 					<h2>Island Gallery</h2>
 					<div>
 						<?php
@@ -206,7 +206,7 @@
 						?>
 					</div>
 					<button tabindex=1 type=button class=home>Home</button>
-				</section>
+				</div>
 				<section class=page id=gallery-preview  style="display: none" aria-live="assertive">
 					<h2>PREVIEW</h2>
 					<div>
