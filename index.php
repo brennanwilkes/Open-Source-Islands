@@ -248,7 +248,10 @@
 
 						<h3>Bonus</h3>
 						<p>
-							For potential bonus points, I have integrated AJAX functionality into the core of my project, as well as set up a real-time deployment on my web-server. More details can be found below.
+							For potential bonus points, I have integrated AJAX functionality into the core of my project, as well as set up a real-time deployment on my web-server. More details can be found below. It's hard for me to know what the standard required for going "above and beyond" is, but I believe Open Source Islands shows a really strong understanding of JavaScript, jQuery, and server side paradimes such as AJAX and MariaDB. I've put considerable work into it, as can be seen from my almost 400 commit messages over the course of the last few months. I'd estimate I've spent at-least 100 hours developing it, plus a considerable amount of time pre-repo initialization on Island.js, and I believe my final product is excellent. I hope you agree, and are willing to allow me a grade that reflects that.
+						</p>
+						<p>
+							More important than my grade however, I would really appreciate some feedback and criticism. I'm hoping to use this project as a flagship for my portfolio as I search for web development internships and junior developer jobs throughout 2021, and as such would welcome as much feedback as I can get from experts like yourself.
 						</p>
 
 						<h3>The Premise</h3>
@@ -284,10 +287,13 @@
 							Due to the nature of my application, I chose to follow a mobile-first design process for my UI. I began by sketching out my application's wire-frames on a sheet of paper, taking photographs, and viewing them on my phone, to see where adjustments had to be made. I settled on a vertical 4:3 aspect ratio main section, which would take up the majority of the screen on mobile devices.
 						</p>
 						<p>
-							For larger phones, or desktop browsers, I chose to keep the 4:3 ratio and expand the background content to cover the remainder of the screen. To make the page more interesting, instead of a static background image, I use <a href="https://github.com/brennanwilkes/Open-Source-Islands/blob/master/css/styles.css" target="_blank">@keyframe</a> animations to animate a sprite sheet of rendered shadows for a number of pre-generated "concept" islands.
+							For larger phones, or desktop browsers, I chose to keep the 4:3 ratio and expand the background content to cover the remainder of the screen. To make the page more interesting, instead of a static background image, I use <a href="https://github.com/brennanwilkes/Open-Source-Islands/blob/master/css/styles.css" target="_blank">@keyframe</a> animations to animate a sprite sheet of rendered shadows for a number of pre-generated "concept" islands. These animations also fade out randomly generated particles which make the ocean "sparkle".
 						</p>
 						<p>
-							In order to allow my application to be as accessible as possible, I've implemented ARIA controls and attributes into the core of my app. Every page and function can be accessed via the keyboard, and I have done my best to optimize the page for screen reader support.
+							The layout of Open Source Islands has been done with a large combination of grids and flexboxes. Some examples include a grid used for the <a href="javascript:changePage(GALLERY);">gallery</a> page, as well as flexboxes for the standard section layout. More details can be found in the CSS <a href="https://github.com/brennanwilkes/Open-Source-Islands/blob/master/css/styles.css" target="_blank">source</a> code.
+						</p>
+						<p>
+							In order to allow Open Source Islands to be as accessible as possible, I've implemented ARIA controls and attributes throughout the core structure. Every page and function can be accessed via the keyboard, and I have done my best to optimize the page for screen reader support. In addition, semantic elements such as nav, section, and article are used whenever possible.
 						</p>
 						<p>
 							All generated HTML and CSS is valid according to the w3 HTML validator. Warnings (not errors) are generated for using HTML5 colour chooser elements, but after thorough testing, I have deemed this not to be an issue. Validation can be viewed live at validator.w3.org:<a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fbw.codexwilkes.com%2FOpen-Source-Islands%2F" target="_blank">HTML</a>, <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fbw.codexwilkes.com%2FOpen-Source-Islands%2Fcss%2Fstyles.css" target="_blank">CSS</a>, or via these screenshots: <a href="assets/validation/html-validated.png" target="_blank">HTML</a>, and <a href="assets/validation/css-validated.png" target="_blank">CSS</a>.
