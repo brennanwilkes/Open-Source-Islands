@@ -420,7 +420,7 @@ function main(){
 	});
 
 	//Set toggleable input events
-	let slidertoggle = [["village","villagesize"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
+	let slidertoggle = [["village","village_size"],["trees","tree_amt"],["volcano","lava1"],["background","ocean"]];
 	for(let i=0;i<slidertoggle.length;i++){
 		$("#"+slidertoggle[i][0]).change(function() {
 			$("#"+slidertoggle[i][1]).parent()[this.checked ? "show" : "hide"]();
