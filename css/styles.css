@@ -2,6 +2,14 @@
 	Brennan Wilkes
 	100322326
 	CPSC 2030 W01
+
+	Sorry this is a little chaotic, I really don't know the best way
+	to organize CSS files. Should I group it into different files
+	for different part of the application? Or add dividing line comments?
+
+	I try to pride myself on documenting my code and making it nice to
+	look at, but I don't have a clue how to do that with CSS. :p Oops!
+
 */
 
 /* Default setups */
@@ -65,11 +73,6 @@ body{
 	z-index: -2;
 }
 
-/* Same as .backgroundIsland just the specific */
-#backgroundDisplay{
-
-}
-
 .backgroundIsland > .baselayer, .backgroundIsland > .lighting, #sunset-overlay{
 	position: absolute;
 	left: 0;
@@ -77,26 +80,31 @@ body{
 	bottom: 0;
 }
 
+/* Sunset gradient */
 #sunset-overlay{
 	background-image: linear-gradient(-45deg, #FF000040, #FF000080, #FFC922FF);
-
 	width: 100%;
 	height: 100%;
 	z-index: 0;
 }
 
+/* Apply sunset fade animation */
 .lignting-anim{
 	-webkit-animation:	fadeInAndOut 12s linear infinite alternate;
 	-moz-animation:		fadeInAndOut 12s linear infinite alternate;
 	-o-animation:		fadeInAndOut 12s linear infinite alternate;
 	animation: 			fadeInAndOut 12s linear infinite alternate;
+
+	/* GPU Optimization */
 	will-change: opacity;
 }
 
+/* Page wrapper. Set as a class for readability */
 .page{
+
+	/* Fixed 4:3 aspect ratio */
 	width: 90vw;
 	max-width: 67.5vh;
-
 	height: 120vw;
 	max-height: 90vh;
 
@@ -110,8 +118,6 @@ body{
 	background-color: #F3D6A5;
 	box-shadow: 0.5vmin 0.5vmin 3vmin 0.25vmin black;
 
-
-
 	display:flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -124,12 +130,14 @@ body{
 	margin: 0 10%;
 }
 
+/* Page title text */
 .page > *:first-child{
 	margin-top: 10%;
 	font-size:8vmin;
 	font-weight: bold;
 }
 
+/* Some one off cases. Could have used IDs but these advanced selectors are neato :p */
 .page:nth-child(-n+6) > *:first-child{
 	margin-top: 5%;
 }
@@ -137,20 +145,30 @@ body{
 	margin-top: 10%;
 }
 
+/* More one off cases */
 #osi{
 	font-size: 7vmin;
 }
-
 #bw, #doc, #gal > h2, #gallery-preview > h2{
 	font-size: 6vmin;
 }
+#JS{
+	border: 1px solid black;
+}
 
+/* Background page that sits below to ease with transitions */
+#backgroundPage{
+	z-index: 0;
+	box-shadow: 0 0 0 0;
+}
+
+/* The small link icons - JSDocs, Linkedin, etc */
 a img{
 	max-width: 6vmin;
 	max-height: 6vmin;
 }
 
-
+/* Link styling */
 .page > div, div > a, section > a{
 	display: flex;
 	flex-direction: row;
@@ -158,57 +176,55 @@ a img{
 	align-items: center;
 	text-align: left;
 }
-
 .page > a *{
 	margin-left: 5vmin;
 	margin-right: 5vmin;
 	height: 8vmin;
 }
-
 a{
 	text-decoration: none;
 }
-
-
 .page > div > *, .page > a > *{
 	max-width: 60%;
 }
 
+/* Non capitalized text */
 .page div input[type=text], article, article *{
 	text-transform: none;
 }
 
+/* Checkbox sizing for browsers that will let me do it */
 input[type=checkbox]{
 	width:5.5vmin;
 	height:5.5vmin;
 }
 
+/* Remove default border styling */
 input, .page, input:focus{
 	border-radius: 0.25vmin;
 	outline-width: 0;
 }
 
+/* More one off cases */
 .page > *:last-child{
 	margin-bottom: 8%;
 }
-
 .page > div:last-child > *{
 	width:45%;
 }
 
-
+/* Lighten headers */
 h1, h2{
 	color: #444;
 }
 
+/* Input and form styling */
 label, input[type=button], input[type=submit], button{
 	padding-top: 0.25%;
 }
-
 label, input[type=button], input[type=submit], button, article, article > *{
 	color: #222;
 }
-
 button, input[type=button], input[type=submit], div > a, section > a{
 	outline-width: 0;
 	line-height: 8vmin;
@@ -216,13 +232,14 @@ button, input[type=button], input[type=submit], div > a, section > a{
 	border-radius: 2vmin;
 }
 
-
+/* Specific input styling */
 .page:nth-child(6) input[type=button], .page:nth-child(6) input[type=submit]{
 	line-height: 5vmin;
 	border-radius: 0.5vmin;
 	padding-top: 0.5%;
 }
 
+/* Menu items */
 input, button, div > a, section > a{
 	border: 1px solid #222;
 	min-width: 0;
@@ -230,22 +247,7 @@ input, button, div > a, section > a{
 	background-color: #F8E7C9;
 }
 
-input[type=color]{
-	background-color: #F3D6A5;
-}
-
-
-
-
-
-.dual label{
-	width:150%;
-}
-
-.tri label{
-	width:200%;
-}
-
+/* More input styling */
 input:hover, button:hover, div > a:hover, div > a *:hover, section > a:hover, section > a *:hover{
 	cursor:pointer;
 	background-color: #E7CC9C;
@@ -257,6 +259,47 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 	background-color: #DFBB7C;
 }
 
+input[type=color]{
+	background-color: #F3D6A5;
+}
+
+input[type=range]{
+	-webkit-appearance: none;
+	width:40%;
+	outline: none;
+	border-radius: 0.5vmin;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	background: #0C1A5F;
+	border-radius: 0.5vmin;
+}
+
+input[type=range]::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	background: #0C1A5F;
+	border-radius: 0.5vmin;
+}
+
+
+input[type=text], input[type=button], input[type=submit]{
+	-webkit-appearance: none;
+}
+
+/* More one off cases */
+.dual label{
+	width:150%;
+}
+.tri label{
+	width:200%;
+}
+
+/* Gallery styling */
 #gal > div, #gallery-preview > img{
 	margin-top:5vh;
 	margin-bottom: 5vh;
@@ -301,54 +344,19 @@ input[type=button]:active, input[type=submit]:active, button:active, input:focus
 	text-align: center;
 }
 
-#backgroundPage{
-	z-index: 0;
-	box-shadow: 0 0 0 0;
-}
-
-#JS{
-	border: 1px solid black;
-}
-
 #preview_display ~ div > *{
 	width:49.6%;
 }
 
-/*/////////////////////////////////////////*/
-
-
-/*
-	This copy paste code for webkit and moz angers me
-*/
-
-input[type=range]{
-	-webkit-appearance: none;
-	width:40%;
-	outline: none;
-	border-radius: 0.5vmin;
+.island-image{
+	position: absolute;
+	left:0;
+	top:0;
+	width:50vmin;
+	height:50vmin;
 }
 
-input[type=range]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 25px;
-	height: 25px;
-	background: #0C1A5F;
-	border-radius: 0.5vmin;
-}
-
-input[type=range]::-moz-range-thumb {
-	width: 25px;
-	height: 25px;
-	background: #0C1A5F;
-	border-radius: 0.5vmin;
-}
-
-
-input[type=text], input[type=button], input[type=submit]{
-	-webkit-appearance: none;
-}
-
+/* Text box styling - For sources and documentation */
 .page > article{
 	border-radius: 1vmin;
 	padding: 5%;
@@ -389,16 +397,7 @@ article > p:last-of-type{
 	margin-top:4vh;
 }
 
-/*////////////////////////*/
-
-.island-image{
-	position: absolute;
-	left:0;
-	top:0;
-	width:50vmin;
-	height:50vmin;
-}
-
+/* Loading anim wrapper */
 #loading-container{
 	margin: 0;
 	position: absolute;
@@ -408,12 +407,14 @@ article > p:last-of-type{
 	text-align: center;
 }
 
+/* Loading anim bird */
 #loading-anim{
 	position: absolute;
 	top:36px;
 	left:12px;
 }
 
+/* Loading anim circle */
 #loading-circle{
 	position: relative;
 	background-color: #2d5ba4;
@@ -425,10 +426,8 @@ article > p:last-of-type{
 	justify-content: center;
 }
 
-/*////////////////////////////////////////*/
 
-
-
+/* Keyframe animation */
 @-webkit-keyframes fadeout {
 	from { opacity: 1; }
 	to { opacity: 0; }
@@ -445,10 +444,6 @@ article > p:last-of-type{
 	from { opacity: 1; }
 	to { opacity: 0; }
 }
-
-
-/*///////////*/
-
 
 @-webkit-keyframes fadeInAndOut {
 	0% { opacity: 0; }
@@ -467,7 +462,6 @@ article > p:last-of-type{
 	100% { opacity: 0.65; }
 }
 
-
 @-webkit-keyframes renderLighting {
 	100% { -webkit-transform:translate3d(-10240px,0,0); }
 }
@@ -481,6 +475,20 @@ article > p:last-of-type{
 	100% { transform:translate3d(-10240px,0,0); }
 }
 
+@-webkit-keyframes animateAlbatrossSprite {
+	to { -webkit-transform:translate3d(-960px,0,0); }
+}
+@-moz-keyframes animateAlbatrossSprite {
+	to { -moz-transform:translate3d(-960px,0,0); }
+}
+@-o-keyframes animateAlbatrossSprite {
+	to { -o-transform:translate3d(-960px,0,0); }
+}
+@keyframes animateAlbatrossSprite{
+	to { transform:translate3d(-960px,0,0); }
+}
+
+/* The little sparkly particles */
 .Particle{
 	position: absolute;
 	width:0.7vmin;
@@ -497,27 +505,11 @@ article > p:last-of-type{
 
 }
 
-
-
-@-webkit-keyframes animateAlbatrossSprite {
-	to { -webkit-transform:translate3d(-960px,0,0); }
-}
-@-moz-keyframes animateAlbatrossSprite {
-	to { -moz-transform:translate3d(-960px,0,0); }
-}
-@-o-keyframes animateAlbatrossSprite {
-	to { -o-transform:translate3d(-960px,0,0); }
-}
-@keyframes animateAlbatrossSprite{
-	to { transform:translate3d(-960px,0,0); }
-}
-
-
+/* Animatable sprite */
 .sprite{
 	position:relative;
 	overflow:hidden;
 }
-
 .sprite > div{
 	position:absolute;
 	top:0;
@@ -526,7 +518,11 @@ article > p:last-of-type{
 	will-change: transform;
 }
 
-
+/*
+	Specifically albatross animation. I didn't end up including any others,
+	but I wanted the code to be abstracted in a way that allowed me to easily
+	add other ones.
+*/
 .Albatross {
 	height: 48px;
 	width: 96px;
@@ -543,6 +539,8 @@ article > p:last-of-type{
 	-o-animation:		animateAlbatrossSprite 1s steps(10) infinite;
 	animation: 			animateAlbatrossSprite 1s steps(10) infinite;
 }
+
+/* Oops I never implemented JS for this. Maybe one day... */
 .greyVarient{
 	background-image : url("../assets/albatross/albatross-grey-sprite-sheet.png");
 }
