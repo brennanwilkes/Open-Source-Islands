@@ -1,5 +1,6 @@
 /**
 	List of island names deriving from polynesian, melanesian, papuan, and austrolasian languages
+	@type {string[]}
 	@memberof island-generator
 */
 var NAMES_LIST = ["Kalgibee",

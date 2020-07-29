@@ -4,10 +4,12 @@
 	CPSC 2030 W01
 */
 
+/* Default setups */
 html, body {
 	overflow: hidden;
 }
 
+/* Default setups */
 *{
 	padding:0;
 	margin:0;
@@ -20,12 +22,14 @@ html, body {
 	color: black;
 }
 
+/* Default setups */
 body{
 	background-color:#0C1A5F;
 	height:100vh;
 	width:100vw;
 }
 
+/* Container/wrapper for the dynamic background image */
 .backgroundIsland{
 	position: absolute;
 	background-size:0;
@@ -33,8 +37,16 @@ body{
 	width: 1024px;
 	position:relative;
 	overflow:hidden;
+	left: 50vw;
+	top: 40vh;
 }
 
+/*
+	Lighting/shadows sprite sheet for background image
+	Originally these layers were done with pseudo elements
+	but I need to be able to access them with JS in order todo
+	randomly assign them an image source
+ */
 .backgroundIsland > .lighting{
 	width: 10240px;
 	z-index: -1;
@@ -45,6 +57,7 @@ body{
 	will-change: transform;
 }
 
+/* Actual island image */
 .backgroundIsland > .baselayer{
 	background-repeat: no-repeat;
 	width: 100%;
@@ -52,9 +65,9 @@ body{
 	z-index: -2;
 }
 
+/* Same as .backgroundIsland just the specific */
 #backgroundDisplay{
-	left: 50vw;
-	top: 40vh;
+
 }
 
 .backgroundIsland > .baselayer, .backgroundIsland > .lighting, #sunset-overlay{
